@@ -1,19 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b8c81752-d30f-4d00-8f30-c5be214554be" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ImageProcessor.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ImageUtil.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/cs3500/imageprocessor/model/IPixel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/cs3500/imageprocessor/model/ImageEditor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/cs3500/imageprocessor/model/ImageEditorReadOnly.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/cs3500/imageprocessor/model/ImageState.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/cs3500/imageprocessor/model/ImageToPixelTransformation.java" afterDir="false" />
+    <list default="true" id="b8c81752-d30f-4d00-8f30-c5be214554be" name="Changes" comment="Interface Design for Image Processor v1">
+      <change afterPath="$PROJECT_DIR$/src/cs3500/imageprocessor/model/AbstractBaseImage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/cs3500/imageprocessor/model/ImagePPM.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/cs3500/imageprocessor/model/ImageXYToPixelTransformation.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/cs3500/imageprocessor/model/RGBPixel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cs3500/imageprocessor/model/IPixel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cs3500/imageprocessor/model/IPixel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cs3500/imageprocessor/model/ImageEditor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cs3500/imageprocessor/model/ImageEditor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cs3500/imageprocessor/model/ImageEditorReadOnly.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cs3500/imageprocessor/model/ImageEditorReadOnly.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cs3500/imageprocessor/model/ImageState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cs3500/imageprocessor/model/ImageState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cs3500/imageprocessor/model/ImageToPixelTransformation.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,8 +21,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -91,8 +89,18 @@
       <workItem from="1666831885145" duration="126000" />
       <workItem from="1666909526681" duration="1007000" />
       <workItem from="1667353064623" duration="18000" />
-      <workItem from="1667353112366" duration="3371000" />
+      <workItem from="1667353112366" duration="3462000" />
+      <workItem from="1667357022327" duration="70000" />
+      <workItem from="1667417095933" duration="6625000" />
     </task>
+    <task id="LOCAL-00001" summary="Interface Design for Image Processor v1">
+      <created>1667356525751</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1667356525751</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -111,5 +119,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="Interface Design for Image Processor v1" />
+    <option name="LAST_COMMIT_MESSAGE" value="Interface Design for Image Processor v1" />
   </component>
 </project>

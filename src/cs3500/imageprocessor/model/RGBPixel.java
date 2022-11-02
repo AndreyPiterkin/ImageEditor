@@ -1,37 +1,67 @@
 package cs3500.imageprocessor.model;
 
-import java.util.function.Function;
+public class RGBPixel implements IPixel {
 
-public interface IPixel {
+  private final int red, green, blue;
+
+  public RGBPixel(int red, int green, int blue) {
+    if (red < 0 || red > 255) {
+      throw new IllegalArgumentException("Red channel must be between 0 and 255");
+    }
+    if (green < 0 || green > 255) {
+      throw new IllegalArgumentException("Green channel must be between 0 and 255");
+    }
+    if (blue < 0 || blue > 255) {
+      throw new IllegalArgumentException("Blue channel must be between 0 and 255");
+    }
+    this.red = red;
+    this.green = green;
+    this.blue = blue;
+  }
 
   /**
    * Gets the red channel of the pixel. We guarantee that every pixel can compute its own red
    * channel, no matter the representation, and return it as an integer between 0 and 255.
+   *
    * @return the red channel of the pixel
    */
-  int getRed();
+  @Override
+  public int getRed() {
+    return this.red;
+  }
 
   /**
    * Gets the green channel of the pixel. We guarantee that every pixel can compute its own green
    * channel, no matter the representation, and return it as an integer between 0 and 255.
+   *
    * @return the red channel of the pixel
    */
-  int getGreen();
+  @Override
+  public int getGreen() {
+    return this.green;
+  }
 
   /**
    * Gets the blue channel of the pixel. We guarantee that every pixel can compute its own blue
    * channel, no matter the representation, and return it as an integer between 0 and 255.
+   *
    * @return the blue channel of the pixel
    */
-  int getBlue();
+  @Override
+  public int getBlue() {
+    return this.blue;
+  }
 
   /**
    * Gets the alpha channel of the pixel. We guarantee that every pixel can compute its own alpha
    * channel, though pixels implementations without knowledge of the alpha channel will always
    * return 100% alpha. We also guarantee that the alpha channel will be returned as an integer from
    * 0 to 99.
+   *
    * @return the alpha channel of the pixel
    */
-  int getAlpha();
-
+  @Override
+  public int getAlpha() {
+    return 99;
+  }
 }
