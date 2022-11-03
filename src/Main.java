@@ -1,22 +1,29 @@
+import java.io.StringReader;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
+import java.util.function.BiConsumer;
+
+import cs3500.imageprocessor.controller.BasicEditorController;
+import cs3500.imageprocessor.controller.ImageEditorController;
 import cs3500.imageprocessor.model.BasicPPMImageEditor;
 import cs3500.imageprocessor.model.ImageEditor;
 import cs3500.imageprocessor.model.ImageEditorReadOnly;
+import cs3500.imageprocessor.model.ImagePPM;
 import cs3500.imageprocessor.model.ImageState;
+import cs3500.imageprocessor.operations.BrightenImage;
+import cs3500.imageprocessor.operations.DarkenImage;
 import cs3500.imageprocessor.operations.FlipVertical;
 import cs3500.imageprocessor.operations.GrayscaleBlue;
+import cs3500.imageprocessor.view.ImageEditorView;
+import cs3500.imageprocessor.view.ImageEditorViewStub;
 
 public class Main {
   public static void main(String[] args) {
     ImageEditor editor = new BasicPPMImageEditor();
-    editor.importImageFromDisk("/Users/andrey/Documents/Northeastern/CS3500/ImageProcessor/images/Koala.ppm", "koala");
-    System.out.println(editor.getImageNames().toString());
-    ImageEditorReadOnly readOnly = editor;
-    System.out.println(readOnly.getImage("koala").getHeight());
-    System.out.println(readOnly.getImage("koala").getWidth());
-    ImageState image = readOnly.getImage("koala");
-    ImageState image2 = image.apply(new FlipVertical());
-    editor.addImage(image2, "koala3");
-    System.out.println(editor.getImageNames().toString());
-    image2.save("/Users/andrey/Documents/Northeastern/CS3500/ImageProcessor/images/Koala4.ppm");
+    ImageEditorView view = new ImageEditorViewStub();
+    Readable in = new StringReader("load images/Koala.ppm koala\ndarken 100 koala koala\nsave images/koala.ppm koala");
+    ImageEditorController controller = new BasicEditorController(editor, in, view);
+    controller.start();
   }
 }

@@ -70,12 +70,13 @@ public class GrayscalePixel implements IPixel {
     }
     IPixel that = (IPixel) o;
     return this.getRed() == that.getRed()
-        && this.getBlue() == that.getBlue()
-        && this.getGreen() == that.getGreen();
+            && this.getBlue() == that.getBlue()
+            && this.getGreen() == that.getGreen()
+            && this.getAlpha() == that.getAlpha();
   }
 
   @Override
   public int hashCode() {
-    return this.getRed() * 100 + this.getGreen() * 100 + this.getBlue() * 100;
+    return this.getRed() * 100 + this.getGreen() * 100 + this.getBlue() * 100 + this.getAlpha() * 100;
   }
 }
