@@ -90,8 +90,8 @@ public class GrayscalePixelTest {
   }
 
   @Test public void testHashCode() {
-    assertEquals(0, this.grayPixel1.hashCode());
-    assertEquals(38400, this.grayPixel2.hashCode());
-    assertEquals(76500, this.grayPixel3.hashCode());
+    assertEquals(9900, this.grayPixel1.hashCode());
+    assertEquals(48300, this.grayPixel2.hashCode());
+    assertEquals(86400, this.grayPixel3.hashCode());
   }
 }
