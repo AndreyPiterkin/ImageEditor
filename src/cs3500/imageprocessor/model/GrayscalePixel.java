@@ -10,6 +10,9 @@ public class GrayscalePixel implements IPixel {
    * @param value the value of the pixel
    */
   public GrayscalePixel(int value) {
+    if (value < 0 || value > 255) {
+      throw new IllegalArgumentException("Invalid pixel value");
+    }
     this.value = value;
   }
 
