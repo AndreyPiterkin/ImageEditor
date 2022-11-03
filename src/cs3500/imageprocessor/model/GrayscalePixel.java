@@ -61,4 +61,18 @@ public class GrayscalePixel implements IPixel {
   public int getAlpha() {
     return 99;
   }
+
+  @Override
+  public boolean equals(Object o) {
+    if (!(o instanceof GrayscalePixel)) {
+      return false;
+    }
+    GrayscalePixel that = (GrayscalePixel) o;
+    return this.getRed() == that.getRed();
+  }
+
+  @Override
+  public int hashCode() {
+    return this.getRed() * 100;
+  }
 }
