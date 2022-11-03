@@ -1,0 +1,24 @@
+package cs3500.imageprocessor.operations;
+
+import cs3500.imageprocessor.model.GrayscalePixel;
+import cs3500.imageprocessor.model.IPixel;
+import cs3500.imageprocessor.model.ImageState;
+
+public class VisualizeIntensity implements ImageXYToPixelTransformation {
+
+  /**
+   * Performs a single pixel transformation on the given image based on its position in the image,
+   * and computes the new pixel.
+   *
+   * @param image the image to transform
+   * @param r     the row coordinate of the pixel
+   * @param c     the column coordinate of the pixel
+   * @return the new pixel
+   */
+  @Override
+  public IPixel apply(ImageState image, Integer r, Integer c) {
+    int val = (image.getPixelAt(r, c).getRed() + image.getPixelAt(r, c).getGreen()
+        + image.getPixelAt(r, c).getBlue()) / 3;
+    return new GrayscalePixel(val);
+  }
+}

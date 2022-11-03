@@ -1,35 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b8c81752-d30f-4d00-8f30-c5be214554be" name="Changes" comment="Interface Design for Image Processor v2">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/Koala.ppm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/Koala2.ppm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/koala-blue-greyscale.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/koala-brighter-by-50.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/koala-green-greyscale.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/koala-horizontal-vertical.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/koala-horizontal.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/koala-intensity-greyscale.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/koala-luma-greyscale.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/koala-red-greyscale.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/koala-value-greyscale.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/koala-vertical-horizontal.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/koala-vertical.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/cs3500/imageprocessor/model/BasicPPMImageEditor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/cs3500/imageprocessor/operations/ImageXYToPixelTransformation.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/cs3500/imageprocessor/operations/toGrayScaleGreen.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/cs3500/imageprocessor/operations/toGrayScaleRed.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/cs3500/imageprocessor/operations/toGrayscaleBlue.java" afterDir="false" />
+    <list default="true" id="b8c81752-d30f-4d00-8f30-c5be214554be" name="Changes" comment="Implemented basic versions of images and editor, and simple commands.">
+      <change afterPath="$PROJECT_DIR$/images/Koala3.ppm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/Koala4.ppm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/cs3500/imageprocessor/model/GrayscalePixel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/cs3500/imageprocessor/operations/BrightenImage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/cs3500/imageprocessor/operations/DarkenImage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/cs3500/imageprocessor/operations/FlipHorizontal.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/cs3500/imageprocessor/operations/FlipVertical.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/cs3500/imageprocessor/operations/VisualizeIntensity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/cs3500/imageprocessor/operations/VisualizeLuma.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/cs3500/imageprocessor/operations/VisualizeValue.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ImageUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cs3500/imageprocessor/model/ImageUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cs3500/imageprocessor/model/AbstractBaseImage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cs3500/imageprocessor/model/AbstractBaseImage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cs3500/imageprocessor/model/ImageEditor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cs3500/imageprocessor/model/ImageEditor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cs3500/imageprocessor/model/ImageEditorReadOnly.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cs3500/imageprocessor/model/ImageEditorReadOnly.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cs3500/imageprocessor/model/ImagePPM.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cs3500/imageprocessor/model/ImagePPM.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cs3500/imageprocessor/model/ImageState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cs3500/imageprocessor/model/ImageState.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cs3500/imageprocessor/model/ImageXYToPixelTransformation.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/Koala2.ppm" beforeDir="false" afterPath="$PROJECT_DIR$/images/Koala2.ppm" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cs3500/imageprocessor/operations/toGrayScaleGreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cs3500/imageprocessor/operations/GrayscaleGreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cs3500/imageprocessor/operations/toGrayScaleRed.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cs3500/imageprocessor/operations/GrayscaleRed.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cs3500/imageprocessor/operations/toGrayscaleBlue.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cs3500/imageprocessor/operations/GrayscaleBlue.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -83,6 +71,7 @@
       <recent name="cs3500.imageprocessor.operations" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="cs3500.imageprocessor.operations" />
       <recent name="cs3500.imageprocessor.model" />
     </key>
   </component>
@@ -136,7 +125,7 @@
       <workItem from="1667417095933" duration="6625000" />
       <workItem from="1667427345886" duration="446000" />
       <workItem from="1667436105974" duration="72000" />
-      <workItem from="1667439998036" duration="4295000" />
+      <workItem from="1667439998036" duration="5718000" />
     </task>
     <task id="LOCAL-00001" summary="Interface Design for Image Processor v1">
       <created>1667356525751</created>
@@ -152,7 +141,14 @@
       <option name="project" value="LOCAL" />
       <updated>1667427634197</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Implemented basic versions of images and editor, and simple commands.">
+      <created>1667444519214</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1667444519214</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -173,6 +169,7 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="Interface Design for Image Processor v1" />
     <MESSAGE value="Interface Design for Image Processor v2" />
-    <option name="LAST_COMMIT_MESSAGE" value="Interface Design for Image Processor v2" />
+    <MESSAGE value="Implemented basic versions of images and editor, and simple commands." />
+    <option name="LAST_COMMIT_MESSAGE" value="Implemented basic versions of images and editor, and simple commands." />
   </component>
 </project>
