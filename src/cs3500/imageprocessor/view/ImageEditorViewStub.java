@@ -2,6 +2,9 @@ package cs3500.imageprocessor.view;
 
 import java.io.IOException;
 
+/**
+ * A mock view used for testing the controller.
+ */
 public class ImageEditorViewStub implements ImageEditorView {
   /**
    * Renders the given message to the view.
