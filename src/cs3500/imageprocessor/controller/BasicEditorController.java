@@ -7,8 +7,6 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Scanner;
 import java.util.function.BiConsumer;
-import java.util.function.Consumer;
-import java.util.function.Function;
 
 import cs3500.imageprocessor.model.ImageEditor;
 import cs3500.imageprocessor.model.ImagePPM;
