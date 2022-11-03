@@ -1,7 +1,11 @@
 package cs3500.imageprocessor.model;
 
-import java.util.function.Function;
-
+/**
+ * An interface representing a pixel in an image. It guarantees the components red, green, blue,
+ * and alpha. This is because RGBA is the most encapsulating form of RGB and allows for both the
+ * general RGBA pixel to implemented and more specific versions of pixels that may not
+ * care about alpha to still be represented as RGBA.
+ */
 public interface IPixel {
 
   /**

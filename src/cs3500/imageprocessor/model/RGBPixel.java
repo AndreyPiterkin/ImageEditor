@@ -1,8 +1,14 @@
 package cs3500.imageprocessor.model;
 
+/**
+ * A class representing a pixel that contains a red, green, and blue component. Each component
+ * contains a value on a 0 - 255 scale.
+ */
 public class RGBPixel implements IPixel {
 
-  private final int red, green, blue;
+  private final int red;
+  private final int green;
+  private final int blue;
 
   /**
    * Constructs an RGB pixel with the given red, green, and blue channels on a 0 - 255 scale.
@@ -88,6 +94,7 @@ public class RGBPixel implements IPixel {
 
   @Override
   public int hashCode() {
-    return this.getRed() * 100 + this.getGreen() * 100 + this.getBlue() * 100 + this.getAlpha() * 100;
+    return this.getRed() * 100 + this.getGreen() * 100 + this.getBlue() * 100
+        + this.getAlpha() * 100;
   }
 }

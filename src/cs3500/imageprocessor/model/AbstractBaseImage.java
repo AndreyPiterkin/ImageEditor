@@ -2,10 +2,17 @@ package cs3500.imageprocessor.model;
 
 import cs3500.imageprocessor.operations.ImageRCToPixelTransformation;
 
+/**
+ * An abstract class representing an image.
+ */
 public abstract class AbstractBaseImage implements ImageState {
 
   private final IPixel[][] pixels;
 
+  /**
+   * A constructor that allows for the creation of an image from an array of pixels.
+   * @param pixels the array of pixels representing the image
+   */
   public AbstractBaseImage(IPixel[][] pixels) {
     if (pixels == null) {
       throw new IllegalArgumentException("Image cannot be null");
@@ -18,6 +25,11 @@ public abstract class AbstractBaseImage implements ImageState {
     this.pixels = pixels;
   }
 
+  /**
+   * A constructor that allows for the conversion of an image from another format to the current
+   * object's format.
+   * @param image the image to be converted
+   */
   public AbstractBaseImage(ImageState image) {
     IPixel[][] pixels = new IPixel[image.getHeight()][image.getWidth()];
     for (int r = 0; r < image.getHeight(); r++) {

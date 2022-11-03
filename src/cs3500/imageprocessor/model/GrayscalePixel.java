@@ -1,5 +1,9 @@
 package cs3500.imageprocessor.model;
 
+/**
+ * A class representing a pixel that contains a red, green, and blue component that all have the
+ * same value. Each component contains a value on a 0 - 255 scale.
+ */
 public class GrayscalePixel implements IPixel {
 
   private final int value;
@@ -77,6 +81,7 @@ public class GrayscalePixel implements IPixel {
 
   @Override
   public int hashCode() {
-    return this.getRed() * 100 + this.getGreen() * 100 + this.getBlue() * 100 + this.getAlpha() * 100;
+    return this.getRed() * 100 + this.getGreen() * 100 + this.getBlue() * 100
+        + this.getAlpha() * 100;
   }
 }

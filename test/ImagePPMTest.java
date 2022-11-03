@@ -1,5 +1,5 @@
 /**
- * Tests for ImagePPM
+ * Tests for ImagePPM.
  */
 public class ImagePPMTest {
 }

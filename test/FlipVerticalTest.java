@@ -22,7 +22,7 @@ public class FlipVerticalTest {
   public void initData() {
     this.flipVertical = new FlipVertical();
     IPixel[][] pixels1 = {{new GrayscalePixel(1), new GrayscalePixel(128)},
-        {new GrayscalePixel(10), new GrayscalePixel(240)}};;
+        {new GrayscalePixel(10), new GrayscalePixel(240)}};
     IPixel[][] pixels2 = {{new RGBPixel(0, 128, 240)}};
     this.image1 = new ImagePPM(pixels1);
     this.image2 = new ImagePPM(pixels2);

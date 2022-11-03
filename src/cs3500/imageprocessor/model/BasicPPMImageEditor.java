@@ -6,12 +6,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
+/**
+ * A class representing an image editor with the functionality of handling images in the .ppm
+ * format.
+ */
 public class BasicPPMImageEditor implements ImageEditor {
 
   private final Map<String, ImageState> images;
 
   public BasicPPMImageEditor(Map<String, ImageState> images) {
-    this.images = Objects.requireNonNull(images);
+    this.images = new HashMap<>(Objects.requireNonNull(images));
   }
 
   public BasicPPMImageEditor() {
@@ -25,8 +29,8 @@ public class BasicPPMImageEditor implements ImageEditor {
    *
    * @param fileName  the filepath from where to load the image
    * @param imageName the name to give the image
-   * @throws UnsupportedOperationException if the file extension is not supported, or if the file cannot
-   * be read.
+   * @throws UnsupportedOperationException if the file extension is not supported, or if the file
+   *                                       cannot be read.
    */
   @Override
   public void importImageFromDisk(String fileName, String imageName) {

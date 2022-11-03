@@ -3,6 +3,9 @@ package cs3500.imageprocessor.model;
 import java.io.FileWriter;
 import java.io.IOException;
 
+/**
+ * A class representing an image of pixels that is formatted as a PPM.
+ */
 public class ImagePPM extends AbstractBaseImage {
 
   public ImagePPM(IPixel[][] pixels) {

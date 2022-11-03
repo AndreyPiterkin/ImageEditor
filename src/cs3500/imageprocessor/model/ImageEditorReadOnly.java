@@ -2,6 +2,10 @@ package cs3500.imageprocessor.model;
 
 import java.util.List;
 
+/**
+ * Represents the immutable state of the image editor, to separate mutation functionality
+ * for the controller from the read only functionality of the view.
+ */
 public interface ImageEditorReadOnly {
 
   /**

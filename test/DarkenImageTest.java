@@ -26,7 +26,7 @@ public class DarkenImageTest {
     this.darken10 = new DarkenPixel(10);
     this.darken100 = new DarkenPixel(100);
     IPixel[][] pixels1 = {{new GrayscalePixel(1), new GrayscalePixel(128)},
-        {new GrayscalePixel(10), new GrayscalePixel(240)}};;
+        {new GrayscalePixel(10), new GrayscalePixel(240)}};
     IPixel[][] pixels2 = {{new RGBPixel(0, 128, 240)}};
     this.image1 = new ImagePPM(pixels1);
     this.image2 = new ImagePPM(pixels2);

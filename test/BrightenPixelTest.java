@@ -26,7 +26,7 @@ public class BrightenPixelTest {
     this.brighten10 = new BrightenPixel(10);
     this.brighten100 = new BrightenPixel(100);
     IPixel[][] pixels1 = {{new GrayscalePixel(0), new GrayscalePixel(128)},
-        {new GrayscalePixel(10), new GrayscalePixel(240)}};;
+        {new GrayscalePixel(10), new GrayscalePixel(240)}};
     IPixel[][] pixels2 = {{new RGBPixel(0, 128, 240)}};
     this.image1 = new ImagePPM(pixels1);
     this.image2 = new ImagePPM(pixels2);
