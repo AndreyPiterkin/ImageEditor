@@ -5,11 +5,12 @@ public class GrayscalePixel implements IPixel {
   private final int value;
 
   /**
-   * Constructs a grayscale pixel with the given value.
+   * Constructs a grayscale pixel with the given value on a 0 - 255 scale.
    *
    * @param value the value of the pixel
+   * @throws IllegalArgumentException if the value of the pixel is not between 0 - 255 (inclusive)
    */
-  public GrayscalePixel(int value) {
+  public GrayscalePixel(int value) throws IllegalArgumentException {
     if (value < 0 || value > 255) {
       throw new IllegalArgumentException("Invalid pixel value");
     }
@@ -64,15 +65,17 @@ public class GrayscalePixel implements IPixel {
 
   @Override
   public boolean equals(Object o) {
-    if (!(o instanceof GrayscalePixel)) {
+    if (!(o instanceof IPixel)) {
       return false;
     }
-    GrayscalePixel that = (GrayscalePixel) o;
-    return this.getRed() == that.getRed();
+    IPixel that = (IPixel) o;
+    return this.getRed() == that.getRed()
+        && this.getBlue() == that.getBlue()
+        && this.getGreen() == that.getGreen();
   }
 
   @Override
   public int hashCode() {
-    return this.getRed() * 100;
+    return this.getRed() * 100 + this.getGreen() * 100 + this.getBlue() * 100;
   }
 }

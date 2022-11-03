@@ -71,7 +71,7 @@ public class ImageUtil {
           filename = args[0];
       }
       else {
-          filename = "/Users/andrey/Documents/Northeastern/CS3500/ImageProcessor/images/Koala.ppm";
+          filename = "images/Koala.ppm";
       }
       
       ImageUtil.readPPM(filename);

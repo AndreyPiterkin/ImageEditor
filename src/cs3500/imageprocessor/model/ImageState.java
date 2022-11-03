@@ -22,12 +22,12 @@ public interface ImageState {
 
   /**
    * Gets the pixel at the given coordinates, if they are valid, otherwise throws an error.
-   * @param x the x coordinate of the pixel
-   * @param y the y coordinate of the pixel
+   * @param r the x coordinate of the pixel
+   * @param c the y coordinate of the pixel
    * @return the pixel at the given coordinates
    * @throws IllegalArgumentException if the coordinates are invalid
    */
-  IPixel getPixelAt(int x, int y);
+  IPixel getPixelAt(int r, int c);
 
   /**
    * Applies the given function to each pixel in the image, and returns a new image with the

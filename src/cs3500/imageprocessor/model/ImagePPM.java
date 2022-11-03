@@ -1,6 +1,5 @@
 package cs3500.imageprocessor.model;
 
-import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 

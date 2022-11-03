@@ -4,7 +4,16 @@ public class RGBPixel implements IPixel {
 
   private final int red, green, blue;
 
-  public RGBPixel(int red, int green, int blue) {
+  /**
+   * Constructs an RGB pixel with the given red, green, and blue channels on a 0 - 255 scale.
+   *
+   * @param red   the red channel value of the RGB pixel
+   * @param green the green channel value of the RGB pixel
+   * @param blue  the blue channel value of the RGB pixel
+   * @throws IllegalArgumentException if any of the channel values are not between 0 and 255
+   *                                  (inclusive)
+   */
+  public RGBPixel(int red, int green, int blue) throws IllegalArgumentException {
     if (red < 0 || red > 255) {
       throw new IllegalArgumentException("Red channel must be between 0 and 255");
     }
@@ -63,5 +72,21 @@ public class RGBPixel implements IPixel {
   @Override
   public int getAlpha() {
     return 99;
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (!(o instanceof IPixel)) {
+      return false;
+    }
+    IPixel that = (IPixel) o;
+    return this.getRed() == that.getRed()
+        && this.getBlue() == that.getBlue()
+        && this.getGreen() == that.getGreen();
+  }
+
+  @Override
+  public int hashCode() {
+    return this.getRed() * 100 + this.getGreen() * 100 + this.getBlue() * 100;
   }
 }
