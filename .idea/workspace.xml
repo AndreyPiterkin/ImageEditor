@@ -1,17 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b8c81752-d30f-4d00-8f30-c5be214554be" name="Changes" comment="Interface Design for Image Processor v1">
-      <change afterPath="$PROJECT_DIR$/src/cs3500/imageprocessor/model/AbstractBaseImage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/cs3500/imageprocessor/model/ImagePPM.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/cs3500/imageprocessor/model/ImageXYToPixelTransformation.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/cs3500/imageprocessor/model/RGBPixel.java" afterDir="false" />
+    <list default="true" id="b8c81752-d30f-4d00-8f30-c5be214554be" name="Changes" comment="Interface Design for Image Processor v2">
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/Koala.ppm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/Koala2.ppm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/koala-blue-greyscale.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/koala-brighter-by-50.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/koala-green-greyscale.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/koala-horizontal-vertical.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/koala-horizontal.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/koala-intensity-greyscale.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/koala-luma-greyscale.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/koala-red-greyscale.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/koala-value-greyscale.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/koala-vertical-horizontal.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/koala-vertical.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/cs3500/imageprocessor/model/BasicPPMImageEditor.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/cs3500/imageprocessor/operations/ImageXYToPixelTransformation.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/cs3500/imageprocessor/operations/toGrayScaleGreen.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/cs3500/imageprocessor/operations/toGrayScaleRed.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/cs3500/imageprocessor/operations/toGrayscaleBlue.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cs3500/imageprocessor/model/IPixel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cs3500/imageprocessor/model/IPixel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ImageUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cs3500/imageprocessor/model/ImageUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cs3500/imageprocessor/model/AbstractBaseImage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cs3500/imageprocessor/model/AbstractBaseImage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/cs3500/imageprocessor/model/ImageEditor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cs3500/imageprocessor/model/ImageEditor.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/cs3500/imageprocessor/model/ImageEditorReadOnly.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cs3500/imageprocessor/model/ImageEditorReadOnly.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cs3500/imageprocessor/model/ImagePPM.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cs3500/imageprocessor/model/ImagePPM.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/cs3500/imageprocessor/model/ImageState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cs3500/imageprocessor/model/ImageState.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cs3500/imageprocessor/model/ImageToPixelTransformation.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cs3500/imageprocessor/model/ImageXYToPixelTransformation.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,27 +58,49 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "Downloaded.Files.Path.Enabled": "false",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="cs3500.imageprocessor.model" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/images" />
       <recent name="$PROJECT_DIR$/src" />
     </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="cs3500.imageprocessor.operations" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="cs3500.imageprocessor.model" />
+    </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.Main">
+    <configuration name="ImageUtil" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="cs3500.imageprocessor.model.ImageUtil" />
+      <module name="ImageProcessor" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Main" />
+      <module name="ImageProcessor" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Main" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ImageProcessor" />
       <option name="PACKAGE_NAME" value="" />
@@ -72,6 +112,8 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Main" />
+        <item itemvalue="Application.ImageUtil" />
         <item itemvalue="JUnit.Main" />
       </list>
     </recent_temporary>
@@ -92,6 +134,9 @@
       <workItem from="1667353112366" duration="3462000" />
       <workItem from="1667357022327" duration="70000" />
       <workItem from="1667417095933" duration="6625000" />
+      <workItem from="1667427345886" duration="446000" />
+      <workItem from="1667436105974" duration="72000" />
+      <workItem from="1667439998036" duration="4295000" />
     </task>
     <task id="LOCAL-00001" summary="Interface Design for Image Processor v1">
       <created>1667356525751</created>
@@ -100,7 +145,14 @@
       <option name="project" value="LOCAL" />
       <updated>1667356525751</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Interface Design for Image Processor v2">
+      <created>1667427634197</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1667427634197</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -120,6 +172,7 @@
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="Interface Design for Image Processor v1" />
-    <option name="LAST_COMMIT_MESSAGE" value="Interface Design for Image Processor v1" />
+    <MESSAGE value="Interface Design for Image Processor v2" />
+    <option name="LAST_COMMIT_MESSAGE" value="Interface Design for Image Processor v2" />
   </component>
 </project>

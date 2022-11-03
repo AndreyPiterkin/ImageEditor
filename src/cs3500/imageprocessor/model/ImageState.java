@@ -1,5 +1,7 @@
 package cs3500.imageprocessor.model;
 
+import cs3500.imageprocessor.operations.ImageXYToPixelTransformation;
+
 /**
  * Represents an image, with all of its image data. It guarantees that we can get image dimensions
  * and valid pixels, and make function applications to pixels.

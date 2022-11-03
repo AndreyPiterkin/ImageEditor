@@ -1,10 +1,10 @@
 package cs3500.imageprocessor.model;
 
+import cs3500.imageprocessor.operations.ImageXYToPixelTransformation;
+
 public abstract class AbstractBaseImage implements ImageState {
 
   private final IPixel[][] pixels;
-  private final int width;
-  private final int height;
 
   public AbstractBaseImage(IPixel[][] pixels) {
     if (pixels == null) {
@@ -16,20 +16,16 @@ public abstract class AbstractBaseImage implements ImageState {
     }
 
     this.pixels = pixels;
-    this.width = pixels.length;
-    this.height = pixels[0].length;
   }
 
   public AbstractBaseImage(ImageState image) {
-    IPixel[][] pixels = new IPixel[image.getWidth()][image.getHeight()];
-    for (int r = 0; r < image.getWidth(); r++) {
-      for (int c = 0; c < image.getHeight(); c++) {
+    IPixel[][] pixels = new IPixel[image.getHeight()][image.getWidth()];
+    for (int r = 0; r < image.getHeight(); r++) {
+      for (int c = 0; c < image.getWidth(); c++) {
         pixels[r][c] = image.getPixelAt(r, c);
       }
     }
     this.pixels = pixels;
-    this.width = image.getWidth();
-    this.height = image.getHeight();
   }
 
   /**
@@ -39,7 +35,7 @@ public abstract class AbstractBaseImage implements ImageState {
    */
   @Override
   public int getWidth() {
-    return this.width;
+    return this.pixels[0].length;
   }
 
   /**
@@ -49,24 +45,24 @@ public abstract class AbstractBaseImage implements ImageState {
    */
   @Override
   public int getHeight() {
-    return this.height;
+    return this.pixels.length;
   }
 
   /**
    * Gets the pixel at the given coordinates, if they are valid, otherwise throws an error.
    *
-   * @param x the x coordinate of the pixel
-   * @param y the y coordinate of the pixel
+   * @param r the r coordinate of the pixel
+   * @param c the y coordinate of the pixel
    * @return the pixel at the given coordinates
    * @throws IllegalArgumentException if the coordinates are invalid
    */
   @Override
-  public IPixel getPixelAt(int x, int y) {
-    if (x < 0 || x >= this.width || y < 0 || y >= this.height) {
+  public IPixel getPixelAt(int r, int c) {
+    if (r < 0 || r >= this.getHeight() || c < 0 || c >= this.getWidth()) {
       throw new IllegalArgumentException("Invalid coordinates");
     }
 
-    return this.pixels[x][y];
+    return this.pixels[r][c];
   }
 
   /**
@@ -78,11 +74,11 @@ public abstract class AbstractBaseImage implements ImageState {
    */
   @Override
   public ImageState apply(ImageXYToPixelTransformation f) {
-    IPixel[][] newPixels = new IPixel[this.width][this.height];
+    IPixel[][] newPixels = new IPixel[this.getHeight()][this.getWidth()];
 
-    for (int x = 0; x < this.width; x++) {
-      for (int y = 0; y < this.height; y++) {
-        newPixels[x][y] = f.apply(this, x, y);
+    for (int r = 0; r < this.getHeight(); r++) {
+      for (int c = 0; c < this.getWidth(); c++) {
+        newPixels[r][c] = f.apply(this, r, c);
       }
     }
 
