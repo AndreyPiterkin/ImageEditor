@@ -3,11 +3,14 @@ package cs3500.imageprocessor.operations;
 import cs3500.imageprocessor.model.IPixel;
 import cs3500.imageprocessor.model.ImageState;
 
-public class FlipHorizontal implements ImageXYToPixelTransformation{
+/**
+ * A function object used to get the pixel in an image located at the position reflected
+ * horizontally from the given pixel.
+ */
+public class FlipHorizontal implements ImageRCToPixelTransformation {
 
   /**
-   * Performs a single pixel transformation on the given image based on its position in the image,
-   * and computes the new pixel.
+   * Finds the pixel located at the position reflected horizontally from the given pixel.
    *
    * @param image the image to transform
    * @param r     the row coordinate of the pixel

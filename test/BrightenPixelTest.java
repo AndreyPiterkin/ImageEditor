@@ -6,25 +6,25 @@ import cs3500.imageprocessor.model.IPixel;
 import cs3500.imageprocessor.model.ImagePPM;
 import cs3500.imageprocessor.model.ImageState;
 import cs3500.imageprocessor.model.RGBPixel;
-import cs3500.imageprocessor.operations.BrightenImage;
+import cs3500.imageprocessor.operations.BrightenPixel;
 
 import static org.junit.Assert.assertEquals;
 
 /**
  * Tests for BrightenImage.
  */
-public class BrightenImageTest {
-  BrightenImage brighten1;
-  BrightenImage brighten10;
-  BrightenImage brighten100;
+public class BrightenPixelTest {
+  BrightenPixel brighten1;
+  BrightenPixel brighten10;
+  BrightenPixel brighten100;
   ImageState image1;
   ImageState image2;
 
   @Before
   public void initData() {
-    this.brighten1 = new BrightenImage(1);
-    this.brighten10 = new BrightenImage(10);
-    this.brighten100 = new BrightenImage(100);
+    this.brighten1 = new BrightenPixel(1);
+    this.brighten10 = new BrightenPixel(10);
+    this.brighten100 = new BrightenPixel(100);
     IPixel[][] pixels1 = {{new GrayscalePixel(0), new GrayscalePixel(128)},
         {new GrayscalePixel(10), new GrayscalePixel(240)}};;
     IPixel[][] pixels2 = {{new RGBPixel(0, 128, 240)}};

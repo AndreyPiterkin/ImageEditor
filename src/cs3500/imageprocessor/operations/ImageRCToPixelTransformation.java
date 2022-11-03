@@ -3,7 +3,7 @@ package cs3500.imageprocessor.operations;
 import cs3500.imageprocessor.model.IPixel;
 import cs3500.imageprocessor.model.ImageState;
 
-public interface ImageXYToPixelTransformation {
+public interface ImageRCToPixelTransformation {
 
     /**
      * Performs a single pixel transformation on the given image based on its position in the image,

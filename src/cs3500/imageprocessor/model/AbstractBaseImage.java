@@ -1,6 +1,6 @@
 package cs3500.imageprocessor.model;
 
-import cs3500.imageprocessor.operations.ImageXYToPixelTransformation;
+import cs3500.imageprocessor.operations.ImageRCToPixelTransformation;
 
 public abstract class AbstractBaseImage implements ImageState {
 
@@ -73,7 +73,7 @@ public abstract class AbstractBaseImage implements ImageState {
    * @return a new image with the transformed pixels
    */
   @Override
-  public ImageState apply(ImageXYToPixelTransformation f) {
+  public ImageState apply(ImageRCToPixelTransformation f) {
     IPixel[][] newPixels = new IPixel[this.getHeight()][this.getWidth()];
 
     for (int r = 0; r < this.getHeight(); r++) {

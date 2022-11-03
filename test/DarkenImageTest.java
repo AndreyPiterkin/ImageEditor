@@ -6,7 +6,7 @@ import cs3500.imageprocessor.model.IPixel;
 import cs3500.imageprocessor.model.ImagePPM;
 import cs3500.imageprocessor.model.ImageState;
 import cs3500.imageprocessor.model.RGBPixel;
-import cs3500.imageprocessor.operations.DarkenImage;
+import cs3500.imageprocessor.operations.DarkenPixel;
 
 import static org.junit.Assert.assertEquals;
 
@@ -14,17 +14,17 @@ import static org.junit.Assert.assertEquals;
  * Tests for DarkenImage.
  */
 public class DarkenImageTest {
-  DarkenImage darken1;
-  DarkenImage darken10;
-  DarkenImage darken100;
+  DarkenPixel darken1;
+  DarkenPixel darken10;
+  DarkenPixel darken100;
   ImageState image1;
   ImageState image2;
 
   @Before
   public void initData() {
-    this.darken1 = new DarkenImage(1);
-    this.darken10 = new DarkenImage(10);
-    this.darken100 = new DarkenImage(100);
+    this.darken1 = new DarkenPixel(1);
+    this.darken10 = new DarkenPixel(10);
+    this.darken100 = new DarkenPixel(100);
     IPixel[][] pixels1 = {{new GrayscalePixel(1), new GrayscalePixel(128)},
         {new GrayscalePixel(10), new GrayscalePixel(240)}};;
     IPixel[][] pixels2 = {{new RGBPixel(0, 128, 240)}};

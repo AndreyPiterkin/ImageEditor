@@ -7,14 +7,11 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Scanner;
 import java.util.function.BiConsumer;
-import java.util.function.Consumer;
-import java.util.function.Function;
 
 import cs3500.imageprocessor.model.ImageEditor;
 import cs3500.imageprocessor.model.ImagePPM;
-import cs3500.imageprocessor.model.ImageState;
-import cs3500.imageprocessor.operations.BrightenImage;
-import cs3500.imageprocessor.operations.DarkenImage;
+import cs3500.imageprocessor.operations.BrightenPixel;
+import cs3500.imageprocessor.operations.DarkenPixel;
 import cs3500.imageprocessor.view.ImageEditorView;
 
 /**
@@ -80,13 +77,13 @@ public class BasicEditorController implements ImageEditorController {
       int amount = scanner.nextInt();
       String name = scanner.next();
       String newName = scanner.next();
-      imageEditor.addImage(imageEditor.getImage(name).apply(new BrightenImage(amount)), newName);
+      imageEditor.addImage(imageEditor.getImage(name).apply(new BrightenPixel(amount)), newName);
     });
     commands.put("darken", (scanner, imageEditor) -> {
       int amount = scanner.nextInt();
       String name = scanner.next();
       String newName = scanner.next();
-      imageEditor.addImage(imageEditor.getImage(name).apply(new DarkenImage(amount)), newName);
+      imageEditor.addImage(imageEditor.getImage(name).apply(new DarkenPixel(amount)), newName);
     });
   }
 

@@ -4,11 +4,14 @@ import cs3500.imageprocessor.model.GrayscalePixel;
 import cs3500.imageprocessor.model.IPixel;
 import cs3500.imageprocessor.model.ImageState;
 
-public class VisualizeIntensity implements ImageXYToPixelTransformation {
+/**
+ * A function object used to create a grayscale pixel using the intensity of the given pixel.
+ */
+public class VisualizeIntensity implements ImageRCToPixelTransformation {
 
   /**
-   * Performs a single pixel transformation on the given image based on its position in the image,
-   * and computes the new pixel.
+   * Performs a single pixel transformation at the given position in the image, computing a new
+   * grayscale pixel with the old pixel's intensity value.
    *
    * @param image the image to transform
    * @param r     the row coordinate of the pixel

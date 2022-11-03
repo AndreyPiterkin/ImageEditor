@@ -1,11 +1,13 @@
 package cs3500.imageprocessor.operations;
 
-import cs3500.imageprocessor.model.GrayscalePixel;
 import cs3500.imageprocessor.model.IPixel;
 import cs3500.imageprocessor.model.ImageState;
 import cs3500.imageprocessor.model.RGBPixel;
 
-public class BrightenImage implements ImageXYToPixelTransformation {
+/**
+ * A function object used to brighten a pixel in an image.
+ */
+public class BrightenPixel implements ImageRCToPixelTransformation {
 
   private final int brightenAmount;
 
@@ -13,14 +15,14 @@ public class BrightenImage implements ImageXYToPixelTransformation {
    * Constructs a BrightenImage object.
    * @param brightenAmount the amount to brighten the image by
    */
-  public BrightenImage(int brightenAmount) {
+  public BrightenPixel(int brightenAmount) {
     this.brightenAmount = brightenAmount;
   }
 
 
   /**
-   * Performs a single pixel transformation on the given image based on its position in the image,
-   * and computes the new pixel.
+   * Performs a single pixel transformation at the given position in the image, computing the new
+   * pixel with the old pixel's RGB components each increased by this object's brightenAmount.
    *
    * @param image the image to transform
    * @param r     the row coordinate of the pixel

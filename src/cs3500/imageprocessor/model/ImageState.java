@@ -1,6 +1,6 @@
 package cs3500.imageprocessor.model;
 
-import cs3500.imageprocessor.operations.ImageXYToPixelTransformation;
+import cs3500.imageprocessor.operations.ImageRCToPixelTransformation;
 
 /**
  * Represents an image, with all of its image data. It guarantees that we can get image dimensions
@@ -35,7 +35,7 @@ public interface ImageState {
    * @param f the function to apply to each pixel
    * @return a new image with the transformed pixels
    */
-  ImageState apply(ImageXYToPixelTransformation f);
+  ImageState apply(ImageRCToPixelTransformation f);
 
   /**
    * Saves the image to the given file path on the disk using the given formatting function.
