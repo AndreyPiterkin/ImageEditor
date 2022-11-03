@@ -1,5 +1,4 @@
 import java.io.StringReader;
-
 import cs3500.imageprocessor.controller.BasicEditorController;
 import cs3500.imageprocessor.controller.ImageEditorController;
 import cs3500.imageprocessor.model.BasicPPMImageEditor;

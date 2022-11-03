@@ -7,11 +7,23 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Scanner;
 import java.util.function.BiConsumer;
+import java.util.function.Consumer;
+import java.util.function.Function;
 
 import cs3500.imageprocessor.model.ImageEditor;
 import cs3500.imageprocessor.model.ImagePPM;
+import cs3500.imageprocessor.model.ImageState;
 import cs3500.imageprocessor.operations.BrightenPixel;
 import cs3500.imageprocessor.operations.DarkenPixel;
+import cs3500.imageprocessor.operations.FlipHorizontal;
+import cs3500.imageprocessor.operations.FlipVertical;
+import cs3500.imageprocessor.operations.GrayscaleBlue;
+import cs3500.imageprocessor.operations.GrayscaleGreen;
+import cs3500.imageprocessor.operations.GrayscaleRed;
+import cs3500.imageprocessor.operations.ImageRCToPixelTransformation;
+import cs3500.imageprocessor.operations.VisualizeIntensity;
+import cs3500.imageprocessor.operations.VisualizeLuma;
+import cs3500.imageprocessor.operations.VisualizeValue;
 import cs3500.imageprocessor.view.ImageEditorView;
 
 /**
@@ -56,6 +68,20 @@ public class BasicEditorController implements ImageEditorController {
   }
 
   /**
+   * Performs the given operation and saves the image with the given name.
+   * This is a useful private helper method for commands, but isn't necessarily an interface method
+   * because we don't always want to save an image we modify to the map (like in the case of
+   * save or load commands).
+   * @param name the name of the image to retrieve
+   * @param newName the name of the new image
+   * @param operation the operation to perform
+   */
+  private void performAndSave(String name, String newName, ImageRCToPixelTransformation operation) {
+    ImageState image = this.model.getImage(name);
+    this.model.addImage(image.apply(operation), newName);
+  }
+
+  /**
    * Sets up all the commands that this controller is capable of executing.
    */
   private void setupCommands() {
@@ -75,15 +101,35 @@ public class BasicEditorController implements ImageEditorController {
     });
     commands.put("brighten", (scanner, imageEditor) -> {
       int amount = scanner.nextInt();
-      String name = scanner.next();
-      String newName = scanner.next();
-      imageEditor.addImage(imageEditor.getImage(name).apply(new BrightenPixel(amount)), newName);
+      this.performAndSave(scanner.next(), scanner.next(), new BrightenPixel(amount));
     });
     commands.put("darken", (scanner, imageEditor) -> {
       int amount = scanner.nextInt();
-      String name = scanner.next();
-      String newName = scanner.next();
-      imageEditor.addImage(imageEditor.getImage(name).apply(new DarkenPixel(amount)), newName);
+      this.performAndSave(scanner.next(), scanner.next(), new DarkenPixel(amount));
+    });
+    commands.put("vertical-flip", (scanner, imageEditor) -> {
+      this.performAndSave(scanner.next(), scanner.next(), new FlipVertical());
+    });
+    commands.put("horizontal-flip", (scanner, imageEditor) -> {
+      this.performAndSave(scanner.next(), scanner.next(), new FlipHorizontal());
+    });
+    commands.put("value-component", (scanner, imageEditor) -> {
+      this.performAndSave(scanner.next(), scanner.next(), new VisualizeValue());
+    });
+    commands.put("red-component", (scanner, imageEditor) -> {
+      this.performAndSave(scanner.next(), scanner.next(), new GrayscaleRed());
+    });
+    commands.put("blue-component", (scanner, imageEditor) -> {
+      this.performAndSave(scanner.next(), scanner.next(), new GrayscaleBlue());
+    });
+    commands.put("green-component", (scanner, imageEditor) -> {
+      this.performAndSave(scanner.next(), scanner.next(), new GrayscaleGreen());
+    });
+    commands.put("luma-component", (scanner, imageEditor) -> {
+      this.performAndSave(scanner.next(), scanner.next(), new VisualizeLuma());
+    });
+    commands.put("intensity-component", (scanner, imageEditor) -> {
+      this.performAndSave(scanner.next(), scanner.next(), new VisualizeIntensity());
     });
   }
 
