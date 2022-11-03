@@ -10,7 +10,7 @@ public class DarkenImage implements ImageXYToPixelTransformation {
 
   /**
    * Constructs a BrightenImage object.
-   * @param brightenAmount the amount to brighten the image by
+   * @param darkenAmount the amount to brighten the image by
    */
   public DarkenImage(int darkenAmount) {
     this.darkenAmount = darkenAmount;
@@ -29,8 +29,8 @@ public class DarkenImage implements ImageXYToPixelTransformation {
   @Override
   public IPixel apply(ImageState image, Integer r, Integer c) {
     return new RGBPixel(
-        Math.min(image.getPixelAt(r, c).getRed() - darkenAmount, 0),
-        Math.min(image.getPixelAt(r, c).getGreen() - darkenAmount, 0),
-        Math.min(image.getPixelAt(r, c).getBlue() - darkenAmount, 0));
+        Math.max(image.getPixelAt(r, c).getRed() - darkenAmount, 0),
+        Math.max(image.getPixelAt(r, c).getGreen() - darkenAmount, 0),
+        Math.max(image.getPixelAt(r, c).getBlue() - darkenAmount, 0));
   }
 }
