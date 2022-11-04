@@ -22,17 +22,17 @@ public class Main {
   public static void main(String[] args) {
     ImageEditor editor = new BasicPPMImageEditor();
     ImageEditorView view = new ImageEditorViewStub();
-    editor.importImageFromDisk("res/bunny.ppm", "bunny");
-    editor.applyFilterAndSave("bunny", "bunnydark", new DarkenPixel(100));
-    editor.applyFilterAndSave("bunny", "bunnybright", new BrightenPixel(100));
-    editor.applyFilterAndSave("bunny", "bunnyflipv", new FlipVertical());
-    editor.applyFilterAndSave("bunny", "bunnyfliph", new FlipHorizontal());
-    editor.applyFilterAndSave("bunny", "red", new GrayscaleRed());
-    editor.getImage("bunnydark").save("res/bunnydark.ppm");
-    editor.getImage("bunnybright").save("res/bunnybright.ppm");
-    editor.getImage("bunnyflipv").save("res/bunnyflipv.ppm");
-    editor.getImage("bunnyfliph").save("res/bunnyfliph.ppm");
-    editor.getImage("red").save("res/bunny_red.ppm");
+    editor.importImageFromDisk("res/graphics_lab.ppm", "graphics_lab");
+    editor.applyFilterAndSave("graphics_lab", "graphics_labdark", new DarkenPixel(100));
+    editor.applyFilterAndSave("graphics_lab", "graphics_labbright", new BrightenPixel(100));
+    editor.applyFilterAndSave("graphics_lab", "graphics_labflipv", new FlipVertical());
+    editor.applyFilterAndSave("graphics_lab", "graphics_labfliph", new FlipHorizontal());
+    editor.applyFilterAndSave("graphics_lab", "red", new GrayscaleRed());
+    editor.getImage("graphics_labdark").save("res/graphics_labdark.ppm");
+    editor.getImage("graphics_labbright").save("res/graphics_labbright.ppm");
+    editor.getImage("graphics_labflipv").save("res/graphics_labflipv.ppm");
+    editor.getImage("graphics_labfliph").save("res/graphics_labfliph.ppm");
+    editor.getImage("red").save("res/graphics_lab_red.ppm");
 
   }
 }
