@@ -34,7 +34,6 @@ public class ImagePPM extends AbstractBaseImage {
               + this.getPixelAt(r, c).getGreen() + " "
               + this.getPixelAt(r, c).getBlue() + "\n");
         }
-        writer.write("\n");
       }
       writer.close();
     } catch (IOException e) {
