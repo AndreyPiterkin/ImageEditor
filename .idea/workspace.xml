@@ -1,23 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b8c81752-d30f-4d00-8f30-c5be214554be" name="Changes" comment="Implemented basic versions of images and editor, and simple commands.">
-      <change afterPath="$PROJECT_DIR$/images/Koala3.ppm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/Koala4.ppm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/cs3500/imageprocessor/model/GrayscalePixel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/cs3500/imageprocessor/operations/BrightenImage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/cs3500/imageprocessor/operations/DarkenImage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/cs3500/imageprocessor/operations/FlipHorizontal.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/cs3500/imageprocessor/operations/FlipVertical.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/cs3500/imageprocessor/operations/VisualizeIntensity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/cs3500/imageprocessor/operations/VisualizeLuma.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/cs3500/imageprocessor/operations/VisualizeValue.java" afterDir="false" />
+    <list default="true" id="b8c81752-d30f-4d00-8f30-c5be214554be" name="Changes" comment="Finished adding all controller commands">
+      <change afterPath="$PROJECT_DIR$/Archive.zip" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/koala5.ppm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/bunny.ppm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/bunny_red.ppm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/bunnybright.ppm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/bunnydark.ppm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/bunnyfliph.ppm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/bunnyflipv.ppm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test/BasicEditorControllerTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test/MockEditorModel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/Koala2.ppm" beforeDir="false" afterPath="$PROJECT_DIR$/images/Koala2.ppm" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ImageProcessor.iml" beforeDir="false" afterPath="$PROJECT_DIR$/ImageProcessor.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/Koala.ppm" beforeDir="false" afterPath="$PROJECT_DIR$/images/Koala.ppm" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/Koala2.ppm" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/Koala3.ppm" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/Koala4.ppm" beforeDir="false" afterPath="$PROJECT_DIR$/images/Koala4.ppm" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cs3500/imageprocessor/operations/toGrayScaleGreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cs3500/imageprocessor/operations/GrayscaleGreen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cs3500/imageprocessor/operations/toGrayScaleRed.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cs3500/imageprocessor/operations/GrayscaleRed.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cs3500/imageprocessor/operations/toGrayscaleBlue.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cs3500/imageprocessor/operations/GrayscaleBlue.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cs3500/imageprocessor/controller/BasicEditorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cs3500/imageprocessor/controller/BasicEditorController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cs3500/imageprocessor/model/AbstractBaseImage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cs3500/imageprocessor/model/AbstractBaseImage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cs3500/imageprocessor/model/BasicPPMImageEditor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cs3500/imageprocessor/model/BasicPPMImageEditor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cs3500/imageprocessor/model/ImageEditor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cs3500/imageprocessor/model/ImageEditor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/BasicPPMImageEditorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/BasicPPMImageEditorTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,24 +52,28 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "Downloaded.Files.Path.Enabled": "false",
-    "Repository.Attach.Annotations": "false",
-    "Repository.Attach.JavaDocs": "false",
-    "Repository.Attach.Sources": "false",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.ide.settings.uml&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
+      <recent name="cs3500.imageprocessor.view" />
       <recent name="cs3500.imageprocessor.model" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/res" />
       <recent name="$PROJECT_DIR$/images" />
       <recent name="$PROJECT_DIR$/src" />
     </key>
@@ -76,13 +86,6 @@
     </key>
   </component>
   <component name="RunManager" selected="Application.Main">
-    <configuration name="ImageUtil" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="cs3500.imageprocessor.model.ImageUtil" />
-      <module name="ImageProcessor" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Main" />
       <module name="ImageProcessor" />
@@ -90,10 +93,38 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Main" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="All in ImageProcessor" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ImageProcessor" />
       <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="Main" />
+      <option name="TEST_OBJECT" value="package" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="BasicEditorControllerTest.invalidScan" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ImageProcessor" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="BasicEditorControllerTest" />
+      <option name="METHOD_NAME" value="invalidScan" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="BasicEditorControllerTest.testInvalidCommand" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ImageProcessor" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="BasicEditorControllerTest" />
+      <option name="METHOD_NAME" value="testInvalidCommand" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="BasicPPMImageEditorTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ImageProcessor" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="BasicPPMImageEditorTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -102,8 +133,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.Main" />
-        <item itemvalue="Application.ImageUtil" />
-        <item itemvalue="JUnit.Main" />
+        <item itemvalue="JUnit.All in ImageProcessor" />
+        <item itemvalue="JUnit.BasicEditorControllerTest.invalidScan" />
+        <item itemvalue="JUnit.BasicEditorControllerTest.testInvalidCommand" />
+        <item itemvalue="JUnit.BasicPPMImageEditorTest" />
       </list>
     </recent_temporary>
   </component>
@@ -126,6 +159,10 @@
       <workItem from="1667427345886" duration="446000" />
       <workItem from="1667436105974" duration="72000" />
       <workItem from="1667439998036" duration="5718000" />
+      <workItem from="1667508788257" duration="33000" />
+      <workItem from="1667508827825" duration="107000" />
+      <workItem from="1667508945219" duration="12782000" />
+      <workItem from="1667522425451" duration="56000" />
     </task>
     <task id="LOCAL-00001" summary="Interface Design for Image Processor v1">
       <created>1667356525751</created>
@@ -148,7 +185,35 @@
       <option name="project" value="LOCAL" />
       <updated>1667444519214</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Added controller stuff">
+      <created>1667508984348</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1667508984348</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Added controller stuff">
+      <created>1667512019009</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1667512019009</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Finished adding all controller commands">
+      <created>1667514583235</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1667514583235</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Finished adding all controller commands">
+      <created>1667514615271</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1667514615271</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -170,6 +235,12 @@
     <MESSAGE value="Interface Design for Image Processor v1" />
     <MESSAGE value="Interface Design for Image Processor v2" />
     <MESSAGE value="Implemented basic versions of images and editor, and simple commands." />
-    <option name="LAST_COMMIT_MESSAGE" value="Implemented basic versions of images and editor, and simple commands." />
+    <MESSAGE value="Added controller stuff" />
+    <MESSAGE value="Finished adding all controller commands" />
+    <option name="LAST_COMMIT_MESSAGE" value="Finished adding all controller commands" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>

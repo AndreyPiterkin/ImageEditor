@@ -1,6 +1,5 @@
 package cs3500.imageprocessor.model;
 
-import java.util.Arrays;
 import java.util.Objects;
 
 import cs3500.imageprocessor.operations.ImageRCToPixelTransformation;
@@ -24,9 +23,9 @@ public abstract class AbstractBaseImage implements ImageState {
     } else if (pixels[0].length == 0) {
       throw new IllegalArgumentException("Image must have at least one column");
     }
-    this.pixels = new IPixel[pixels.length][pixels.length];
-    for(int i = 0; i < pixels.length; i++) {
-      for(int j = 0; j < pixels[i].length; j++) {
+    this.pixels = new IPixel[pixels.length][pixels[0].length];
+    for (int i = 0; i < pixels.length; i++) {
+      for (int j = 0; j < pixels[i].length; j++) {
         this.pixels[i][j] = Objects.requireNonNull(pixels[i][j]);
       }
     }

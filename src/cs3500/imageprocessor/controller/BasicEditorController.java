@@ -3,14 +3,14 @@ package cs3500.imageprocessor.controller;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.HashMap;
+import java.util.InputMismatchException;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Scanner;
-import java.util.function.BiConsumer;
+import java.util.function.Function;
 
 import cs3500.imageprocessor.model.ImageEditor;
 import cs3500.imageprocessor.model.ImagePPM;
-import cs3500.imageprocessor.model.ImageState;
 import cs3500.imageprocessor.operations.BrightenPixel;
 import cs3500.imageprocessor.operations.DarkenPixel;
 import cs3500.imageprocessor.operations.FlipHorizontal;
@@ -33,7 +33,7 @@ public class BasicEditorController implements ImageEditorController {
   private final ImageEditor model;
   private final ImageEditorView view;
   private final Readable in;
-  private final Map<String, BiConsumer<Scanner, ImageEditor>> commands;
+  private final Map<String, Function<Scanner, ImageRCToPixelTransformation>> commands;
 
   /**
    * Constructs a BasicEditorController object with the model and view to control, as well
@@ -66,69 +66,64 @@ public class BasicEditorController implements ImageEditorController {
   }
 
   /**
-   * Performs the given operation and saves the image with the given name.
-   * This is a useful private helper method for commands, but isn't necessarily an interface method
-   * because we don't always want to save an image we modify to the map (like in the case of
-   * save or load commands).
-   * @param name the name of the image to retrieve
-   * @param newName the name of the new image
-   * @param operation the operation to perform
-   */
-  private void performAndSave(String name, String newName, ImageRCToPixelTransformation operation) {
-    ImageState image = this.model.getImage(name);
-    this.model.addImage(image.apply(operation), newName);
-  }
-
-  /**
    * Sets up all the commands that this controller is capable of executing.
    */
   private void setupCommands() {
-    commands.put("load", (scanner, imageEditor) -> {
-      String path = scanner.next();
-      String name = scanner.next();
-      imageEditor.importImageFromDisk(path, name);
+    commands.put("brighten", (scanner) -> {
+      return new BrightenPixel(scanner.nextInt());
     });
-    commands.put("save", (scanner, imageEditor) -> {
-      String path = scanner.next();
-      String name = scanner.next();
-      if (path.substring(path.lastIndexOf(".") + 1).equals("ppm")) {
-        new ImagePPM(imageEditor.getImage(name)).save(path);
-      } else {
-        throw new UnsupportedOperationException("File types other than PPM not supported");
-      }
+    commands.put("darken", (scanner) -> {
+      return new DarkenPixel(scanner.nextInt());
     });
-    commands.put("brighten", (scanner, imageEditor) -> {
-      int amount = scanner.nextInt();
-      this.performAndSave(scanner.next(), scanner.next(), new BrightenPixel(amount));
+    commands.put("vertical-flip", (scanner) -> {
+      return new FlipVertical();
     });
-    commands.put("darken", (scanner, imageEditor) -> {
-      int amount = scanner.nextInt();
-      this.performAndSave(scanner.next(), scanner.next(), new DarkenPixel(amount));
+    commands.put("horizontal-flip", (scanner) -> {
+      return new FlipHorizontal();
     });
-    commands.put("vertical-flip", (scanner, imageEditor) -> {
-      this.performAndSave(scanner.next(), scanner.next(), new FlipVertical());
+    commands.put("value-component", (scanner) -> {
+      return new VisualizeValue();
     });
-    commands.put("horizontal-flip", (scanner, imageEditor) -> {
-      this.performAndSave(scanner.next(), scanner.next(), new FlipHorizontal());
+    commands.put("red-component", (scanner) -> {
+      return new GrayscaleRed();
     });
-    commands.put("value-component", (scanner, imageEditor) -> {
-      this.performAndSave(scanner.next(), scanner.next(), new VisualizeValue());
+    commands.put("blue-component", (scanner) -> {
+      return new GrayscaleBlue();
     });
-    commands.put("red-component", (scanner, imageEditor) -> {
-      this.performAndSave(scanner.next(), scanner.next(), new GrayscaleRed());
+    commands.put("green-component", (scanner) -> {
+      return new GrayscaleGreen();
     });
-    commands.put("blue-component", (scanner, imageEditor) -> {
-      this.performAndSave(scanner.next(), scanner.next(), new GrayscaleBlue());
+    commands.put("luma-component", (scanner) -> {
+      return new VisualizeLuma();
     });
-    commands.put("green-component", (scanner, imageEditor) -> {
-      this.performAndSave(scanner.next(), scanner.next(), new GrayscaleGreen());
+    commands.put("intensity-component", (scanner) -> {
+      return new VisualizeIntensity();
     });
-    commands.put("luma-component", (scanner, imageEditor) -> {
-      this.performAndSave(scanner.next(), scanner.next(), new VisualizeLuma());
-    });
-    commands.put("intensity-component", (scanner, imageEditor) -> {
-      this.performAndSave(scanner.next(), scanner.next(), new VisualizeIntensity());
-    });
+  }
+
+  /**
+   * Helper method for saving an image.
+   * @param scan the scanner to read from
+   * @throws UnsupportedOperationException if the given image is not a PPM
+   */
+  private void saveImage(Scanner scan) {
+    String path = scan.next();
+    String name = scan.next();
+    if (path.substring(path.lastIndexOf(".") + 1).equals("ppm")) {
+      new ImagePPM(this.model.getImage(name)).save(path);
+    } else {
+      throw new UnsupportedOperationException("File types other than PPM not supported");
+    }
+  }
+
+  /**
+   * Helper method for loading an image.
+   * @param scan the scanner to read from
+   */
+  private void loadImage(Scanner scan) {
+    String path = scan.next();
+    String name = scan.next();
+    this.model.importImageFromDisk(path, name);
   }
 
   /**
@@ -139,18 +134,40 @@ public class BasicEditorController implements ImageEditorController {
   @Override
   public void start() {
     Scanner scan = new Scanner(this.in);
-    while (scan.hasNext()) {
-      String command = scan.next();
-      if (this.commands.containsKey(command)) {
-        this.commands.get(command).accept(scan, this.model);
-      }
-      else {
-        try {
-          this.view.render("Invalid command");
-        } catch (IOException e) {
-          throw new IllegalStateException(e);
+    try {
+      while (scan.hasNext()) {
+        String command = scan.next();
+        // This switch statement has specific clauses for load and save, because they are different
+        // from the rest of the commands, in that they don't perform a transformation on an image
+        // they just read or save data to the disk
+        switch (command) {
+          case "load":
+            this.loadImage(scan);
+            break;
+          case "save":
+            this.saveImage(scan);
+            break;
+          default:
+            if (this.commands.containsKey(command)) {
+
+              ImageRCToPixelTransformation transformation = this.commands.get(command).apply(scan);
+              this.model.applyFilterAndSave(scan.next(), scan.next(),
+                      transformation);
+            } else {
+              try {
+                this.view.render("Illegal argument");
+              } catch (IOException e) {
+                throw new RuntimeException(e);
+              }
+              // This will later render to a view, but for now just throws an exception
+              throw new IllegalArgumentException("Invalid command");
+
+            }
+            break;
         }
       }
+    } catch (InputMismatchException e) {
+      throw new IllegalArgumentException("Invalid input");
     }
   }
 }

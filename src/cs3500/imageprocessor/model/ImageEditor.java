@@ -1,6 +1,8 @@
 package cs3500.imageprocessor.model;
 
 
+import cs3500.imageprocessor.operations.ImageRCToPixelTransformation;
+
 /**
  * An interface that represents an image editor. This editor can show the names of the images it
  * has saved, get any image it has saved, load images from the user's local disk, and add and
@@ -34,6 +36,15 @@ public interface ImageEditor extends ImageEditorReadOnly {
    * @param imageName the name of the image to remove
    */
   void removeImage(String imageName);
+
+  /**
+   * Performs the given operation on the image with the given name
+   * and saves the image with the given.
+   * @param name the name of the image to retrieve
+   * @param newName the name of the new image
+   * @param operation the operation to perform
+   */
+  void applyFilterAndSave(String name, String newName, ImageRCToPixelTransformation operation);
 
 }
 

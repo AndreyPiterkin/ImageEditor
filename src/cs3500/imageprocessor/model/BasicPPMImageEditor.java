@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
+import cs3500.imageprocessor.operations.ImageRCToPixelTransformation;
+
 /**
  * A class representing an image editor with the functionality of handling images in the .ppm
  * format.
@@ -63,6 +65,25 @@ public class BasicPPMImageEditor implements ImageEditor {
   public void removeImage(String imageName) {
     Objects.requireNonNull(imageName);
     images.remove(imageName);
+  }
+
+  /**
+   * Performs the given operation on the image with the given name
+   * and saves the image with the given.
+   *
+   * @param name      the name of the image to retrieve
+   * @param newName   the name of the new image
+   * @param operation the operation to perform
+   */
+  @Override
+  public void applyFilterAndSave(String name, String newName,
+       ImageRCToPixelTransformation operation) {
+    Objects.requireNonNull(name);
+    Objects.requireNonNull(newName);
+    Objects.requireNonNull(operation);
+    ImageState image = this.getImage(name);
+    ImageState newImage = image.apply(operation);
+    images.put(newName, newImage);
   }
 
   /**
