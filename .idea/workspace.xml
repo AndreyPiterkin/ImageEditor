@@ -1,29 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b8c81752-d30f-4d00-8f30-c5be214554be" name="Changes" comment="Finished adding all controller commands">
-      <change afterPath="$PROJECT_DIR$/Archive.zip" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/koala5.ppm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/res/bunny.ppm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/res/bunny_red.ppm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/res/bunnybright.ppm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/res/bunnydark.ppm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/res/bunnyfliph.ppm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/res/bunnyflipv.ppm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/BasicEditorControllerTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/MockEditorModel.java" afterDir="false" />
+    <list default="true" id="b8c81752-d30f-4d00-8f30-c5be214554be" name="Changes" comment="Added support for PNG">
+      <change afterPath="$PROJECT_DIR$/res/me.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/me4.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ImageProcessor.iml" beforeDir="false" afterPath="$PROJECT_DIR$/ImageProcessor.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/Koala.ppm" beforeDir="false" afterPath="$PROJECT_DIR$/images/Koala.ppm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/Koala2.ppm" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/Koala3.ppm" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/Koala4.ppm" beforeDir="false" afterPath="$PROJECT_DIR$/images/Koala4.ppm" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cs3500/imageprocessor/controller/BasicEditorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cs3500/imageprocessor/controller/BasicEditorController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cs3500/imageprocessor/model/AbstractBaseImage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cs3500/imageprocessor/model/AbstractBaseImage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cs3500/imageprocessor/model/BasicPPMImageEditor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cs3500/imageprocessor/model/BasicPPMImageEditor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cs3500/imageprocessor/model/ImageEditor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cs3500/imageprocessor/model/ImageEditor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/BasicPPMImageEditorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/BasicPPMImageEditorTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -163,6 +145,7 @@
       <workItem from="1667508827825" duration="107000" />
       <workItem from="1667508945219" duration="12782000" />
       <workItem from="1667522425451" duration="56000" />
+      <workItem from="1667963652004" duration="4000" />
     </task>
     <task id="LOCAL-00001" summary="Interface Design for Image Processor v1">
       <created>1667356525751</created>
@@ -237,7 +220,8 @@
     <MESSAGE value="Implemented basic versions of images and editor, and simple commands." />
     <MESSAGE value="Added controller stuff" />
     <MESSAGE value="Finished adding all controller commands" />
-    <option name="LAST_COMMIT_MESSAGE" value="Finished adding all controller commands" />
+    <MESSAGE value="Added support for PNG" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added support for PNG" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

@@ -32,8 +32,8 @@ public class Main {
   public static void main(String[] args) throws IOException {
     ImageEditor model = new MultiformatImageEditor();
     ImageEditorView view = new ImageEditorViewStub();
-    model.importImageFromDisk("res/me.png", "cat");
+    model.importImageFromDisk("res/me.jpg", "cat");
     ImageState img = model.getImage("cat");
-    new ImagePNG(img).save("res/me4.ppm");
+    new ImagePNG(img).save("res/me4.png");
   }
 }
