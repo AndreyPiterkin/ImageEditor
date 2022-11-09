@@ -24,8 +24,33 @@ public class ImageUtil {
         int rgba = img.getRGB(c, r);
 
         Color color = new Color(rgba, true);
-//        System.out.println("r: " + color.getRed() + " g: " + color.getGreen() + " b: " + color.getBlue() + " a: " + color.getAlpha());
         pixels[r][c] = new RGBAPixel(color.getRed(), color.getGreen(), color.getBlue(), color.getAlpha());
+      }
+    }
+    return pixels;
+  }
+
+  public static IPixel[][] readJPG(String filename) throws IOException {
+    BufferedImage img = ImageIO.read(new File(filename));
+    IPixel[][] pixels = new IPixel[img.getHeight()][img.getWidth()];
+    for (int r = 0; r < img.getHeight(); r++) {
+      for (int c = 0; c < img.getWidth(); c++) {
+        int rgba = img.getRGB(c, r);
+        Color color = new Color(rgba);
+        pixels[r][c] = new RGBPixel(color.getRed(), color.getGreen(), color.getBlue());
+      }
+    }
+    return pixels;
+  }
+
+  public static IPixel[][] readBMP(String filename) throws IOException {
+    BufferedImage img = ImageIO.read(new File(filename));
+    IPixel[][] pixels = new IPixel[img.getHeight()][img.getWidth()];
+    for (int r = 0; r < img.getHeight(); r++) {
+      for (int c = 0; c < img.getWidth(); c++) {
+        int rgba = img.getRGB(c, r);
+        Color color = new Color(rgba);
+        pixels[r][c] = new RGBPixel(color.getRed(), color.getGreen(), color.getBlue());
       }
     }
     return pixels;

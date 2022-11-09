@@ -6,7 +6,9 @@ import java.util.Arrays;
 import javax.imageio.ImageIO;
 
 import cs3500.imageprocessor.model.BasicPPMImageEditor;
+import cs3500.imageprocessor.model.ImageBMP;
 import cs3500.imageprocessor.model.ImageEditor;
+import cs3500.imageprocessor.model.ImageJPG;
 import cs3500.imageprocessor.model.ImagePNG;
 import cs3500.imageprocessor.model.ImagePPM;
 import cs3500.imageprocessor.model.ImageState;
@@ -32,8 +34,8 @@ public class Main {
   public static void main(String[] args) throws IOException {
     ImageEditor model = new MultiformatImageEditor();
     ImageEditorView view = new ImageEditorViewStub();
-    model.importImageFromDisk("res/me.jpg", "cat");
+    model.importImageFromDisk("res/me.png", "cat");
     ImageState img = model.getImage("cat");
-    new ImagePNG(img).save("res/me4.png");
+    new ImageBMP(img).save("res/me2.bmp");
   }
 }

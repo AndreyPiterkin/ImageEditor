@@ -45,12 +45,12 @@ public class MultiformatImageEditor implements ImageEditor {
         case "png":
           this.images.put(imageName, new ImagePNG(ImageUtil.readPNG(fileName)));
           break;
-//        case "jpg":
-//          this.images.put(imageName, new ImageJPG(ImageUtil.readJPG(fileName)));
-//          break;
-//        case "bmp":
-//          this.images.put(imageName, new ImageBMP(ImageUtil.readBMP(fileName)));
-//          break;
+        case "jpg":
+          this.images.put(imageName, new ImageJPG(ImageUtil.readJPG(fileName)));
+          break;
+        case "bmp":
+          this.images.put(imageName, new ImageBMP(ImageUtil.readBMP(fileName)));
+          break;
         default:
           throw new UnsupportedOperationException("File types other than PPM and PNG not supported");
       }
