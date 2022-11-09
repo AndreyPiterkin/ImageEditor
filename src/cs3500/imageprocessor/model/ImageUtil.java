@@ -1,14 +1,35 @@
 package cs3500.imageprocessor.model;
 
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Scanner;
+
+import javax.imageio.ImageIO;
 
 /**
  * This class contains utility methods to read a PPM image from file and simply print its contents.
  * Feel free to change this method as required.
  */
 public class ImageUtil {
+
+  public static IPixel[][] readPNG(String filename) throws IOException {
+    BufferedImage img = ImageIO.read(new File(filename));
+    IPixel[][] pixels = new IPixel[img.getHeight()][img.getWidth()];
+    for (int r = 0; r < img.getHeight(); r++) {
+      for (int c = 0; c < img.getWidth(); c++) {
+        int rgba = img.getRGB(c, r);
+
+        Color color = new Color(rgba, true);
+//        System.out.println("r: " + color.getRed() + " g: " + color.getGreen() + " b: " + color.getBlue() + " a: " + color.getAlpha());
+        pixels[r][c] = new RGBAPixel(color.getRed(), color.getGreen(), color.getBlue(), color.getAlpha());
+      }
+    }
+    return pixels;
+  }
 
   /**
    * Read an image file in the PPM format and print the colors.

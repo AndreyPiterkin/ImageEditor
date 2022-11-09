@@ -37,5 +37,4 @@ public interface IPixel {
    * @return the alpha channel of the pixel
    */
   int getAlpha();
-
 }

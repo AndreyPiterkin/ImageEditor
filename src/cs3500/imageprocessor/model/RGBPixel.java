@@ -71,13 +71,13 @@ public class RGBPixel implements IPixel {
    * Gets the alpha channel of the pixel. We guarantee that every pixel can compute its own alpha
    * channel, though pixels implementations without knowledge of the alpha channel will always
    * return 100% alpha. We also guarantee that the alpha channel will be returned as an integer from
-   * 0 to 99.
+   * 0 to 255.
    *
    * @return the alpha channel of the pixel
    */
   @Override
   public int getAlpha() {
-    return 99;
+    return 255;
   }
 
   @Override
@@ -96,5 +96,11 @@ public class RGBPixel implements IPixel {
   public int hashCode() {
     return this.getRed() * 100 + this.getGreen() * 100 + this.getBlue() * 100
         + this.getAlpha() * 100;
+  }
+
+  public static IPixel clampedRGBPixel(int red, int green, int blue) {
+    return new RGBPixel(Math.max(0, Math.min(255, red)),
+        Math.max(0, Math.min(255, green)),
+        Math.max(0, Math.min(255, blue)));
   }
 }

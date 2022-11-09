@@ -1,5 +1,6 @@
 package cs3500.imageprocessor.model;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -12,15 +13,15 @@ import cs3500.imageprocessor.operations.ImageRCToPixelTransformation;
  * A class representing an image editor with the functionality of handling images in the .ppm
  * format.
  */
-public class BasicPPMImageEditor implements ImageEditor {
+public class MultiformatImageEditor implements ImageEditor {
 
   private final Map<String, ImageState> images;
 
-  public BasicPPMImageEditor(Map<String, ImageState> images) {
+  public MultiformatImageEditor(Map<String, ImageState> images) {
     this.images = new HashMap<>(Objects.requireNonNull(images));
   }
 
-  public BasicPPMImageEditor() {
+  public MultiformatImageEditor() {
     this(new HashMap<String, ImageState>());
   }
 
@@ -36,10 +37,25 @@ public class BasicPPMImageEditor implements ImageEditor {
    */
   @Override
   public void importImageFromDisk(String fileName, String imageName) {
-    if (fileName.substring(fileName.lastIndexOf(".") + 1).equals("ppm")) {
-      this.images.put(imageName, new ImagePPM(ImageUtil.readPPM(fileName)));
-    } else {
-      throw new UnsupportedOperationException("File types other than PPM not supported");
+    try {
+      switch (fileName.substring(fileName.lastIndexOf(".") + 1)) {
+        case "ppm":
+          this.images.put(imageName, new ImagePPM(ImageUtil.readPPM(fileName)));
+          break;
+        case "png":
+          this.images.put(imageName, new ImagePNG(ImageUtil.readPNG(fileName)));
+          break;
+//        case "jpg":
+//          this.images.put(imageName, new ImageJPG(ImageUtil.readJPG(fileName)));
+//          break;
+//        case "bmp":
+//          this.images.put(imageName, new ImageBMP(ImageUtil.readBMP(fileName)));
+//          break;
+        default:
+          throw new UnsupportedOperationException("File types other than PPM and PNG not supported");
+      }
+    } catch (IOException e) {
+      throw new UnsupportedOperationException("File cannot be read");
     }
   }
 
