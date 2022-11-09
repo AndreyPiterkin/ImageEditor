@@ -46,5 +46,12 @@ public interface ImageEditor extends ImageEditorReadOnly {
    */
   void applyFilterAndSave(String name, String newName, ImageRCToPixelTransformation operation);
 
+  /**
+   * Saves the image with the given name to the given file path.
+   * @param name the name of the image to save
+   * @param fileName the file path to save the image to
+   */
+  void saveImageAs(String name, String fileName);
+
 }
 

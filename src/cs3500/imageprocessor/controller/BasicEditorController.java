@@ -102,21 +102,6 @@ public class BasicEditorController implements ImageEditorController {
   }
 
   /**
-   * Helper method for saving an image.
-   * @param scan the scanner to read from
-   * @throws UnsupportedOperationException if the given image is not a PPM
-   */
-  private void saveImage(Scanner scan) {
-    String path = scan.next();
-    String name = scan.next();
-    if (path.substring(path.lastIndexOf(".") + 1).equals("ppm")) {
-      new ImagePPM(this.model.getImage(name)).save(path);
-    } else {
-      throw new UnsupportedOperationException("File types other than PPM not supported");
-    }
-  }
-
-  /**
    * Helper method for loading an image.
    * @param scan the scanner to read from
    */
@@ -145,7 +130,9 @@ public class BasicEditorController implements ImageEditorController {
             this.loadImage(scan);
             break;
           case "save":
-            this.saveImage(scan);
+            String filename = scan.next();
+            String name = scan.next();
+            this.model.saveImageAs(filename, name);
             break;
           default:
             if (this.commands.containsKey(command)) {

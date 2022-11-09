@@ -104,6 +104,35 @@ public class MultiformatImageEditor implements ImageEditor {
   }
 
   /**
+   * Saves the image with the given name to the given file path.
+   *
+   * @param name     the name of the image to save
+   * @param fileName the file path to save the image to
+   */
+  @Override
+  public void saveImageAs(String name, String fileName) {
+    Objects.requireNonNull(name);
+    Objects.requireNonNull(fileName);
+    ImageState image = this.getImage(name);
+    switch (fileName.substring(fileName.lastIndexOf(".") + 1)) {
+      case "ppm":
+        new ImagePPM(image).save(fileName);
+        break;
+      case "png":
+        new ImagePNG(image).save(fileName);
+        break;
+      case "jpg":
+        new ImageJPG(image).save(fileName);
+        break;
+      case "bmp":
+        new ImageBMP(image).save(fileName);
+        break;
+      default:
+        throw new UnsupportedOperationException("This file type is not supported");
+    }
+  }
+
+  /**
    * Gets the names of all the images open in the image editor.
    *
    * @return the names of all  the images open in the image editor

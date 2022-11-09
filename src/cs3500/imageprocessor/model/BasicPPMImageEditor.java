@@ -87,6 +87,24 @@ public class BasicPPMImageEditor implements ImageEditor {
   }
 
   /**
+   * Saves the image with the given name to the given file path.
+   *
+   * @param name     the name of the image to save
+   * @param fileName the file path to save the image to
+   */
+  @Override
+  public void saveImageAs(String name, String fileName) {
+    Objects.requireNonNull(name);
+    Objects.requireNonNull(fileName);
+    ImageState image = this.getImage(name);
+    if (fileName.substring(fileName.lastIndexOf(".") + 1).equals("ppm")) {
+      new ImagePPM(image).save(fileName);
+    } else {
+      throw new UnsupportedOperationException("File types other than PPM not supported");
+    }
+  }
+
+  /**
    * Gets the names of all the images open in the image editor.
    *
    * @return the names of all  the images open in the image editor
