@@ -68,6 +68,6 @@ public class AKernelTransformation implements ImageRCToPixelTransformation {
       }
     }
 
-    return RGBPixel.clampedRGBPixel(red, green, blue);
+    return IPixel.clampedRGBPixel(red, green, blue);
   }
 }

@@ -33,8 +33,32 @@ public interface IPixel {
    * Gets the alpha channel of the pixel. We guarantee that every pixel can compute its own alpha
    * channel, though pixels implementations without knowledge of the alpha channel will always
    * return 100% alpha. We also guarantee that the alpha channel will be returned as an integer from
-   * 0 to 99.
+   * 0 to 255.
    * @return the alpha channel of the pixel
    */
   int getAlpha();
+
+  public static IPixel clampedRGBPixel(int red, int green, int blue) {
+    return new IPixel() {
+      @Override
+      public int getRed() {
+        return Math.min(Math.max(red, 0), 255);
+      }
+
+      @Override
+      public int getGreen() {
+        return Math.min(Math.max(green, 0), 255);
+      }
+
+      @Override
+      public int getBlue() {
+        return Math.min(Math.max(blue, 0), 255);
+      }
+
+      @Override
+      public int getAlpha() {
+        return 255;
+      }
+    };
+  }
 }

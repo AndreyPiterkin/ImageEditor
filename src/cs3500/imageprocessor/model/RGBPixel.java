@@ -98,9 +98,4 @@ public class RGBPixel implements IPixel {
         + this.getAlpha() * 100;
   }
 
-  public static IPixel clampedRGBPixel(int red, int green, int blue) {
-    return new RGBPixel(Math.max(0, Math.min(255, red)),
-        Math.max(0, Math.min(255, green)),
-        Math.max(0, Math.min(255, blue)));
-  }
 }

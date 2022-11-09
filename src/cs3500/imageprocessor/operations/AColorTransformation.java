@@ -58,6 +58,6 @@ public class AColorTransformation implements ImageRCToPixelTransformation {
       }
       newColors[i] = newColor;
     }
-    return RGBPixel.clampedRGBPixel(newColors[0], newColors[1], newColors[2]);
+    return IPixel.clampedRGBPixel(newColors[0], newColors[1], newColors[2]);
   }
 }
