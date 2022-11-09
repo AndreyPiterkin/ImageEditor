@@ -16,6 +16,19 @@ import javax.imageio.ImageIO;
  */
 public class ImageUtil {
 
+//  public static IPixel[][] readStandardImageFormat(String filename) throws IOException {
+//    BufferedImage img = ImageIO.read(new File(filename));
+//    IPixel[][] pixels = new IPixel[img.getHeight()][img.getWidth()];
+//    for (int r = 0; r < img.getHeight(); r++) {
+//      for (int c = 0; c < img.getWidth(); c++) {
+//        int rgb = img.getRGB(c, r);
+//        Color color = new Color(rgb, true);
+//        pixels[r][c] = new RGBAPixel(color.getRed(), color.getGreen(), color.getBlue(), color.getAlpha());
+//      }
+//    }
+//    return pixels;
+//  }
+
   public static IPixel[][] readPNG(String filename) throws IOException {
     BufferedImage img = ImageIO.read(new File(filename));
     IPixel[][] pixels = new IPixel[img.getHeight()][img.getWidth()];

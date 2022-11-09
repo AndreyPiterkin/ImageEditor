@@ -1,6 +1,13 @@
 package cs3500.imageprocessor.model;
 
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.Objects;
+import java.util.function.Function;
+
+import javax.imageio.ImageIO;
 
 import cs3500.imageprocessor.operations.ImageRCToPixelTransformation;
 
@@ -101,6 +108,39 @@ public abstract class AbstractBaseImage implements ImageState {
     }
 
     return createImage(newPixels);
+  }
+
+  /**
+   * Creates a BufferedImage for writing to the disk out of the pixels of this image.
+   * This is a protected method of the abstract class, not a promise of the interface,
+   * because this would leak implementation details of this set of image classes.
+   * The user doesn't need to know that we use BufferedImage to save images to disk,
+   * and they shouldn't be able to call this method.
+   * Thus, this is a protected method only for use by subclasses, and for testing.
+   * @param bufferedImageType the type of BufferedImage to create (RGB, ARGB, etc)
+   *                          @see BufferedImage
+   * @param colorFunc the function that converts from pixel data to a color (this is used for
+   *                  parametrizing the color, as in RGBA vs RGB for PNG vs everything else).
+   * @return the buffered image representation of this image
+   */
+  protected BufferedImage preprocessForSave(int bufferedImageType, Function<IPixel, Color> colorFunc) {
+    BufferedImage img = new BufferedImage(this.getWidth(), this.getHeight(), bufferedImageType);
+    for (int r = 0; r < this.getHeight(); r++) {
+      for (int c = 0; c < this.getWidth(); c++) {
+        IPixel pixel = this.getPixelAt(r, c);
+        Color color = colorFunc.apply(pixel);
+        img.setRGB(c, r, color.getRGB());
+      }
+    }
+    return img;
+  }
+
+  protected void saveToDisk(BufferedImage img, String format, String filename) {
+    try {
+      ImageIO.write(img, format, new File(filename));
+    } catch (IOException e) {
+      throw new IllegalArgumentException("Invalid file path");
+    }
   }
 
   protected abstract ImageState createImage(IPixel[][] pixels);

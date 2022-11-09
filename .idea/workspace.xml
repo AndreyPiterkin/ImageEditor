@@ -2,14 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b8c81752-d30f-4d00-8f30-c5be214554be" name="Changes" comment="Added support for PNG">
-      <change afterPath="$PROJECT_DIR$/images/Koala.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/res/me.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/res/me2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/res/me2.ppm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/cs3500/imageprocessor/model/ImageBMP.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/cs3500/imageprocessor/model/ImageJPG.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/Death3.ppm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/death.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/death.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cs3500/imageprocessor/model/AbstractBaseImage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cs3500/imageprocessor/model/AbstractBaseImage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cs3500/imageprocessor/model/ImageBMP.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cs3500/imageprocessor/model/ImageBMP.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cs3500/imageprocessor/model/ImageJPG.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cs3500/imageprocessor/model/ImageJPG.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cs3500/imageprocessor/model/ImagePNG.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cs3500/imageprocessor/model/ImagePNG.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cs3500/imageprocessor/model/ImageState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cs3500/imageprocessor/model/ImageState.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/cs3500/imageprocessor/model/ImageUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cs3500/imageprocessor/model/ImageUtil.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/cs3500/imageprocessor/model/MultiformatImageEditor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cs3500/imageprocessor/model/MultiformatImageEditor.java" afterDir="false" />
     </list>
@@ -152,7 +154,11 @@
       <workItem from="1667508945219" duration="12782000" />
       <workItem from="1667522425451" duration="56000" />
       <workItem from="1667963652004" duration="4000" />
-      <workItem from="1667964594811" duration="804000" />
+      <workItem from="1667964594811" duration="843000" />
+      <workItem from="1667965522894" duration="295000" />
+      <workItem from="1667965923352" duration="327000" />
+      <workItem from="1667967315929" duration="246000" />
+      <workItem from="1668012858995" duration="2040000" />
     </task>
     <task id="LOCAL-00001" summary="Interface Design for Image Processor v1">
       <created>1667356525751</created>
@@ -217,7 +223,28 @@
       <option name="project" value="LOCAL" />
       <updated>1667964618095</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Added support for PNG">
+      <created>1667965433590</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1667965433590</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Added support for PNG">
+      <created>1667965811518</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1667965811518</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Added support for PNG">
+      <created>1667966246918</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1667966246918</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

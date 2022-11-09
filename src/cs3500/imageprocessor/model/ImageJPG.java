@@ -28,18 +28,8 @@ public class ImageJPG extends AbstractBaseImage {
 
   @Override
   public void save(String filePath) {
-    BufferedImage img = new BufferedImage(this.getWidth(), this.getHeight(), BufferedImage.TYPE_INT_RGB);
-    for (int r = 0; r < this.getHeight(); r++) {
-      for (int c = 0; c < this.getWidth(); c++) {
-        Color color = new Color(this.getPixelAt(r, c).getRed(), this.getPixelAt(r, c).getGreen(),
-                this.getPixelAt(r, c).getBlue());
-        img.setRGB(c, r, color.getRGB());
-      }
-    }
-    try {
-      ImageIO.write(img, "jpg", new File(filePath));
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
+    BufferedImage img = preprocessForSave(BufferedImage.TYPE_INT_RGB, (IPixel p) ->
+        new Color(p.getRed(), p.getGreen(), p.getBlue()));
+    saveToDisk(img, "jpg", filePath);
   }
 }

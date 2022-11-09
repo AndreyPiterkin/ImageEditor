@@ -16,6 +16,7 @@ import cs3500.imageprocessor.operations.ImageRCToPixelTransformation;
 public class MultiformatImageEditor implements ImageEditor {
 
   private final Map<String, ImageState> images;
+//  private final Map<String, >
 
   public MultiformatImageEditor(Map<String, ImageState> images) {
     this.images = new HashMap<>(Objects.requireNonNull(images));
@@ -32,8 +33,8 @@ public class MultiformatImageEditor implements ImageEditor {
    *
    * @param fileName  the filepath from where to load the image
    * @param imageName the name to give the image
-   * @throws UnsupportedOperationException if the file extension is not supported, or if the file
-   *                                       cannot be read.
+   * @throws UnsupportedOperationException if the file extension is not supported
+   * @throws IllegalArgumentException      if the file can't be read
    */
   @Override
   public void importImageFromDisk(String fileName, String imageName) {
@@ -55,7 +56,7 @@ public class MultiformatImageEditor implements ImageEditor {
           throw new UnsupportedOperationException("File types other than PPM and PNG not supported");
       }
     } catch (IOException e) {
-      throw new UnsupportedOperationException("File cannot be read");
+      throw new IllegalArgumentException("File cannot be read");
     }
   }
 

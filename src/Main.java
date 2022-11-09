@@ -35,19 +35,10 @@ public class Main {
   public static void main(String[] args) throws IOException {
     ImageEditor model = new MultiformatImageEditor();
     ImageEditorView view = new ImageEditorViewStub();
-    model.importImageFromDisk("res/me2.ppm", "me");
-    model.importImageFromDisk("res/me2.bmp", "me2");
-    ImageState i1 = model.getImage("me");
-    ImageState i2 = model.getImage("me2");
+    model.importImageFromDisk("res/Death3.ppm", "death");
+//    model.importImageFromDisk("res/death.jpg", "death");
+    new ImagePNG(model.getImage("death")).save("res/death.png");
+//    ImageState i2 = model.getImage("me2");
 
-    for (int r = 0; r < i1.getHeight(); r++) {
-      for (int c = 0; c < i1.getWidth(); c++) {
-        IPixel p = i1.getPixelAt(r, c);
-        IPixel p2 = i2.getPixelAt(r, c);
-        if (p.getRed() != p2.getRed() || p.getGreen() != p2.getGreen() || p.getBlue() != p2.getBlue()) {
-          System.out.println("Different at " + r + ", " + c);
-        }
-      }
-    }
   }
 }

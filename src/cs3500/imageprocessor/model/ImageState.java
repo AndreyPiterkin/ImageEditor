@@ -40,6 +40,7 @@ public interface ImageState {
   /**
    * Saves the image to the given file path on the disk using the given formatting function.
    * @param filePath the file name to save the image to
+   * @throws IllegalArgumentException if the file path is invalid
    */
   void save(String filePath);
 
