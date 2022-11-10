@@ -1,10 +1,9 @@
 package cs3500.imageprocessor.model;
 
 /**
- * An interface representing a pixel in an image. It guarantees the components red, green, blue,
- * and alpha. This is because RGBA is the most encapsulating form of RGB and allows for both the
- * general RGBA pixel to implemented and more specific versions of pixels that may not
- * care about alpha to still be represented as RGBA.
+  * Represents a pixel with RGBA in an image. Note that not every pixel needs to have distinct
+ * values for each of the channels, and RGBAPixels can be constructed with 1 for grayscale,
+ * 3 for RGB, or 4 for RGBA.
  */
 public class RGBAPixel {
 
@@ -14,7 +13,7 @@ public class RGBAPixel {
   private int alpha;
 
   /**
-   * A constructor for an RGBA pixel.
+   * A constructor for an RGBA pixel that clamps all given values to be between 0 and 255.
    *
    * @param red   the red component of the pixel
    * @param green the green component of the pixel

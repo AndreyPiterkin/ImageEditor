@@ -83,7 +83,8 @@ public class BasicEditorController implements ImageEditorController {
   }
 
   /**
-   * Sets up all the commands that this controller is capable of executing.
+   * Sets up all the commands that this controller is capable of executing, both for
+   * pixel operations and image writers (saving images).
    */
   protected void setupCommands() {
     commands.put("brighten", (scanner) -> new BrightenPixel(scanner.nextInt()));
@@ -147,7 +148,7 @@ public class BasicEditorController implements ImageEditorController {
   }
 
   /**
-   * Helper method for loading an image.
+   * Loads an image based on the input from the given scanner, and adds it to the model.
    *
    * @param scan the scanner to read from
    * @throws IllegalStateException if the controller can't read the image
@@ -167,9 +168,12 @@ public class BasicEditorController implements ImageEditorController {
   }
 
   /**
-   * Helper method for saving an image.
+   * Saves an image based on the input from the given scanner, picking the appropriate
+   * image writer based on the file extension.
    *
    * @param scan the scanner to read from
+   * @throws UnsupportedOperationException if the controller doesn't support the given
+   *                                      file extension
    */
   private void saveImage(Scanner scan) {
     String name = scan.next();
@@ -184,6 +188,14 @@ public class BasicEditorController implements ImageEditorController {
     }
   }
 
+  /**
+   * Looks up the given command in the map of commands, and executes it on the
+   * image read from the given scanner, and adds that new image to the model.
+   * @param command the command to execute (from the map of commands)
+   * @param scan the scanner to read from
+   * @throws IllegalArgumentException if the controller doesn't support the given
+   *                                  pixel operation
+   */
   private void applyOperation(String command, Scanner scan) {
     PixelOperation operation;
     if (this.commands.containsKey(command)) {

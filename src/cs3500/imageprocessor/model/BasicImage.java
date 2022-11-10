@@ -7,7 +7,7 @@ import java.util.Objects;
 import cs3500.imageprocessor.operations.PixelOperation;
 
 /**
- * Represents an image state that can be edited.
+ * Represents a basic image state of a rectangular board of pixels.
  */
 public class BasicImage implements ImageState {
 
@@ -18,7 +18,7 @@ public class BasicImage implements ImageState {
    * For methods of this class only.
    * We specifically don't copy every pixel into a new array because we do not have mutations
    * on the arrays, or the pixels, so every new image is a deep copy of the old one (when using
-   * filters)
+   * filters).
    * @param pixels the array of pixels representing the image
    */
   private BasicImage(RGBAPixel[][] pixels) {
@@ -27,7 +27,7 @@ public class BasicImage implements ImageState {
   }
 
   /**
-   * A constructor that makes an image from a buffered image.
+   * A constructor that makes a BasicImage from a buffered image.
    * @param img the buffered image to read from
    * @throws IllegalArgumentException if the image is null
    */
@@ -104,6 +104,7 @@ public class BasicImage implements ImageState {
 
   /**
    * Creates a BufferedImage for writing to the disk out of the pixels of this image.
+   * @param pixelType the type of pixels in the image (i.e. ARGB, RGB, etc)
    * @return the buffered image representation of this image
    */
   public BufferedImage asBufferedImage(int pixelType) {

@@ -1,5 +1,3 @@
-
-
 import java.io.IOException;
 import java.util.Scanner;
 import java.util.function.BiConsumer;
@@ -52,6 +50,14 @@ public class BasicEditorControllerLogger extends BasicEditorController {
     this.log = log;
   }
 
+  /**
+   * Takes the commands that the super() call set up,
+   * and modifies them to wrap them in a ForwardingFilter with this controller's log
+   * to log what operations are happening to test if the controller is using the model
+   * correctly.
+   *
+   * Similarly, it wraps the save and load commands in a log.
+   */
   @Override
   protected void setupCommands() {
     super.setupCommands();

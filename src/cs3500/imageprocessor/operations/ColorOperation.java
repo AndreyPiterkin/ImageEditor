@@ -6,7 +6,10 @@ import cs3500.imageprocessor.model.RGBAPixel;
 import cs3500.imageprocessor.model.ImageState;
 
 /**
- * A function object used to perform color transformations with a given 3x3 matrix.
+ * A function object used to perform color transformations with a given 3x3 matrix. What
+ * color operation does is take the matrix multiplication of the column vector of the pixel's
+ * RGB colors, and the 3x3 matrix kernel, to produce a new 3x1 column vector of the new RGB for the
+ * new pixel.
  */
 public class ColorOperation implements PixelOperation {
 

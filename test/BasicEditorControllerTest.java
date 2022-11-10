@@ -14,7 +14,7 @@ import static org.junit.Assert.assertThrows;
 import static org.junit.Assert.fail;
 
 /**
- * Tests the functionality of the BasicEditorController class.
+ * Tests the functionality of the BasicEditorController class, and if it uses the model correctly.
  */
 public class BasicEditorControllerTest {
 

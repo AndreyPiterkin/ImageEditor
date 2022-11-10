@@ -14,10 +14,19 @@ public class BasicImageEditor implements ImageEditor {
 
   private final Map<String, ImageState> images;
 
+  /**
+   * Constructs a BasicImageEditor with a pre-made map of images.
+   * This could be useful for loading up the editor if you had saved progress and wanted
+   * to keep the images you were working on saved.
+   * @param images the map of images
+   */
   public BasicImageEditor(Map<String, ImageState> images) {
     this.images = new HashMap<>(Objects.requireNonNull(images));
   }
 
+  /**
+   * Constructs a BasicImageEditor with an empty map of images.
+   */
   public BasicImageEditor() {
     this(new HashMap<String, ImageState>());
   }
