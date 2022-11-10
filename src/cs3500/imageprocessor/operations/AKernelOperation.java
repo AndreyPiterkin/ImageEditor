@@ -9,7 +9,7 @@ import cs3500.imageprocessor.model.ImageState;
  * Represents an abstract instance of a kernel transformation, created to minimize code reuse
  * across similar kernel transformations.
  */
-public class AKernelOperation implements PixelOperation {
+public abstract class AKernelOperation implements PixelOperation {
 
   private final double[][] kernel;
 

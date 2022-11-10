@@ -9,6 +9,7 @@ public interface ImageEditorController {
   /**
    * Starts the controller, allowing the user to interact with the model through the view.
    * @throws IllegalStateException if the controller can't read or write anything.
+   * @throws IllegalArgumentException if the user enters an invalid input into the commands.
    */
   void start();
 }
