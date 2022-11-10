@@ -14,20 +14,26 @@ public class KernelOperation implements PixelOperation {
 
   /**
    * Constructs an instance of a kernel transformation with the given kernel.
+   * The given kernel must be square in shape.
    *
    * @param kernel the kernel to use for the transformation
    * @throws NullPointerException if the kernel is null or contains nulls
-   * @throws IllegalArgumentException if the kernel is not a rectangular matrix
+   * @throws IllegalArgumentException if the kernel is not a square matrix
    */
   public KernelOperation(double[][] kernel) {
     Objects.requireNonNull(kernel);
 
+    int rowLength = kernel.length;
     int length = kernel[0].length;
+    if (rowLength != length) {
+      throw new IllegalArgumentException("Kernel must be square");
+    }
     for (double[] row : kernel) {
       if (row.length != length) {
-        throw new IllegalArgumentException("Kernel must be a rectangular matrix");
+        throw new IllegalArgumentException("Kernel must be square");
       }
     }
+
 
     double[][] kernelCopy = new double[kernel.length][kernel[0].length];
     for (int i = 0; i < kernel.length; i++) {
