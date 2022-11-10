@@ -5,7 +5,7 @@ import java.util.Objects;
 import cs3500.imageprocessor.model.RGBAPixel;
 import cs3500.imageprocessor.model.ImageState;
 
-public abstract class ColorOperation implements PixelOperation {
+public class ColorOperation implements PixelOperation {
 
   private final double[][] kernel;
 
