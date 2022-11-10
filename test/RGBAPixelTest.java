@@ -4,7 +4,6 @@ import org.junit.Test;
 import cs3500.imageprocessor.model.RGBAPixel;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertThrows;
 import static org.junit.Assert.assertTrue;
 
 /**
@@ -46,48 +45,33 @@ public class RGBAPixelTest {
     assertEquals(255, this.grayPixel.getAlpha());
   }
 
-//  @Test
-//  public void testConstructorIncorrect() {
-//    assertThrows(IllegalArgumentException.class, () -> this.rgbaPixel1 = new RGBAPixel(-1, 0, 0));
-//    assertThrows(IllegalArgumentException.class, () -> this.rgbaPixel1 = new RGBAPixel(0, -1, 0));
-//    assertThrows(IllegalArgumentException.class, () -> this.rgbaPixel1 = new RGBAPixel(0, 0, -1));
-//    assertThrows(IllegalArgumentException.class, () -> this.rgbaPixel1 = new RGBAPixel(-100, -100,
-//        -100));
-//
-//    assertThrows(IllegalArgumentException.class, () -> this.rgbaPixel1 = new RGBAPixel(256, 0,
-//    0));
-//    assertThrows(IllegalArgumentException.class, () -> this.rgbaPixel1 = new RGBAPixel(0, 256,
-//    0));
-//    assertThrows(IllegalArgumentException.class, () -> this.rgbaPixel1 = new RGBAPixel(0, 0,
-//    256));
-//    assertThrows(IllegalArgumentException.class, () -> this.rgbaPixel1 = new RGBAPixel(1000, 1000,
-//        1000));
-//
-//    assertThrows(IllegalArgumentException.class, () -> this.rgbaPixel3 = new RGBAPixel(-1, 0, 0,
-//        0));
-//    assertThrows(IllegalArgumentException.class, () -> this.rgbaPixel3 = new RGBAPixel(0, -1, 0,
-//        0));
-//    assertThrows(IllegalArgumentException.class, () -> this.rgbaPixel3 = new RGBAPixel(0, 0, -1,
-//        0));
-//    assertThrows(IllegalArgumentException.class, () -> this.rgbaPixel3 = new RGBAPixel(0, 0,
-//        0, -1));
-//    assertThrows(IllegalArgumentException.class, () -> this.rgbaPixel3 = new RGBAPixel(-100, -100,
-//        -100, -100));
-//
-//    assertThrows(IllegalArgumentException.class, () -> this.rgbaPixel3 = new RGBAPixel(256, 0,
-//    0));
-//    assertThrows(IllegalArgumentException.class, () -> this.rgbaPixel3 = new RGBAPixel(0, 256,
-//    0));
-//    assertThrows(IllegalArgumentException.class, () -> this.rgbaPixel3 = new RGBAPixel(0, 0,
-//    256));
-//    assertThrows(IllegalArgumentException.class, () -> this.rgbaPixel3 = new RGBAPixel(0, 0,
-//        0, 256));
-//    assertThrows(IllegalArgumentException.class, () -> this.rgbaPixel3 = new RGBAPixel(1000, 1000,
-//        1000));
-//
-//    assertThrows(IllegalArgumentException.class, () -> this.grayPixel = new RGBAPixel(-1));
-//    assertThrows(IllegalArgumentException.class, () -> this.grayPixel = new RGBAPixel(256));
-//  }
+  @Test
+  public void testConstructorClamps() {
+    assertEquals(new RGBAPixel(0, 0, 0), new RGBAPixel(-1, 0, 0));
+    assertEquals(new RGBAPixel(0, 0, 0), new RGBAPixel(0, -1, 0));
+    assertEquals(new RGBAPixel(0, 0, 0), new RGBAPixel(0, 0, -1));
+    assertEquals(new RGBAPixel(0, 0, 0), new RGBAPixel(-100, -100,-100));
+
+    assertEquals(new RGBAPixel(255, 0, 0), new RGBAPixel(256, 0, 0));
+    assertEquals(new RGBAPixel(0, 255, 0), new RGBAPixel(0, 256, 0));
+    assertEquals(new RGBAPixel(0, 0, 255), new RGBAPixel(0, 0, 256));
+    assertEquals(new RGBAPixel(255, 255, 255), new RGBAPixel(1000, 1000, 1000));
+
+    assertEquals(new RGBAPixel(0, 0, 0, 0), new RGBAPixel(-1, 0, 0, 0));
+    assertEquals(new RGBAPixel(0, 0, 0, 0), new RGBAPixel(0, -1, 0, 0));
+    assertEquals(new RGBAPixel(0, 0, 0, 0), new RGBAPixel(0, 0, -1, 0));
+    assertEquals(new RGBAPixel(0, 0, 0, 0), new RGBAPixel(0, 0, 0, -1));
+    assertEquals(new RGBAPixel(0, 0, 0, 0), new RGBAPixel(-100, -100, -100, -100));
+
+    assertEquals(new RGBAPixel(255, 0, 0, 0), new RGBAPixel(256, 0, 0, 0));
+    assertEquals(new RGBAPixel(0, 255, 0, 0), new RGBAPixel(0, 256, 0, 0));
+    assertEquals(new RGBAPixel(0, 0, 255, 0), new RGBAPixel(0, 0, 256, 0));
+    assertEquals(new RGBAPixel(0), new RGBAPixel(0, 0, 0, 256));
+    assertEquals(new RGBAPixel(255), new RGBAPixel(1000, 1000, 1000));
+
+    assertEquals(new RGBAPixel(0), new RGBAPixel(-1));
+    assertEquals(new RGBAPixel(255), new RGBAPixel(256));
+  }
 
   @Test
   public void testGetRed() {
