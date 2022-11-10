@@ -103,7 +103,7 @@ public class BasicEditorController implements ImageEditorController {
   private void loadImage(Scanner scan) {
     String path = scan.next();
     String name = scan.next();
-    if (path.substring(path.lastIndexOf(".")+1).equals(".ppm")) {
+    if (path.substring(path.lastIndexOf(".")).equals(".ppm")) {
       this.model.addImage(new BasicImage(ImageUtil.readPPM(path)), name);
     } else {
       try {
