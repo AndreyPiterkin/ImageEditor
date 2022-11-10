@@ -1,3 +1,7 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+
 import cs3500.imageprocessor.controller.BasicEditorController;
 import cs3500.imageprocessor.controller.ImageEditorController;
 import cs3500.imageprocessor.model.BasicImageEditor;
@@ -13,15 +17,24 @@ public class Main {
    * The main function to run the editor.
    * @param args command-line inputs
    */
-  public static void main(String[] args)  {
-
-    if (args.length == 0) {
-      throw new IllegalArgumentException("No input file given.");
-    }
-
+  public static void main(String[] args) throws FileNotFoundException {
     ImageEditor model = new BasicImageEditor();
     ImageEditorView view = new ImageEditorViewStub();
-    ImageEditorController controller = new BasicEditorController(model, view);
+    ImageEditorController controller;
+    if (args.length == 0) {
+      controller = new BasicEditorController(model, view);
+    } else {
+      if (args.length != 2) {
+        throw new IllegalArgumentException("Invalid number of arguments");
+      } else {
+        if (args[0].equals("-file")) {
+          controller = new BasicEditorController(model, new FileReader(new File(args[1])), view);
+        } else {
+          throw new IllegalArgumentException("Invalid argument");
+        }
+      }
+
+    }
     controller.start();
 
   }
