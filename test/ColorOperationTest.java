@@ -71,12 +71,15 @@ public class ColorOperationTest {
     double[][] kernel1x3 = {{1, 2, 3}};
     double[][] kernel3x1 = {{1}, {2}, {3}};
     double[][] kernel1x1 = {{1}};
+    double[][] kernelNull = {null};
     assertThrows(IllegalArgumentException.class, () -> this.colorOperation =
         new ColorOperation(kernel1x3));
     assertThrows(IllegalArgumentException.class, () -> this.colorOperation =
         new ColorOperation(kernel3x1));
     assertThrows(IllegalArgumentException.class, () -> this.colorOperation =
         new ColorOperation(kernel1x1));
+    assertThrows(IllegalArgumentException.class, () -> this.colorOperation =
+        new ColorOperation(kernelNull));
   }
 
   @Test

@@ -1,7 +1,7 @@
 import org.junit.Before;
 import org.junit.Test;
 
-import java.awt.*;
+import java.awt.Color;
 import java.awt.image.BufferedImage;
 
 import cs3500.imageprocessor.model.BasicImage;
@@ -23,7 +23,7 @@ public class KernelOperationTest {
 
   @Before
   public void initData() {
-    double[][] kernel1 = {{1, 1, 1}, {1, 1, 1}, {1, 1, 1}};
+    double[][] kernel1 = {{1, 1}, {1, 1}};
     double[][] kernel2 = {{2.5, 2.5, 2.5}, {2.5, 2.5, 2.5}, {2.5, 2.5, 2.5}};
     this.kernelOperation = new KernelOperation(kernel1);
     this.kernelOperation2 = new KernelOperation(kernel2);
@@ -70,45 +70,37 @@ public class KernelOperationTest {
   public void testConstructorExns() {
     double[][] kernel1x3 = {{1, 2, 3}};
     double[][] kernel3x1 = {{1}, {2}, {3}};
-    double[][] kernel1x1 = {{1}};
+    double[][] kernelNull = {null};
     assertThrows(IllegalArgumentException.class, () -> this.kernelOperation =
         new KernelOperation(kernel1x3));
     assertThrows(IllegalArgumentException.class, () -> this.kernelOperation =
         new KernelOperation(kernel3x1));
-    assertThrows(IllegalArgumentException.class, () -> this.kernelOperation =
-        new KernelOperation(kernel1x1));
+    assertThrows(NullPointerException.class, () -> this.kernelOperation =
+        new KernelOperation(null));
+    assertThrows(NullPointerException.class, () -> this.kernelOperation =
+        new KernelOperation(kernelNull));
   }
 
   @Test
   public void testApply() {
-    assertEquals(new RGBAPixel(6), this.kernelOperation.apply(this.image2x2, 0, 0));
-    assertEquals(new RGBAPixel(15), this.kernelOperation.apply(this.image2x2, 0, 1));
-    assertEquals(new RGBAPixel(24), this.kernelOperation.apply(this.image2x2, 1, 0));
-    assertEquals(new RGBAPixel(33), this.kernelOperation.apply(this.image2x2, 1, 1));
+    assertEquals(new RGBAPixel(1, 2, 3), this.kernelOperation.apply(this.image2x2, 0, 0));
+    assertEquals(new RGBAPixel(5, 7, 9), this.kernelOperation.apply(this.image2x2, 0, 1));
+    assertEquals(new RGBAPixel(8, 10, 12), this.kernelOperation.apply(this.image2x2, 1, 0));
+    assertEquals(new RGBAPixel(22, 26, 30), this.kernelOperation.apply(this.image2x2, 1, 1));
 
-    assertEquals(new RGBAPixel(6), this.kernelOperation.apply(this.image3x3, 0, 0));
-    assertEquals(new RGBAPixel(12), this.kernelOperation.apply(this.image3x3, 0, 1));
-    assertEquals(new RGBAPixel(18), this.kernelOperation.apply(this.image3x3, 0, 2));
-    assertEquals(new RGBAPixel(24), this.kernelOperation.apply(this.image3x3, 1, 0));
-    assertEquals(new RGBAPixel(30), this.kernelOperation.apply(this.image3x3, 1, 1));
-    assertEquals(new RGBAPixel(36), this.kernelOperation.apply(this.image3x3, 1, 2));
-    assertEquals(new RGBAPixel(42), this.kernelOperation.apply(this.image3x3, 2, 0));
-    assertEquals(new RGBAPixel(48), this.kernelOperation.apply(this.image3x3, 2, 1));
-    assertEquals(new RGBAPixel(54), this.kernelOperation.apply(this.image3x3, 2, 2));
+    assertEquals(new RGBAPixel(54, 64, 74), this.kernelOperation2.apply(this.image2x2, 0, 0));
+    assertEquals(new RGBAPixel(54, 64, 74), this.kernelOperation2.apply(this.image2x2, 0, 1));
+    assertEquals(new RGBAPixel(54, 64, 74), this.kernelOperation2.apply(this.image2x2, 1, 0));
+    assertEquals(new RGBAPixel(54, 64, 74), this.kernelOperation2.apply(this.image2x2, 1, 1));
 
-    assertEquals(new RGBAPixel(15), this.kernelOperation2.apply(this.image2x2, 0, 0));
-    assertEquals(new RGBAPixel(37), this.kernelOperation2.apply(this.image2x2, 0, 1));
-    assertEquals(new RGBAPixel(60), this.kernelOperation2.apply(this.image2x2, 1, 0));
-    assertEquals(new RGBAPixel(82), this.kernelOperation2.apply(this.image2x2, 1, 1));
-
-    assertEquals(new RGBAPixel(15), this.kernelOperation2.apply(this.image3x3, 0, 0));
-    assertEquals(new RGBAPixel(30), this.kernelOperation2.apply(this.image3x3, 0, 1));
-    assertEquals(new RGBAPixel(45), this.kernelOperation2.apply(this.image3x3, 0, 2));
-    assertEquals(new RGBAPixel(60), this.kernelOperation2.apply(this.image3x3, 1, 0));
-    assertEquals(new RGBAPixel(75), this.kernelOperation2.apply(this.image3x3, 1, 1));
-    assertEquals(new RGBAPixel(90), this.kernelOperation2.apply(this.image3x3, 1, 2));
-    assertEquals(new RGBAPixel(105), this.kernelOperation2.apply(this.image3x3, 2, 0));
-    assertEquals(new RGBAPixel(120), this.kernelOperation2.apply(this.image3x3, 2, 1));
-    assertEquals(new RGBAPixel(135), this.kernelOperation2.apply(this.image3x3, 2, 2));
+    assertEquals(new RGBAPixel(48, 60, 68), this.kernelOperation2.apply(this.image3x3, 0, 0));
+    assertEquals(new RGBAPixel(87, 105, 117), this.kernelOperation2.apply(this.image3x3, 0, 1));
+    assertEquals(new RGBAPixel(68, 80, 88), this.kernelOperation2.apply(this.image3x3, 0, 2));
+    assertEquals(new RGBAPixel(117, 135, 147), this.kernelOperation2.apply(this.image3x3, 1, 0));
+    assertEquals(new RGBAPixel(198, 225, 243), this.kernelOperation2.apply(this.image3x3, 1, 1));
+    assertEquals(new RGBAPixel(147, 165, 177), this.kernelOperation2.apply(this.image3x3, 1, 2));
+    assertEquals(new RGBAPixel(108, 120, 128), this.kernelOperation2.apply(this.image3x3, 2, 0));
+    assertEquals(new RGBAPixel(177, 195, 207), this.kernelOperation2.apply(this.image3x3, 2, 1));
+    assertEquals(new RGBAPixel(128, 140, 148), this.kernelOperation2.apply(this.image3x3, 2, 2));
   }
 }
