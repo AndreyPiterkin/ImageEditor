@@ -1,6 +1,6 @@
 package cs3500.imageprocessor.model;
 
-import java.awt.*;
+import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.util.Objects;
 

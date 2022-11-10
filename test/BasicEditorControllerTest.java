@@ -7,7 +7,6 @@ import cs3500.imageprocessor.controller.BasicEditorController;
 import cs3500.imageprocessor.controller.ImageEditorController;
 import cs3500.imageprocessor.model.BasicImageEditor;
 import cs3500.imageprocessor.model.ImageEditor;
-import cs3500.imageprocessor.model.ImageState;
 import cs3500.imageprocessor.view.ImageEditorViewStub;
 
 import static org.junit.Assert.assertEquals;
