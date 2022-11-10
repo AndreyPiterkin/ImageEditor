@@ -46,25 +46,34 @@ public class BasicEditorControllerTest {
     MockEditorModel model = new MockEditorModel(editor, out);
     ImageEditorViewStub view = new ImageEditorViewStub();
 
-    Readable in = new StringReader("load images/Koala.ppm koala\n" +
-        "darken 0 koala koala2\n" +
-        "brighten 0 koala2 koala3\n" +
-        "vertical-flip koala3 koala4\n" +
-        "save koala4 images/koala5.ppm");
+    Readable in = new StringReader("load images/testReadPPM1.ppm test\n" +
+        "darken 0 test test2\n" +
+        "brighten 0 test2 test3\n" +
+        "vertical-flip test3 test4\n" +
+        "save test4 images/test5.ppm");
     ImageEditorController controller = new BasicEditorControllerLogger(model, in, view, out);
     controller.start();
-    String expected = "add image. image name: koala\n" +
-    "apply filter darken\n" +
-    "get image. name: koala\n" +
-    "add image. image name: koala2\n" +
-    "apply filter brighten\n" +
-    "get image. name: koala2\n" +
-    "add image. image name: koala3\n" +
-    "apply filter vertical-flip\n" +
-    "get image. name: koala3\n" +
-    "add image. image name: koala4\n" +
-    "get image. name: koala4\n" +
-    "Writing image to images/koala5.ppm in ppm format.\n";
+    String expected = "add image. image name: test\n" +
+        "get image. name: test\n" +
+        "apply + darken 0 0\n" +
+        "apply + darken 0 1\n" +
+        "apply + darken 1 0\n" +
+        "apply + darken 1 1\n" +
+        "add image. image name: test2\n" +
+        "get image. name: test2\n" +
+        "apply + brighten 0 0\n" +
+        "apply + brighten 0 1\n" +
+        "apply + brighten 1 0\n" +
+        "apply + brighten 1 1\n" +
+        "add image. image name: test3\n" +
+        "get image. name: test3\n" +
+        "apply + vertical-flip 0 0\n" +
+        "apply + vertical-flip 0 1\n" +
+        "apply + vertical-flip 1 0\n" +
+        "apply + vertical-flip 1 1\n" +
+        "add image. image name: test4\n" +
+        "get image. name: test4\n" +
+        "Writing image to images/test5.ppm in ppm format.\n";
     assertEquals(expected, out.toString());
 
     editor = new BasicImageEditor();
@@ -72,20 +81,151 @@ public class BasicEditorControllerTest {
     model = new MockEditorModel(editor, out);
     view = new ImageEditorViewStub();
 
-    in = new StringReader("load images/koala5.ppm koala\n" +
-            "brighten 0 koala koala2\n" +
-            "darken 0 koala2 koala3\n" +
-            "vertical-flip koala3 koala4\n" +
-            "save images/koala4.ppm koala4");
-    controller = new BasicEditorController(model, in, view);
+    in = new StringReader("load images/testReadPPM1.ppm test\n" +
+            "brighten 0 test test2\n" +
+            "darken 0 test2 test3\n" +
+            "vertical-flip test3 test4\n" +
+            "save test4 images/test4.ppm");
+    controller = new BasicEditorControllerLogger(model, in, view, out);
     controller.start();
-    expected = "import from disk. file path: images/koala5.ppm name: koala\n"
-            + "apply filter and save. name: koala new name: koala2\n"
-            + "apply filter and save. name: koala2 new name: koala3\n"
-            + "apply filter and save. name: koala3 new name: koala4\n"
-            + "get image. name: koala4\n";
+    expected = "add image. image name: test\n" +
+        "get image. name: test\n" +
+        "apply + brighten 0 0\n" +
+        "apply + brighten 0 1\n" +
+        "apply + brighten 1 0\n" +
+        "apply + brighten 1 1\n" +
+        "add image. image name: test2\n" +
+        "get image. name: test2\n" +
+        "apply + darken 0 0\n" +
+        "apply + darken 0 1\n" +
+        "apply + darken 1 0\n" +
+        "apply + darken 1 1\n" +
+        "add image. image name: test3\n" +
+        "get image. name: test3\n" +
+        "apply + vertical-flip 0 0\n" +
+        "apply + vertical-flip 0 1\n" +
+        "apply + vertical-flip 1 0\n" +
+        "apply + vertical-flip 1 1\n" +
+        "add image. image name: test4\n" +
+        "get image. name: test4\n" +
+        "Writing image to images/test4.ppm in ppm format.\n";
     assertEquals(expected, out.toString());
 
+  }
+
+  /**
+   * Tests that the controller can load images of different formats and that it adds them to the
+   * model without errors.
+   */
+  @Test
+  public void testLoadImagesCorrectly() {
+    ImageEditor editor = new BasicImageEditor();
+    Appendable out = new StringBuilder();
+    MockEditorModel model = new MockEditorModel(editor, out);
+    ImageEditorViewStub view = new ImageEditorViewStub();
+
+    Readable in = new StringReader("load images/Koala.ppm koala\nload res/catblur.bmp cat\n" +
+        "load res/catblur.jpg cat2\nload res/catblur.png cat3\n");
+    ImageEditorController controller = new BasicEditorControllerLogger(model, in, view, out);
+    controller.start();
+    String expected = "add image. image name: koala\n" +
+        "add image. image name: cat\n" +
+        "add image. image name: cat2\n" +
+        "add image. image name: cat3\n";
+    assertEquals(expected, out.toString());
+    assertEquals(4, editor.getImageNames().size());
+  }
+
+  /**
+   * Tests that the controller can save images of different formats.
+   */
+  @Test
+  public void testSaveImagesCorrectlyLoggerController() {
+    ImageEditor editor = new BasicImageEditor();
+    Appendable out = new StringBuilder();
+    MockEditorModel model = new MockEditorModel(editor, out);
+    ImageEditorViewStub view = new ImageEditorViewStub();
+
+    Readable in = new StringReader("load images/Koala.ppm koala\n" +
+        "save koala images/koala.ppm\n" +
+        "save koala images/koala.bmp\n" +
+        "save koala images/koala.jpg\n" +
+        "save koala images/koala.png\n");
+    ImageEditorController controller = new BasicEditorControllerLogger(model, in, view, out);
+    controller.start();
+    String expected = "add image. image name: koala\n" +
+        "get image. name: koala\n" +
+        "Writing image to images/koala.ppm in ppm format.\n" +
+        "get image. name: koala\n" +
+        "Writing image to images/koala.bmp in bmp format.\n" +
+        "get image. name: koala\n" +
+        "Writing image to images/koala.jpg in jpg format.\n" +
+        "get image. name: koala\n" +
+        "Writing image to images/koala.png in png format.\n";
+    assertEquals(expected, out.toString());
+    assertEquals(1, editor.getImageNames().size());
+  }
+
+  @Test
+  public void testSaveImagesCorrectlyRegController() {
+    ImageEditor editor = new BasicImageEditor();
+    Appendable out = new StringBuilder();
+    MockEditorModel model = new MockEditorModel(editor, out);
+    ImageEditorViewStub view = new ImageEditorViewStub();
+
+    Readable in = new StringReader("load images/Koala.ppm koala\n" +
+            "save koala images/koala.ppm\n" +
+            "save koala images/koala.bmp\n" +
+            "save koala images/koala.jpg\n" +
+            "save koala images/koala.png\n");
+    ImageEditorController controller = new BasicEditorController(model, in, view);
+    controller.start();
+    String expected = "add image. image name: koala\n" +
+            "get image. name: koala\n" +
+            "get image. name: koala\n" +
+            "get image. name: koala\n" +
+            "get image. name: koala\n";
+    assertEquals(expected, out.toString());
+    assertEquals(1, editor.getImageNames().size());
+  }
+
+  /**
+   * Tests that the controller will error if given an unknown file format.
+   * (It will still log that it is trying to save the image).
+   */
+  @Test (expected = UnsupportedOperationException.class)
+  public void testInvalidWriteFormatLoggerController() {
+    ImageEditor editor = new BasicImageEditor();
+    Appendable out = new StringBuilder();
+    MockEditorModel model = new MockEditorModel(editor, out);
+    ImageEditorViewStub view = new ImageEditorViewStub();
+
+    Readable in = new StringReader("load images/Koala.ppm koala\n" +
+        "save koala images/koala.gif\n");
+    ImageEditorController controller = new BasicEditorControllerLogger(model, in, view, out);
+    controller.start();
+    String expected = "add image. image name: koala\n" +
+        "get image. name: koala\n" +
+        "Writing image to images/koala.gif in gif format.\n";
+    assertEquals(expected, out.toString());
+    assertEquals(1, editor.getImageNames().size());
+  }
+
+  @Test (expected = UnsupportedOperationException.class)
+  public void testInvalidWriteFormatRegController() {
+    ImageEditor editor = new BasicImageEditor();
+    Appendable out = new StringBuilder();
+    MockEditorModel model = new MockEditorModel(editor, out);
+    ImageEditorViewStub view = new ImageEditorViewStub();
+
+    Readable in = new StringReader("load images/Koala.ppm koala\n" +
+            "save koala images/koala.gif\n");
+    ImageEditorController controller = new BasicEditorController(model, in, view);
+    controller.start();
+    String expected = "add image. image name: koala\n" +
+            "get image. name: koala\n";
+    assertEquals(expected, out.toString());
+    assertEquals(1, editor.getImageNames().size());
   }
 
   @Test
