@@ -9,8 +9,6 @@ import cs3500.imageprocessor.model.BasicImageEditor;
 import cs3500.imageprocessor.model.RGBAPixel;
 import cs3500.imageprocessor.model.ImageEditor;
 import cs3500.imageprocessor.model.ImageState;
-import cs3500.imageprocessor.operations.BrightenPixel;
-import cs3500.imageprocessor.operations.DarkenPixel;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThrows;

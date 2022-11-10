@@ -43,18 +43,19 @@ import cs3500.imageprocessor.view.ImageEditorView;
  */
 public class BasicEditorController implements ImageEditorController {
 
+  protected final Map<String, Function<Scanner, PixelOperation>> commands;
+  protected final Map<String, BiConsumer<ImageState, String>> imageWriters;
   private final ImageEditor model;
   private final ImageEditorView view;
   private final Readable in;
-  protected final Map<String, Function<Scanner, PixelOperation>> commands;
-  protected final Map<String, BiConsumer<ImageState, String>> imageWriters;
 
   /**
    * Constructs a BasicEditorController object with the model and view to control, as well
    * as where to get commands from.
+   *
    * @param model the model to control
-   * @param view the view to control
-   * @param in the readable to read from
+   * @param view  the view to control
+   * @param in    the readable to read from
    * @throws NullPointerException PURPOSEFULLY if any of the given parameters are null.
    */
   public BasicEditorController(ImageEditor model, Readable in, ImageEditorView view) {
@@ -72,8 +73,9 @@ public class BasicEditorController implements ImageEditorController {
   /**
    * Constructs a BasicEditorController object with the model and view to control, and from
    * System.in.
+   *
    * @param model the model to control
-   * @param view the view to control
+   * @param view  the view to control
    * @throws NullPointerException PURPOSEFULLY if any of the given parameters are null.
    */
   public BasicEditorController(ImageEditor model, ImageEditorView view) {
@@ -108,8 +110,8 @@ public class BasicEditorController implements ImageEditorController {
         for (int r = 0; r < state.getHeight(); r++) {
           for (int c = 0; c < state.getWidth(); c++) {
             writer.write(state.getPixelAt(r, c).getRed() + " "
-                    + state.getPixelAt(r, c).getGreen() + " "
-                    + state.getPixelAt(r, c).getBlue() + "\n");
+                + state.getPixelAt(r, c).getGreen() + " "
+                + state.getPixelAt(r, c).getBlue() + "\n");
           }
         }
         writer.close();
@@ -128,7 +130,7 @@ public class BasicEditorController implements ImageEditorController {
     imageWriters.put("jpg", (state, filename) -> {
       try {
         ImageIO.write(state.asBufferedImage(BufferedImage.TYPE_INT_RGB), "jpg",
-                new File(filename));
+            new File(filename));
       } catch (IOException e) {
         throw new IllegalStateException("Can't write to the given path!");
       }
@@ -136,7 +138,7 @@ public class BasicEditorController implements ImageEditorController {
     imageWriters.put("bmp", (state, filename) -> {
       try {
         ImageIO.write(state.asBufferedImage(BufferedImage.TYPE_INT_RGB), "bmp",
-                new File(filename));
+            new File(filename));
       } catch (IOException e) {
         throw new IllegalStateException("Can't write to the given path!");
       }
@@ -146,13 +148,14 @@ public class BasicEditorController implements ImageEditorController {
 
   /**
    * Helper method for loading an image.
+   *
    * @param scan the scanner to read from
    * @throws IllegalStateException if the controller can't read the image
    */
   private void loadImage(Scanner scan) {
     String path = scan.next();
     String name = scan.next();
-    if (path.substring(path.lastIndexOf(".")+1).equals("ppm")) {
+    if (path.substring(path.lastIndexOf(".") + 1).equals("ppm")) {
       this.model.addImage(new BasicImage(ImageUtil.readPPM(path)), name);
     } else {
       try {
@@ -165,6 +168,7 @@ public class BasicEditorController implements ImageEditorController {
 
   /**
    * Helper method for saving an image.
+   *
    * @param scan the scanner to read from
    */
   private void saveImage(Scanner scan) {
@@ -172,7 +176,7 @@ public class BasicEditorController implements ImageEditorController {
     String path = scan.next();
     ImageState image = this.model.getImage(name);
 
-    String extension = path.substring(path.lastIndexOf(".")+1);
+    String extension = path.substring(path.lastIndexOf(".") + 1);
     if (imageWriters.containsKey(extension)) {
       imageWriters.get(extension).accept(image, path);
     } else {
@@ -197,7 +201,7 @@ public class BasicEditorController implements ImageEditorController {
   /**
    * Starts the controller, allowing the user to interact with the model through the view.
    *
-   * @throws IllegalStateException if the controller can't read or write anything.
+   * @throws IllegalStateException    if the controller can't read or write anything.
    * @throws IllegalArgumentException if the user enters an invalid input into the commands.
    */
   @Override

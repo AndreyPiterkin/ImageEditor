@@ -6,8 +6,7 @@ import cs3500.imageprocessor.model.RGBAPixel;
 import cs3500.imageprocessor.model.ImageState;
 
 /**
- * Represents an abstract instance of a kernel transformation, created to minimize code reuse
- * across similar kernel transformations.
+ * A function object used to perform kernel transformations with a given rectangular matrix.
  */
 public class KernelOperation implements PixelOperation {
 

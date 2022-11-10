@@ -5,6 +5,9 @@ import java.util.Objects;
 import cs3500.imageprocessor.model.RGBAPixel;
 import cs3500.imageprocessor.model.ImageState;
 
+/**
+ * A function object used to perform color transformations with a given 3x3 matrix.
+ */
 public class ColorOperation implements PixelOperation {
 
   private final double[][] kernel;
