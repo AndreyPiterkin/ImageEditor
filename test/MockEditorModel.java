@@ -3,7 +3,6 @@ import java.util.List;
 
 import cs3500.imageprocessor.model.ImageEditor;
 import cs3500.imageprocessor.model.ImageState;
-import cs3500.imageprocessor.operations.PixelOperation;
 
 /**
  * Represents a mock for the editor model which wraps a real model and delegates, but also logs

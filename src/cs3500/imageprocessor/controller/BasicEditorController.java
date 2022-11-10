@@ -38,7 +38,7 @@ import cs3500.imageprocessor.operations.VisualizeValue;
 import cs3500.imageprocessor.view.ImageEditorView;
 
 /**
- * Represents a basic ppm editor controller that allows users to interact with the model through a
+ * Represents a basic editor controller that allows users to interact with the model through a
  * Readable and output to a view.
  */
 public class BasicEditorController implements ImageEditorController {

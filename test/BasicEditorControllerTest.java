@@ -124,11 +124,11 @@ public class BasicEditorControllerTest {
     MockEditorModel model = new MockEditorModel(editor, out);
     ImageEditorViewStub view = new ImageEditorViewStub();
 
-    Readable in = new StringReader("load images/Koala.ppm koala\nload res/catblur.bmp cat\n" +
+    Readable in = new StringReader("load res/cat.ppm cat1\nload res/catblur.bmp cat\n" +
         "load res/catblur.jpg cat2\nload res/catblur.png cat3\n");
     ImageEditorController controller = new BasicEditorControllerLogger(model, in, view, out);
     controller.start();
-    String expected = "add image. image name: koala\n" +
+    String expected = "add image. image name: cat1\n" +
         "add image. image name: cat\n" +
         "add image. image name: cat2\n" +
         "add image. image name: cat3\n";
@@ -146,22 +146,22 @@ public class BasicEditorControllerTest {
     MockEditorModel model = new MockEditorModel(editor, out);
     ImageEditorViewStub view = new ImageEditorViewStub();
 
-    Readable in = new StringReader("load images/Koala.ppm koala\n" +
-        "save koala images/koala.ppm\n" +
-        "save koala images/koala.bmp\n" +
-        "save koala images/koala.jpg\n" +
-        "save koala images/koala.png\n");
+    Readable in = new StringReader("load res/cat.ppm cat\n" +
+        "save cat images/cat.ppm\n" +
+        "save cat images/cat.bmp\n" +
+        "save cat images/cat.jpg\n" +
+        "save cat images/cat.png\n");
     ImageEditorController controller = new BasicEditorControllerLogger(model, in, view, out);
     controller.start();
-    String expected = "add image. image name: koala\n" +
-        "get image. name: koala\n" +
-        "Writing image to images/koala.ppm in ppm format.\n" +
-        "get image. name: koala\n" +
-        "Writing image to images/koala.bmp in bmp format.\n" +
-        "get image. name: koala\n" +
-        "Writing image to images/koala.jpg in jpg format.\n" +
-        "get image. name: koala\n" +
-        "Writing image to images/koala.png in png format.\n";
+    String expected = "add image. image name: cat\n" +
+        "get image. name: cat\n" +
+        "Writing image to images/cat.ppm in ppm format.\n" +
+        "get image. name: cat\n" +
+        "Writing image to images/cat.bmp in bmp format.\n" +
+        "get image. name: cat\n" +
+        "Writing image to images/cat.jpg in jpg format.\n" +
+        "get image. name: cat\n" +
+        "Writing image to images/cat.png in png format.\n";
     assertEquals(expected, out.toString());
     assertEquals(1, editor.getImageNames().size());
   }
@@ -173,18 +173,18 @@ public class BasicEditorControllerTest {
     MockEditorModel model = new MockEditorModel(editor, out);
     ImageEditorViewStub view = new ImageEditorViewStub();
 
-    Readable in = new StringReader("load images/Koala.ppm koala\n" +
-            "save koala images/koala.ppm\n" +
-            "save koala images/koala.bmp\n" +
-            "save koala images/koala.jpg\n" +
-            "save koala images/koala.png\n");
+    Readable in = new StringReader("load res/cat.ppm cat\n" +
+            "save cat images/cat.ppm\n" +
+            "save cat images/cat.bmp\n" +
+            "save cat images/cat.jpg\n" +
+            "save cat images/cat.png\n");
     ImageEditorController controller = new BasicEditorController(model, in, view);
     controller.start();
-    String expected = "add image. image name: koala\n" +
-            "get image. name: koala\n" +
-            "get image. name: koala\n" +
-            "get image. name: koala\n" +
-            "get image. name: koala\n";
+    String expected = "add image. image name: cat\n" +
+            "get image. name: cat\n" +
+            "get image. name: cat\n" +
+            "get image. name: cat\n" +
+            "get image. name: cat\n";
     assertEquals(expected, out.toString());
     assertEquals(1, editor.getImageNames().size());
   }
@@ -200,13 +200,13 @@ public class BasicEditorControllerTest {
     MockEditorModel model = new MockEditorModel(editor, out);
     ImageEditorViewStub view = new ImageEditorViewStub();
 
-    Readable in = new StringReader("load images/Koala.ppm koala\n" +
-        "save koala images/koala.gif\n");
+    Readable in = new StringReader("load res/cat.ppm cat\n" +
+        "save cat images/cat.gif\n");
     ImageEditorController controller = new BasicEditorControllerLogger(model, in, view, out);
     controller.start();
-    String expected = "add image. image name: koala\n" +
-        "get image. name: koala\n" +
-        "Writing image to images/koala.gif in gif format.\n";
+    String expected = "add image. image name: cat\n" +
+        "get image. name: cat\n" +
+        "Writing image to images/cat.gif in gif format.\n";
     assertEquals(expected, out.toString());
     assertEquals(1, editor.getImageNames().size());
   }
@@ -218,12 +218,12 @@ public class BasicEditorControllerTest {
     MockEditorModel model = new MockEditorModel(editor, out);
     ImageEditorViewStub view = new ImageEditorViewStub();
 
-    Readable in = new StringReader("load images/Koala.ppm koala\n" +
-            "save koala images/koala.gif\n");
+    Readable in = new StringReader("load res/cat.ppm cat\n" +
+            "save cat images/cat.gif\n");
     ImageEditorController controller = new BasicEditorController(model, in, view);
     controller.start();
-    String expected = "add image. image name: koala\n" +
-            "get image. name: koala\n";
+    String expected = "add image. image name: cat\n" +
+            "get image. name: cat\n";
     assertEquals(expected, out.toString());
     assertEquals(1, editor.getImageNames().size());
   }
@@ -249,13 +249,13 @@ public class BasicEditorControllerTest {
     model = new MockEditorModel(editor, out);
     view = new ImageEditorViewStub();
 
-    in = new StringReader("load images/Koala.ppm koala\ndarken 10 koala koala2 koala3\n");
+    in = new StringReader("load res/cat.ppm cat\ndarken 10 cat cat2 cat3\n");
     controller = new BasicEditorController(model, in, view);
     try {
       controller.start();
       fail("Invalid number of arguments will roll over and produce invalid operation exception");
     } catch (IllegalArgumentException e) {
-      assertEquals("Invalid operation: koala3", e.getMessage());
+      assertEquals("Invalid operation: cat3", e.getMessage());
     }
 
     editor = new BasicImageEditor();
@@ -263,7 +263,7 @@ public class BasicEditorControllerTest {
     model = new MockEditorModel(editor, out);
     view = new ImageEditorViewStub();
 
-    in = new StringReader("load images/Koala.ppm koala\ndarken 10 koala \n");
+    in = new StringReader("load res/cat.ppm cat\ndarken 10 cat \n");
     controller = new BasicEditorController(model, in, view);
     try {
       controller.start();

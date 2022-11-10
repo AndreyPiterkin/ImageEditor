@@ -2,14 +2,9 @@ package cs3500.imageprocessor.model;
 
 import java.awt.Color;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.Scanner;
-
-import javax.imageio.ImageIO;
 
 /**
  * This class contains utility methods to read a PPM image from file and simply print its contents.

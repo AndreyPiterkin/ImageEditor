@@ -4,7 +4,7 @@ package cs3500.imageprocessor.operations;
  * Represents the traditional Gaussian blur kernel, with the following kernel:
  * [1/16 1/8 1/16
  * 1/8 1/4 1/8
- * 1/16 1/8 1/16]
+ * 1/16 1/8 1/16].
  */
 public class GaussianBlur extends KernelOperation {
 

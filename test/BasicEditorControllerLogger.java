@@ -22,6 +22,7 @@ import cs3500.imageprocessor.view.ImageEditorView;
 public class BasicEditorControllerLogger extends BasicEditorController {
 
   private final Appendable log;
+
   /**
    * Constructs a BasicEditorControllerLogger object with the model and view to control, as well
    * as where to get commands from, and a log to put to.
