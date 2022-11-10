@@ -13,8 +13,9 @@ import cs3500.imageprocessor.view.ImageEditorViewStub;
  * A main class for running the editor.
  */
 public class Main {
+
   /**
-   * The main function to run the editor.
+   * The main function to run the editor with support for command line arguments.
    * @param args command-line inputs
    */
   public static void main(String[] args) throws FileNotFoundException {
@@ -27,7 +28,7 @@ public class Main {
       if (args.length != 2) {
         throw new IllegalArgumentException("Invalid number of arguments");
       } else {
-        if (args[0].equals("--file")) {
+        if (args[0].equals("-file")) {
           controller = new BasicEditorController(model, new FileReader(new File(args[1])), view);
         } else {
           throw new IllegalArgumentException("Invalid argument");

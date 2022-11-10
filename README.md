@@ -1,35 +1,98 @@
 README:
 
-High level Overview:
+**High level Overview:**
 
-We separated the model into two pieces: the model for an image, and the model for the image editor. This was done because an image knows how to store pixel data, and an image editor know how to store images. This way, we could easily break up and delegate the work to the specific classes for the suited tasks. As for how we designed these classes, we made the BasicEditor just implement the interface directly, and implement all of the methods. For the images, we decided an abstract base class would be good, so if we want to support more formats than PPM in the future, we could just extend the base class and implement saving and loading for those particular images. Another thing to note is that our images and pixels are all immutable, so every operation on pixels or images returns either a new pixel or a new image, to avoid mutation errors.
+**Model:**
 
-We chose in an extension to that design to have images be a board of IPixels, where each IPixel promises to return RGBA, though doesn't necessarily store those outright. This way, since RGBA is the most general form of RGB, we could convert between formats. We also don't guarantee that a board in an image will contain the same type of pixel, since the save method on images would know how to deal with that.
+We separated the model into two pieces: the model for an image, and the model for the image editor.
+This was done because an image knows how to store pixel data, and an image editor know how to store
+images. This way, we could easily break up and delegate the work to the specific classes for the
+suited tasks. As for how we designed these classes, we made the BasicEditor just implement the
+interface directly, and implement all the methods. We moved two of our methods out of the ImageEditor
+interface and into the controller. The two methods were importFromDisk, and applyFilterAndSave.
+Both of these felt like things the controller should be doing to the model, if the model were just
+a dumb database of images. 
 
-As for the controller design, we just implemented a controller with just one method start. Internally we represented the controller as a map of string commands to function objects, and told the editor to apply a function object to a particular image.
+For the images, we decided to change our previous design from Abstract base class and ImagePPM, etc 
+subclasses to instead use one general base class. This was done because we realized that the only difference 
+between the subclasses was the way
+we save data to the disk, which shouldn't be the responsibility of the model to figure out, but rather
+the controller. Our images and pixels are still all immutable, so every operation on pixels or images returns
+either a new pixel or a new image, to avoid mutation errors, which is something we didn't change in our design.
 
-As for the commands, we just made a simple TriFunction command interface to represent all of our commands. We chose this to be an Image, Int, Int to Pixel so we could support operations that don't just require one pixel's data. 
+We chose in an extension to that design to have images be a board of RGBAPixels, where each RGBAPixel
+is a pixel with a red, green, blue, and alpha value. This was done because we wanted to be able to
+support standard image formats, as well as with transparency. We changed this from our previous design of the 
+IPixel interface because we realized that since the IPixel interface mandated getRed, getGreen, etc.,
+there was not really room for additional implementations of IPixel that were sufficiently different
+to require a fully fledged interface and a new implementation. We instead included constructors
+for RGBAPixel that would let you construct grayscale, RGB, and RGBA images, to simulate the diversity
+of IPixels we had in the previous assignment. We think this was a good design decision because
+with multiple IPixel implementations, there was too much duplicated code and logic, and it was
+generally just cluttered. 
 
-As such, in the controller package:
+**Controller:**
+
+As for the controller design, we just implemented a controller with just one public method start.
+Internally we represented the controller as a map of string commands to function objects, and told
+the editor to apply a function object to a particular image. We also included save and load methods
+in the controller, which would save and load the image to a file. We had additional helper methods
+to reuse code for applying filters and saving into the model. This was a change that we made from the previous assignment,
+where our editor model contained methods for loading from disk and for applying filters and saving.
+Now instead, we realized that those IO operations that take user input should really be in the controller,
+since it is the one directing the model to do things. 
+
+**Commands:**
+
+As for the commands, we just made a simple PixelOperation command interface to represent all of our
+commands. We chose this to be an Image, int, int to Pixel, so we could support operations that don't
+just require one pixel's data (like the kernel's). For the new commands like Kernels and Color operations,
+we made new classes that implemented the PixelOperation interface (KernelOperation and ColorOperation).
+We thought these were justified since Kernel operations take in more data than just one pixel,
+and all perform a similar for loop, and color operations just take in one pixel's data but then perform
+color transformations on the components. 
+
+
+**What is complete?**
+The BasicImage and BasicImage editor are both complete. They should support extension instead of modification,
+since all they have is model functionality. The controller is complete for now, and supports all the commands
+specified by the assignment, and all loading/saving functionality for the image types we want to support.
+The commands are complete, and support all the operations specified by the assignment (and are easily
+extensible, by just creating a new implementation of the PixelOperation interface).
+The view is incomplete, and does nothing at the moment. RGBAPixel is also complete,
+and supports all the functionality that we need it to for the assignment.
+
+
+**Walk through of Packages**
+
+As such, in the **controller** package:
 ImageEditorController is the interface for the controller.
-BasicEditorController is the basic version of the controller, which supports all of the commands that we made for this assignment (and takes in a view but doesn't yet do anything meaningful with it yey).
+BasicEditorController is the basic version of the controller, which supports all the commands
+that we made for the two assignments (and takes in a view but doesn't yet do anything meaningful with it
+yet).
 
-In the model package:
+In the **model** package:
 The ImageState model which represents an Image.
-The IPixel interface which represents a general pixel.
-The ImageEditorReadOnly and ImageEditor represent the read only and the editable version of the editor respectively, which would maintain the map of images internally and allow the user to interact with the model through the controller to load, save, remove, or edit images.
-RGB and Grayscale pixels represent RGB and grayscale pixels.
-AbstractBaseImage is the default abstract base class of the image state interface, and handles most generic operations like applying a filter to an image, constructing images, getting pixels at positions, and getting width/height. This is neat because now the only thing implementors need to do is make the save method, thus effectively opening up this design of images to extension to new formats which would know how to save themselves. 
-ImagePPM is a concrete implementation of this, and all it needs to know how to do is return a new ImagePPM, and save itself to a file.
+The RGBAPixel class which represents a pixel with RGBA values.
+The ImageEditorReadOnly and ImageEditor represent the read only and the editable version of the
+editor respectively, which would maintain the map of images internally and allow the user to
+interact with the model through the controller to add or remove images from the map.
+BasicImage is the only implementation of the image state interface, and handles most
+generic operations like applying a filter to an image, constructing images, getting pixels at
+positions, and getting width/height, and now contains no save functionality (Read above).
 ImageUtil is the class provided to us in the starter code and is used to load PPMs from the disk.
 
-In the operations package:
-The only interesting thing here is the ImageRCToPixelTransformation, which is essentially a TriFunction which takes an Image and an R and C and produces a new Pixel. This exactly fits all of our needs for commands like flip or darken, because we can use other information from the image, other than just the particular pixel hole we are trying to fill in.
-All of the commands follow a similar format, where they get a particular pixel, manipulate it, and return a new one. See Javadocs for detailed purpose statement for all of those, but they are all just the commands that were requested for this assignment. 
+In the **operations** package:
+The only interesting thing here is the PixelOperation, which is essentially a
+TriFunction which takes an Image and a row and column and produces a new Pixel. This exactly fits all of
+our needs for commands like flip or darken, because we can use other information from the image,
+other than just the particular pixel hole we are trying to fill in.
+All the commands follow a similar format, where they get a particular pixel, manipulate it, and
+return a new one. See Javadocs for detailed purpose statement for all of those, but they are all
+just the commands that were requested for this assignment.
 
-In the view package:
+In the **view** package:
 There is nothing really in here other than view stubs that do nothing.
-
 
 Commands the editor will accept:
 load path name
@@ -44,16 +107,15 @@ luma-component name1 name-to-save
 red-component name1 name-to-save
 green-component name1 name-to-save
 blue-component name1 name-to-save
+blur name1 name-to-save
+sharpen name1 name-to-save
+sepia name1 name-to-save
+grayscale name1 name-to-save
 
 How to run:
 Type the commands you want to execute into the terminal.
 
-Example Script (enter these commands into the terminal one by one, making sure to have the res/graphics_lab.ppm image)
-"load res/graphics_lab.ppm triangle"
-"darken 100 triangle triangle2"
-"vertical-flip triangle2 triangle3"
-"red-component triangle3 triangle4
-"save res/graphics_lab2.ppm triangle4"
+Example Script: see res/script.txt
 
 
 
