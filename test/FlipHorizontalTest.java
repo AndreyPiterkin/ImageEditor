@@ -1,11 +1,8 @@
 import org.junit.Before;
 import org.junit.Test;
 
-import cs3500.imageprocessor.model.GrayscalePixel;
-import cs3500.imageprocessor.model.IPixel;
-import cs3500.imageprocessor.model.ImagePPM;
+import cs3500.imageprocessor.model.RGBAPixel;
 import cs3500.imageprocessor.model.ImageState;
-import cs3500.imageprocessor.model.RGBPixel;
 import cs3500.imageprocessor.operations.FlipHorizontal;
 
 import static org.junit.Assert.assertEquals;
@@ -21,9 +18,9 @@ public class FlipHorizontalTest {
   @Before
   public void initData() {
     this.flipHorizontal = new FlipHorizontal();
-    IPixel[][] pixels1 = {{new GrayscalePixel(1), new GrayscalePixel(128)},
+    RGBAPixel[][] pixels1 = {{new GrayscalePixel(1), new GrayscalePixel(128)},
         {new GrayscalePixel(10), new GrayscalePixel(240)}};
-    IPixel[][] pixels2 = {{new RGBPixel(0, 128, 240)}};
+    RGBAPixel[][] pixels2 = {{new RGBPixel(0, 128, 240)}};
     this.image1 = new ImagePPM(pixels1);
     this.image2 = new ImagePPM(pixels2);
   }

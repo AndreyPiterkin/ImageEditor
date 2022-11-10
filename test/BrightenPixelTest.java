@@ -1,11 +1,8 @@
 import org.junit.Before;
 import org.junit.Test;
 
-import cs3500.imageprocessor.model.GrayscalePixel;
-import cs3500.imageprocessor.model.IPixel;
-import cs3500.imageprocessor.model.ImagePPM;
+import cs3500.imageprocessor.model.RGBAPixel;
 import cs3500.imageprocessor.model.ImageState;
-import cs3500.imageprocessor.model.RGBPixel;
 import cs3500.imageprocessor.operations.BrightenPixel;
 
 import static org.junit.Assert.assertEquals;
@@ -19,15 +16,24 @@ public class BrightenPixelTest {
   BrightenPixel brighten100;
   ImageState image1;
   ImageState image2;
+  /*
+  for (int r = 0; r < this.getHeight(); r++) {
+      for (int c = 0; c < this.getWidth(); c++) {
+        IPixel pixel = this.getPixelAt(r, c);
+        Color color = new Color(pixel.getRed(), pixel.getGreen(), pixel.getBlue());
+        img.setRGB(c, r, color.getRGB());
+      }
+    }
+   */
 
   @Before
   public void initData() {
     this.brighten1 = new BrightenPixel(1);
     this.brighten10 = new BrightenPixel(10);
     this.brighten100 = new BrightenPixel(100);
-    IPixel[][] pixels1 = {{new GrayscalePixel(0), new GrayscalePixel(128)},
+    RGBAPixel[][] pixels1 = {{new GrayscalePixel(0), new GrayscalePixel(128)},
         {new GrayscalePixel(10), new GrayscalePixel(240)}};
-    IPixel[][] pixels2 = {{new RGBPixel(0, 128, 240)}};
+    RGBAPixel[][] pixels2 = {{new RGBPixel(0, 128, 240)}};
     this.image1 = new ImagePPM(pixels1);
     this.image2 = new ImagePPM(pixels2);
   }

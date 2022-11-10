@@ -4,7 +4,7 @@ package cs3500.imageprocessor.operations;
  * A function object used to convert a pixel to a sepia-tone using the sepia color transformation
  * matrix.
  */
-public class SepiaTone extends AColorTransformation {
+public class SepiaTone extends AColorOperation {
   /**
    * Constructs a Sepia Tone kernel color transformation.
    */

@@ -1,19 +1,69 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b8c81752-d30f-4d00-8f30-c5be214554be" name="Changes" comment="Added support for PNG">
-      <change afterPath="$PROJECT_DIR$/res/Death3.ppm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/res/death.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/res/death.png" afterDir="false" />
+    <list default="true" id="b8c81752-d30f-4d00-8f30-c5be214554be" name="Changes" comment="Changed the model interface">
+      <change afterPath="$PROJECT_DIR$/src/cs3500/imageprocessor/model/BasicImage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/cs3500/imageprocessor/model/BasicImageEditor.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/Death3.ppm" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/death.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/death.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/me.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/me2.bmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/me2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/me2.ppm" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/me4.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cs3500/imageprocessor/model/AbstractBaseImage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cs3500/imageprocessor/model/AbstractBaseImage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cs3500/imageprocessor/model/ImageBMP.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cs3500/imageprocessor/model/ImageBMP.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cs3500/imageprocessor/model/ImageJPG.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cs3500/imageprocessor/model/ImageJPG.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cs3500/imageprocessor/model/ImagePNG.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cs3500/imageprocessor/model/ImagePNG.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cs3500/imageprocessor/controller/BasicEditorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cs3500/imageprocessor/controller/BasicEditorController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cs3500/imageprocessor/controller/ImageEditorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cs3500/imageprocessor/controller/ImageEditorController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cs3500/imageprocessor/model/AbstractBaseImage.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cs3500/imageprocessor/model/BasicPPMImageEditor.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cs3500/imageprocessor/model/GrayscalePixel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cs3500/imageprocessor/model/IPixel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cs3500/imageprocessor/model/ImageBMP.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cs3500/imageprocessor/model/ImageEditor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cs3500/imageprocessor/model/ImageEditor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cs3500/imageprocessor/model/ImageJPG.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cs3500/imageprocessor/model/ImagePNG.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cs3500/imageprocessor/model/ImagePPM.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/cs3500/imageprocessor/model/ImageState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cs3500/imageprocessor/model/ImageState.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/cs3500/imageprocessor/model/ImageUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cs3500/imageprocessor/model/ImageUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cs3500/imageprocessor/model/MultiformatImageEditor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cs3500/imageprocessor/model/MultiformatImageEditor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cs3500/imageprocessor/model/MultiformatImageEditor.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cs3500/imageprocessor/model/RGBAPixel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cs3500/imageprocessor/model/RGBAPixel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cs3500/imageprocessor/model/RGBPixel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cs3500/imageprocessor/operations/AColorTransformation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cs3500/imageprocessor/operations/AColorOperation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cs3500/imageprocessor/operations/AKernelTransformation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cs3500/imageprocessor/operations/AKernelOperation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cs3500/imageprocessor/operations/BrightenPixel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cs3500/imageprocessor/operations/BrightenPixel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cs3500/imageprocessor/operations/DarkenPixel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cs3500/imageprocessor/operations/DarkenPixel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cs3500/imageprocessor/operations/FlipHorizontal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cs3500/imageprocessor/operations/FlipHorizontal.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cs3500/imageprocessor/operations/FlipVertical.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cs3500/imageprocessor/operations/FlipVertical.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cs3500/imageprocessor/operations/GaussianBlur.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cs3500/imageprocessor/operations/GaussianBlur.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cs3500/imageprocessor/operations/Grayscale.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cs3500/imageprocessor/operations/Grayscale.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cs3500/imageprocessor/operations/GrayscaleBlue.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cs3500/imageprocessor/operations/GrayscaleBlue.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cs3500/imageprocessor/operations/GrayscaleGreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cs3500/imageprocessor/operations/GrayscaleGreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cs3500/imageprocessor/operations/GrayscaleRed.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cs3500/imageprocessor/operations/GrayscaleRed.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cs3500/imageprocessor/operations/ImageRCToPixelTransformation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cs3500/imageprocessor/operations/PixelOperation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cs3500/imageprocessor/operations/SepiaTone.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cs3500/imageprocessor/operations/SepiaTone.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cs3500/imageprocessor/operations/Sharpen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cs3500/imageprocessor/operations/Sharpen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cs3500/imageprocessor/operations/VisualizeIntensity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cs3500/imageprocessor/operations/VisualizeIntensity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cs3500/imageprocessor/operations/VisualizeLuma.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cs3500/imageprocessor/operations/VisualizeLuma.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cs3500/imageprocessor/operations/VisualizeValue.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cs3500/imageprocessor/operations/VisualizeValue.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/BasicEditorControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/BasicEditorControllerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/BasicPPMImageEditorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/BasicBasicImageEditorTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/BrightenPixelTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/BrightenPixelTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/DarkenImageTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/DarkenBasicImageTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/FlipHorizontalTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/FlipHorizontalTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/FlipVerticalTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/FlipVerticalTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/GrayscaleBlueTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/GrayscaleBlueTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/GrayscaleGreenTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/GrayscaleGreenTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/GrayscalePixelTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/GrayscalePixelTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/GrayscaleRedTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/GrayscaleRedTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/ImagePPMTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/BasicImagePPMTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/ImageUtilTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/BasicImageUtilTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/MockEditorModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/MockEditorModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/RGBPixelTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/RGBPixelTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/VisualizeIntensityTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/VisualizeIntensityTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/VisualizeLumaTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/VisualizeLumaTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/VisualizeValueTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/VisualizeValueTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -91,6 +141,15 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="BasicBasicImageEditorTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ImageProcessor" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="BasicBasicImageEditorTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="BasicEditorControllerTest.invalidScan" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ImageProcessor" />
       <option name="PACKAGE_NAME" value="" />
@@ -111,22 +170,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="BasicPPMImageEditorTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="ImageProcessor" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="BasicPPMImageEditorTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Application.Main" />
         <item itemvalue="JUnit.All in ImageProcessor" />
         <item itemvalue="JUnit.BasicEditorControllerTest.invalidScan" />
         <item itemvalue="JUnit.BasicEditorControllerTest.testInvalidCommand" />
-        <item itemvalue="JUnit.BasicPPMImageEditorTest" />
+        <item itemvalue="JUnit.BasicBasicImageEditorTest" />
       </list>
     </recent_temporary>
   </component>
@@ -159,6 +209,10 @@
       <workItem from="1667965923352" duration="327000" />
       <workItem from="1667967315929" duration="246000" />
       <workItem from="1668012858995" duration="2040000" />
+      <workItem from="1668015001540" duration="21000" />
+      <workItem from="1668022928675" duration="450000" />
+      <workItem from="1668029272940" duration="214000" />
+      <workItem from="1668055036968" duration="4383000" />
     </task>
     <task id="LOCAL-00001" summary="Interface Design for Image Processor v1">
       <created>1667356525751</created>
@@ -244,7 +298,21 @@
       <option name="project" value="LOCAL" />
       <updated>1667966246918</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Added a few more abstractions">
+      <created>1668015017689</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1668015017689</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Changed the model interface">
+      <created>1668023369325</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1668023369325</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -255,7 +323,19 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="HEAD" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
@@ -269,7 +349,9 @@
     <MESSAGE value="Added controller stuff" />
     <MESSAGE value="Finished adding all controller commands" />
     <MESSAGE value="Added support for PNG" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added support for PNG" />
+    <MESSAGE value="Added a few more abstractions" />
+    <MESSAGE value="Changed the model interface" />
+    <option name="LAST_COMMIT_MESSAGE" value="Changed the model interface" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

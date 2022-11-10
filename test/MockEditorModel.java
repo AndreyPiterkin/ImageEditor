@@ -3,7 +3,7 @@ import java.util.List;
 
 import cs3500.imageprocessor.model.ImageEditor;
 import cs3500.imageprocessor.model.ImageState;
-import cs3500.imageprocessor.operations.ImageRCToPixelTransformation;
+import cs3500.imageprocessor.operations.PixelOperation;
 
 /**
  * Represents a mock for the editor model which wraps a real model and delegates, but also logs
@@ -87,7 +87,7 @@ public class MockEditorModel implements ImageEditor {
    */
   @Override
   public void applyFilterAndSave(String name, String newName,
-                                 ImageRCToPixelTransformation operation) {
+                                 PixelOperation operation) {
     try {
       this.log.append("apply filter and save. name: " + name + " new name: " + newName + "\n");
     } catch (IOException e) {

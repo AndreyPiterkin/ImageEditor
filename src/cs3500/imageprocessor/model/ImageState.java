@@ -1,6 +1,8 @@
 package cs3500.imageprocessor.model;
 
-import cs3500.imageprocessor.operations.ImageRCToPixelTransformation;
+import java.awt.image.BufferedImage;
+
+import cs3500.imageprocessor.operations.PixelOperation;
 
 /**
  * Represents an image, with all of its image data. It guarantees that we can get image dimensions
@@ -27,7 +29,7 @@ public interface ImageState {
    * @return the pixel at the given coordinates
    * @throws IllegalArgumentException if the coordinates are invalid
    */
-  IPixel getPixelAt(int r, int c);
+  RGBAPixel getPixelAt(int r, int c);
 
   /**
    * Applies the given function to each pixel in the image, and returns a new image with the
@@ -35,13 +37,13 @@ public interface ImageState {
    * @param f the function to apply to each pixel
    * @return a new image with the transformed pixels
    */
-  ImageState apply(ImageRCToPixelTransformation f);
+  ImageState apply(PixelOperation f);
 
   /**
-   * Saves the image to the given file path on the disk using the given formatting function.
-   * @param filePath the file name to save the image to
-   * @throws IllegalArgumentException if the file path is invalid
+   * Creates a BufferedImage for writing to the disk out of the pixels of this image.
+   * @param pixelType the type of pixels in the image (i.e. ARGB, RGB, etc)
+   * @return the buffered image representation of this image
    */
-  void save(String filePath);
+  BufferedImage asBufferedImage(int pixelType);
 
 }

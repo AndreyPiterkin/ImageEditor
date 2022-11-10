@@ -1,8 +1,7 @@
 import org.junit.Before;
 import org.junit.Test;
 
-import cs3500.imageprocessor.model.RGBPixel;
-import cs3500.imageprocessor.model.IPixel;
+import cs3500.imageprocessor.model.RGBAPixel;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThrows;
@@ -12,9 +11,9 @@ import static org.junit.Assert.assertTrue;
  * Tests for rgbPixel.
  */
 public class RGBPixelTest {
-  private IPixel rgbPixel1;
-  private IPixel rgbPixel2;
-  private IPixel rgbPixel3;
+  private RGBAPixel rgbPixel1;
+  private RGBAPixel rgbPixel2;
+  private RGBAPixel rgbPixel3;
 
   @Before
   public void initData() {

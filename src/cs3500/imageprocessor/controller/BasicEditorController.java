@@ -1,5 +1,8 @@
 package cs3500.imageprocessor.controller;
 
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.HashMap;
@@ -9,16 +12,24 @@ import java.util.Objects;
 import java.util.Scanner;
 import java.util.function.Function;
 
+import javax.imageio.ImageIO;
+
+import cs3500.imageprocessor.model.BasicImage;
 import cs3500.imageprocessor.model.ImageEditor;
-import cs3500.imageprocessor.model.ImagePPM;
+import cs3500.imageprocessor.model.ImageState;
+import cs3500.imageprocessor.model.ImageUtil;
 import cs3500.imageprocessor.operations.BrightenPixel;
 import cs3500.imageprocessor.operations.DarkenPixel;
 import cs3500.imageprocessor.operations.FlipHorizontal;
 import cs3500.imageprocessor.operations.FlipVertical;
+import cs3500.imageprocessor.operations.GaussianBlur;
+import cs3500.imageprocessor.operations.Grayscale;
 import cs3500.imageprocessor.operations.GrayscaleBlue;
 import cs3500.imageprocessor.operations.GrayscaleGreen;
 import cs3500.imageprocessor.operations.GrayscaleRed;
-import cs3500.imageprocessor.operations.ImageRCToPixelTransformation;
+import cs3500.imageprocessor.operations.PixelOperation;
+import cs3500.imageprocessor.operations.SepiaTone;
+import cs3500.imageprocessor.operations.Sharpen;
 import cs3500.imageprocessor.operations.VisualizeIntensity;
 import cs3500.imageprocessor.operations.VisualizeLuma;
 import cs3500.imageprocessor.operations.VisualizeValue;
@@ -33,7 +44,7 @@ public class BasicEditorController implements ImageEditorController {
   private final ImageEditor model;
   private final ImageEditorView view;
   private final Readable in;
-  private final Map<String, Function<Scanner, ImageRCToPixelTransformation>> commands;
+  private final Map<String, Function<Scanner, PixelOperation>> commands;
 
   /**
    * Constructs a BasicEditorController object with the model and view to control, as well
@@ -69,36 +80,20 @@ public class BasicEditorController implements ImageEditorController {
    * Sets up all the commands that this controller is capable of executing.
    */
   private void setupCommands() {
-    commands.put("brighten", (scanner) -> {
-      return new BrightenPixel(scanner.nextInt());
-    });
-    commands.put("darken", (scanner) -> {
-      return new DarkenPixel(scanner.nextInt());
-    });
-    commands.put("vertical-flip", (scanner) -> {
-      return new FlipVertical();
-    });
-    commands.put("horizontal-flip", (scanner) -> {
-      return new FlipHorizontal();
-    });
-    commands.put("value-component", (scanner) -> {
-      return new VisualizeValue();
-    });
-    commands.put("red-component", (scanner) -> {
-      return new GrayscaleRed();
-    });
-    commands.put("blue-component", (scanner) -> {
-      return new GrayscaleBlue();
-    });
-    commands.put("green-component", (scanner) -> {
-      return new GrayscaleGreen();
-    });
-    commands.put("luma-component", (scanner) -> {
-      return new VisualizeLuma();
-    });
-    commands.put("intensity-component", (scanner) -> {
-      return new VisualizeIntensity();
-    });
+    commands.put("brighten", (scanner) -> new BrightenPixel(scanner.nextInt()));
+    commands.put("darken", (scanner) -> new DarkenPixel(scanner.nextInt()));
+    commands.put("vertical-flip", (scanner) -> new FlipVertical());
+    commands.put("horizontal-flip", (scanner) -> new FlipHorizontal());
+    commands.put("value-component", (scanner) -> new VisualizeValue());
+    commands.put("red-component", (scanner) -> new GrayscaleRed());
+    commands.put("blue-component", (scanner) -> new GrayscaleBlue());
+    commands.put("green-component", (scanner) -> new GrayscaleGreen());
+    commands.put("luma-component", (scanner) -> new VisualizeLuma());
+    commands.put("intensity-component", (scanner) -> new VisualizeIntensity());
+    commands.put("sharpen", (scanner) -> new Sharpen());
+    commands.put("blur", (scanner) -> new GaussianBlur());
+    commands.put("grayscale", (scanner) -> new Grayscale());
+    commands.put("sepia", (scanner) -> new SepiaTone());
   }
 
   /**
@@ -108,7 +103,71 @@ public class BasicEditorController implements ImageEditorController {
   private void loadImage(Scanner scan) {
     String path = scan.next();
     String name = scan.next();
-    this.model.importImageFromDisk(path, name);
+    if (path.substring(path.lastIndexOf(".")+1).equals(".ppm")) {
+      this.model.addImage(new BasicImage(ImageUtil.readPPM(path)), name);
+    } else {
+      try {
+        this.model.addImage(new BasicImage(ImageIO.read(new File(path))), name);
+      } catch (IOException e) {
+        throw new IllegalStateException("Could not load image.");
+      }
+    }
+  }
+
+  /**
+   * Helper method for saving an image.
+   * @param scan the scanner to read from
+   */
+  private void saveImage(Scanner scan) {
+    String name = scan.next();
+    String path = scan.next();
+    ImageState image = this.model.getImage(name);
+    if (path.substring(path.lastIndexOf(".")+1).equals(".ppm")) {
+      try {
+        FileWriter writer = new FileWriter(path);
+        writer.write("P3\n");
+        writer.write(image.getWidth() + " " + image.getHeight() + "\n");
+        writer.write("255\n");
+        for (int r = 0; r < image.getHeight(); r++) {
+          for (int c = 0; c < image.getWidth(); c++) {
+            writer.write(image.getPixelAt(r, c).getRed() + " "
+                    + image.getPixelAt(r, c).getGreen() + " "
+                    + image.getPixelAt(r, c).getBlue() + "\n");
+          }
+        }
+        writer.close();
+      } catch (IOException e) {
+        throw new RuntimeException(e);
+      }
+    } else {
+      try {
+        switch (path.substring(path.lastIndexOf(".")+1)) {
+          case "bmp":
+          case "jpg":
+            ImageIO.write(image.asBufferedImage(BufferedImage.TYPE_INT_RGB), "jpg", new File(path));
+            break;
+          case "png":
+            ImageIO.write(image.asBufferedImage(BufferedImage.TYPE_INT_ARGB), "png", new File(path));
+            break;
+          default:
+            throw new IllegalStateException("Invalid file type.");
+        }
+      } catch (IOException e) {
+        throw new IllegalStateException("Could not save image.");
+      }
+    }
+  }
+
+  private void applyOperation(String command, Scanner scan) {
+    String name = scan.next();
+    String newName = scan.next();
+    if (this.commands.containsKey(command)) {
+      ImageState image = this.model.getImage(name);
+      PixelOperation operation = this.commands.get(command).apply(scan);
+      this.model.addImage(image.apply(operation), newName);
+    } else {
+      throw new IllegalArgumentException("Invalid operation." + command);
+    }
   }
 
   /**
@@ -122,34 +181,15 @@ public class BasicEditorController implements ImageEditorController {
     try {
       while (scan.hasNext()) {
         String command = scan.next();
-        // This switch statement has specific clauses for load and save, because they are different
-        // from the rest of the commands, in that they don't perform a transformation on an image
-        // they just read or save data to the disk
         switch (command) {
           case "load":
             this.loadImage(scan);
             break;
           case "save":
-            String filename = scan.next();
-            String name = scan.next();
-            this.model.saveImageAs(filename, name);
+            this.saveImage(scan);
             break;
           default:
-            if (this.commands.containsKey(command)) {
-
-              ImageRCToPixelTransformation transformation = this.commands.get(command).apply(scan);
-              this.model.applyFilterAndSave(scan.next(), scan.next(),
-                      transformation);
-            } else {
-              try {
-                this.view.render("Illegal argument");
-              } catch (IOException e) {
-                throw new RuntimeException(e);
-              }
-              // This will later render to a view, but for now just throws an exception
-              throw new IllegalArgumentException("Invalid command");
-
-            }
+            this.applyOperation(command, scan);
             break;
         }
       }

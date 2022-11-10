@@ -1,13 +1,13 @@
 package cs3500.imageprocessor.operations;
 
-import cs3500.imageprocessor.model.IPixel;
+import cs3500.imageprocessor.model.RGBAPixel;
 import cs3500.imageprocessor.model.ImageState;
 
 /**
  * A function object used to get the pixel in an image located at the position reflected
  * horizontally from the given pixel.
  */
-public class FlipHorizontal implements ImageRCToPixelTransformation {
+public class FlipHorizontal implements PixelOperation {
 
   /**
    * Finds the pixel located at the position reflected horizontally from the given pixel.
@@ -18,7 +18,7 @@ public class FlipHorizontal implements ImageRCToPixelTransformation {
    * @return the new pixel
    */
   @Override
-  public IPixel apply(ImageState image, Integer r, Integer c) {
+  public RGBAPixel apply(ImageState image, int r, int c) {
     return image.getPixelAt(r, image.getWidth() - c - 1);
   }
 }

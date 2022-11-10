@@ -1,11 +1,8 @@
 import org.junit.Before;
 import org.junit.Test;
 
-import cs3500.imageprocessor.model.GrayscalePixel;
-import cs3500.imageprocessor.model.IPixel;
-import cs3500.imageprocessor.model.ImagePPM;
+import cs3500.imageprocessor.model.RGBAPixel;
 import cs3500.imageprocessor.model.ImageState;
-import cs3500.imageprocessor.model.RGBPixel;
 import cs3500.imageprocessor.operations.VisualizeValue;
 
 import static org.junit.Assert.assertEquals;
@@ -20,7 +17,7 @@ public class VisualizeValueTest {
   @Before
   public void initData() {
     this.visualizeValue = new VisualizeValue();
-    IPixel[][] pixels = {{new RGBPixel(0, 128, 240), new RGBPixel(1, 242, 241)},
+    RGBAPixel[][] pixels = {{new RGBPixel(0, 128, 240), new RGBPixel(1, 242, 241)},
         {new RGBPixel(255, 130, 130), new RGBPixel(23, 23, 23)}};
     this.image = new ImagePPM(pixels);
   }

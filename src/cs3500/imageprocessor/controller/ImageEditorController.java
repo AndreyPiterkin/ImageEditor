@@ -11,5 +11,4 @@ public interface ImageEditorController {
    * @throws IllegalStateException if the controller can't read or write anything.
    */
   void start();
-
 }

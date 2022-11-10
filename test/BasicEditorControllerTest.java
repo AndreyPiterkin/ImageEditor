@@ -5,7 +5,7 @@ import java.io.StringReader;
 
 import cs3500.imageprocessor.controller.BasicEditorController;
 import cs3500.imageprocessor.controller.ImageEditorController;
-import cs3500.imageprocessor.model.BasicPPMImageEditor;
+import cs3500.imageprocessor.model.BasicImageEditor;
 import cs3500.imageprocessor.model.ImageEditor;
 import cs3500.imageprocessor.model.ImageState;
 import cs3500.imageprocessor.view.ImageEditorViewStub;
@@ -23,7 +23,7 @@ public class BasicEditorControllerTest {
   public void testBasicEditorControllerConstructorInvalid() {
     assertThrows(NullPointerException.class, () ->
         new BasicEditorController(null, null, null));
-    ImageEditor editor = new BasicPPMImageEditor();
+    ImageEditor editor = new BasicImageEditor();
     assertThrows(NullPointerException.class, () ->
         new BasicEditorController(editor, null, null));
     assertThrows(NullPointerException.class, () ->
@@ -42,7 +42,7 @@ public class BasicEditorControllerTest {
 
   @Test
   public void testControllerUsesEditorModelCorrectly() {
-    ImageEditor editor = new BasicPPMImageEditor();
+    ImageEditor editor = new BasicImageEditor();
     Appendable out = new StringBuilder();
     MockEditorModel model = new MockEditorModel(editor, out);
     ImageEditorViewStub view = new ImageEditorViewStub();
@@ -61,7 +61,7 @@ public class BasicEditorControllerTest {
         + "get image. name: koala4\n";
     assertEquals(expected, out.toString());
 
-    editor = new BasicPPMImageEditor();
+    editor = new BasicImageEditor();
     out = new StringBuilder();
     model = new MockEditorModel(editor, out);
     view = new ImageEditorViewStub();
@@ -95,7 +95,7 @@ public class BasicEditorControllerTest {
 
   @Test
   public void testInvalidCommand() {
-    ImageEditor editor = new BasicPPMImageEditor();
+    ImageEditor editor = new BasicImageEditor();
     Appendable out = new StringBuilder();
     MockEditorModel model = new MockEditorModel(editor, out);
     ImageEditorViewStub view = new ImageEditorViewStub();
@@ -112,7 +112,7 @@ public class BasicEditorControllerTest {
 
   @Test
   public void invalidScan() {
-    ImageEditor editor = new BasicPPMImageEditor();
+    ImageEditor editor = new BasicImageEditor();
     Appendable out = new StringBuilder();
     MockEditorModel model = new MockEditorModel(editor, out);
     ImageEditorViewStub view = new ImageEditorViewStub();

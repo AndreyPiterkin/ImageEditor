@@ -1,8 +1,7 @@
 import org.junit.Before;
 import org.junit.Test;
 
-import cs3500.imageprocessor.model.GrayscalePixel;
-import cs3500.imageprocessor.model.IPixel;
+import cs3500.imageprocessor.model.RGBAPixel;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThrows;
@@ -12,9 +11,9 @@ import static org.junit.Assert.assertTrue;
  * Tests for GrayscalePixel.
  */
 public class GrayscalePixelTest {
-  private IPixel grayPixel1 = new GrayscalePixel(0);
-  private IPixel grayPixel2;
-  private IPixel grayPixel3;
+  private RGBAPixel grayPixel1 = new GrayscalePixel(0);
+  private RGBAPixel grayPixel2;
+  private RGBAPixel grayPixel3;
 
   @Before
   public void initData() {

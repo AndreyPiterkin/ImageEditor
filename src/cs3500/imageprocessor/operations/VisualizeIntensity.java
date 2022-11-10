@@ -1,13 +1,12 @@
 package cs3500.imageprocessor.operations;
 
-import cs3500.imageprocessor.model.GrayscalePixel;
-import cs3500.imageprocessor.model.IPixel;
+import cs3500.imageprocessor.model.RGBAPixel;
 import cs3500.imageprocessor.model.ImageState;
 
 /**
  * A function object used to create a grayscale pixel using the intensity of the given pixel.
  */
-public class VisualizeIntensity implements ImageRCToPixelTransformation {
+public class VisualizeIntensity implements PixelOperation {
 
   /**
    * Performs a single pixel transformation at the given position in the image, computing a new
@@ -19,9 +18,9 @@ public class VisualizeIntensity implements ImageRCToPixelTransformation {
    * @return the new pixel
    */
   @Override
-  public IPixel apply(ImageState image, Integer r, Integer c) {
+  public RGBAPixel apply(ImageState image, int r, int c) {
     int val = (image.getPixelAt(r, c).getRed() + image.getPixelAt(r, c).getGreen()
         + image.getPixelAt(r, c).getBlue()) / 3;
-    return new GrayscalePixel(val);
+    return new RGBAPixel(val);
   }
 }

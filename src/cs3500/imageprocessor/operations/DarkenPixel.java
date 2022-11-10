@@ -1,13 +1,12 @@
 package cs3500.imageprocessor.operations;
 
-import cs3500.imageprocessor.model.IPixel;
+import cs3500.imageprocessor.model.RGBAPixel;
 import cs3500.imageprocessor.model.ImageState;
-import cs3500.imageprocessor.model.RGBPixel;
 
 /**
  * A function object used to darken a pixel in an image.
  */
-public class DarkenPixel implements ImageRCToPixelTransformation {
+public class DarkenPixel implements PixelOperation {
 
   private final int darkenAmount;
 
@@ -30,10 +29,10 @@ public class DarkenPixel implements ImageRCToPixelTransformation {
    * @return the new pixel
    */
   @Override
-  public IPixel apply(ImageState image, Integer r, Integer c) {
-    return new RGBPixel(
-        Math.max(image.getPixelAt(r, c).getRed() - darkenAmount, 0),
-        Math.max(image.getPixelAt(r, c).getGreen() - darkenAmount, 0),
-        Math.max(image.getPixelAt(r, c).getBlue() - darkenAmount, 0));
+  public RGBAPixel apply(ImageState image, int r, int c) {
+    RGBAPixel pixel = image.getPixelAt(r, c);
+    return new RGBAPixel(pixel.getRed() - darkenAmount,
+        pixel.getGreen() - darkenAmount,
+        pixel.getBlue() - darkenAmount);
   }
 }

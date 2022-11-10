@@ -1,13 +1,12 @@
 package cs3500.imageprocessor.operations;
 
-import cs3500.imageprocessor.model.IPixel;
+import cs3500.imageprocessor.model.RGBAPixel;
 import cs3500.imageprocessor.model.ImageState;
-import cs3500.imageprocessor.model.RGBPixel;
 
 /**
  * A function object used to brighten a pixel in an image.
  */
-public class BrightenPixel implements ImageRCToPixelTransformation {
+public class BrightenPixel implements PixelOperation {
 
   private final int brightenAmount;
 
@@ -30,10 +29,10 @@ public class BrightenPixel implements ImageRCToPixelTransformation {
    * @return the new pixel
    */
   @Override
-  public IPixel apply(ImageState image, Integer r, Integer c) {
-    return new RGBPixel(
-        Math.min(image.getPixelAt(r, c).getRed() + brightenAmount, 255),
-        Math.min(image.getPixelAt(r, c).getGreen() + brightenAmount, 255),
-        Math.min(image.getPixelAt(r, c).getBlue() + brightenAmount, 255));
+  public RGBAPixel apply(ImageState image, int r, int c) {
+    RGBAPixel pixel = image.getPixelAt(r, c);
+    return new RGBAPixel(pixel.getRed() + brightenAmount,
+        pixel.getGreen() + brightenAmount,
+        pixel.getBlue() + brightenAmount);
   }
 }

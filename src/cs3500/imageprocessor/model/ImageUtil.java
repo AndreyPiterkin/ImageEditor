@@ -5,6 +5,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
@@ -16,65 +17,12 @@ import javax.imageio.ImageIO;
  */
 public class ImageUtil {
 
-//  public static IPixel[][] readStandardImageFormat(String filename) throws IOException {
-//    BufferedImage img = ImageIO.read(new File(filename));
-//    IPixel[][] pixels = new IPixel[img.getHeight()][img.getWidth()];
-//    for (int r = 0; r < img.getHeight(); r++) {
-//      for (int c = 0; c < img.getWidth(); c++) {
-//        int rgb = img.getRGB(c, r);
-//        Color color = new Color(rgb, true);
-//        pixels[r][c] = new RGBAPixel(color.getRed(), color.getGreen(), color.getBlue(), color.getAlpha());
-//      }
-//    }
-//    return pixels;
-//  }
-
-  public static IPixel[][] readPNG(String filename) throws IOException {
-    BufferedImage img = ImageIO.read(new File(filename));
-    IPixel[][] pixels = new IPixel[img.getHeight()][img.getWidth()];
-    for (int r = 0; r < img.getHeight(); r++) {
-      for (int c = 0; c < img.getWidth(); c++) {
-        int rgba = img.getRGB(c, r);
-
-        Color color = new Color(rgba, true);
-        pixels[r][c] = new RGBAPixel(color.getRed(), color.getGreen(), color.getBlue(), color.getAlpha());
-      }
-    }
-    return pixels;
-  }
-
-  public static IPixel[][] readJPG(String filename) throws IOException {
-    BufferedImage img = ImageIO.read(new File(filename));
-    IPixel[][] pixels = new IPixel[img.getHeight()][img.getWidth()];
-    for (int r = 0; r < img.getHeight(); r++) {
-      for (int c = 0; c < img.getWidth(); c++) {
-        int rgba = img.getRGB(c, r);
-        Color color = new Color(rgba);
-        pixels[r][c] = new RGBPixel(color.getRed(), color.getGreen(), color.getBlue());
-      }
-    }
-    return pixels;
-  }
-
-  public static IPixel[][] readBMP(String filename) throws IOException {
-    BufferedImage img = ImageIO.read(new File(filename));
-    IPixel[][] pixels = new IPixel[img.getHeight()][img.getWidth()];
-    for (int r = 0; r < img.getHeight(); r++) {
-      for (int c = 0; c < img.getWidth(); c++) {
-        int rgba = img.getRGB(c, r);
-        Color color = new Color(rgba);
-        pixels[r][c] = new RGBPixel(color.getRed(), color.getGreen(), color.getBlue());
-      }
-    }
-    return pixels;
-  }
-
   /**
    * Read an image file in the PPM format and print the colors.
    *
    * @param filename the path of the file.
    */
-  public static IPixel[][] readPPM(String filename) {
+  public static BufferedImage readPPM(String filename) {
     Scanner sc;
 
     try {
@@ -108,14 +56,14 @@ public class ImageUtil {
     int maxValue = sc.nextInt();
     System.out.println("Maximum value of a color in this file (usually 255): " + maxValue);
 
-    IPixel[][] image = new IPixel[height][width];
+    BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
     for (int i = 0; i < height; i++) {
       for (int j = 0; j < width; j++) {
         int r = sc.nextInt();
         int g = sc.nextInt();
         int b = sc.nextInt();
-        IPixel pixel = new RGBPixel(r, g, b);
-        image[i][j] = pixel;
+        Color c = new Color(r, g, b);
+        image.setRGB(j, i, c.getRGB());
       }
     }
     return image;

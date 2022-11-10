@@ -6,7 +6,7 @@ package cs3500.imageprocessor.operations;
  * 1/8 1/4 1/8
  * 1/16 1/8 1/16]
  */
-public class GaussianBlur extends AKernelTransformation {
+public class GaussianBlur extends AKernelOperation {
 
   /**
    * Constructs an instance of the Gaussian Blur, with the particular kernel formula for this blur.
