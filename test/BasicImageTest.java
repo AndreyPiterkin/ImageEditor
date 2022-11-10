@@ -1,9 +1,8 @@
 import org.junit.Before;
 import org.junit.Test;
 
-import java.awt.*;
 import java.awt.image.BufferedImage;
-
+import java.awt.Color;
 import cs3500.imageprocessor.model.BasicImage;
 import cs3500.imageprocessor.model.ImageState;
 import cs3500.imageprocessor.model.RGBAPixel;

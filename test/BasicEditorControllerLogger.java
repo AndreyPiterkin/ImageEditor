@@ -54,9 +54,7 @@ public class BasicEditorControllerLogger extends BasicEditorController {
    * Takes the commands that the super() call set up,
    * and modifies them to wrap them in a ForwardingFilter with this controller's log
    * to log what operations are happening to test if the controller is using the model
-   * correctly.
-   *
-   * Similarly, it wraps the save and load commands in a log.
+   * correctly. Similarly, it wraps the save and load commands in a log.
    */
   @Override
   protected void setupCommands() {
