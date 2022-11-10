@@ -7,27 +7,26 @@ import java.awt.image.BufferedImage;
 import cs3500.imageprocessor.model.BasicImage;
 import cs3500.imageprocessor.model.RGBAPixel;
 import cs3500.imageprocessor.model.ImageState;
-import cs3500.imageprocessor.operations.BrightenPixel;
+import cs3500.imageprocessor.operations.DarkenPixel;
 
 import static org.junit.Assert.assertEquals;
 
 /**
- * Tests for BrightenImage.
+ * Tests for DarkenImage.
  */
-public class BrightenPixelTest {
-  BrightenPixel brighten1;
-  BrightenPixel brighten10;
-  BrightenPixel brighten100;
+public class DarkenPixelTest {
+  DarkenPixel darken1;
+  DarkenPixel darken10;
+  DarkenPixel darken100;
   ImageState image1;
   ImageState image2;
 
   @Before
   public void initData() {
-    this.brighten1 = new BrightenPixel(1);
-    this.brighten10 = new BrightenPixel(10);
-    this.brighten100 = new BrightenPixel(100);
-
-    RGBAPixel[][] pixels1 = {{new RGBAPixel(0), new RGBAPixel(128)},
+    this.darken1 = new DarkenPixel(1);
+    this.darken10 = new DarkenPixel(10);
+    this.darken100 = new DarkenPixel(100);
+    RGBAPixel[][] pixels1 = {{new RGBAPixel(1), new RGBAPixel(128)},
         {new RGBAPixel(10), new RGBAPixel(240)}};
     RGBAPixel[][] pixels2 = {{new RGBAPixel(0, 128, 240)}};
 
@@ -54,16 +53,16 @@ public class BrightenPixelTest {
 
   @Test
   public void testApply() {
-    assertEquals(new RGBAPixel(0), this.image1.getPixelAt(0,0));
-    assertEquals(new RGBAPixel(1), this.brighten1.apply(this.image1, 0, 0));
+    assertEquals(new RGBAPixel(1), this.image1.getPixelAt(0,0));
+    assertEquals(new RGBAPixel(0), this.darken1.apply(this.image1, 0, 0));
 
     assertEquals(new RGBAPixel(128), this.image1.getPixelAt(0,1));
-    assertEquals(new RGBAPixel(138), this.brighten10.apply(this.image1, 0, 1));
+    assertEquals(new RGBAPixel(118), this.darken10.apply(this.image1, 0, 1));
 
     assertEquals(new RGBAPixel(10), this.image1.getPixelAt(1,0));
-    assertEquals(new RGBAPixel(110), this.brighten100.apply(this.image1, 1, 0));
+    assertEquals(new RGBAPixel(0), this.darken100.apply(this.image1, 1, 0));
 
     assertEquals(new RGBAPixel(0, 128, 240), this.image2.getPixelAt(0,0));
-    assertEquals(new RGBAPixel(100, 228, 255), this.brighten100.apply(this.image2, 0, 0));
+    assertEquals(new RGBAPixel(0, 28, 140), this.darken100.apply(this.image2, 0, 0));
   }
 }
