@@ -93,8 +93,8 @@ public class RGBAPixel {
 
   @Override
   public int hashCode() {
-    return this.getRed() * 100 + this.getGreen() * 100 + this.getBlue() * 100
-            + this.getAlpha() * 100;
+    return this.getRed() * 100 + this.getGreen() * 99 + this.getBlue() * 98
+            + this.getAlpha() * 97;
   }
 
 }

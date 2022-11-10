@@ -126,8 +126,8 @@ public class RGBAPixelTest {
   }
 
   @Test public void testHashCode() {
-    assertEquals(63800, this.RGBAPixel1.hashCode());
-    assertEquals(31500, this.RGBAPixel2.hashCode());
-    assertEquals(53400, this.RGBAPixel3.hashCode());
+    assertEquals(62397, this.RGBAPixel1.hashCode());
+    assertEquals(30655, this.RGBAPixel2.hashCode());
+    assertEquals(52298, this.RGBAPixel3.hashCode());
   }
 }

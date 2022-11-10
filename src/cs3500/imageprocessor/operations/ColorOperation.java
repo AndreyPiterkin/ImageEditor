@@ -19,6 +19,10 @@ public class ColorOperation implements PixelOperation {
   public ColorOperation(double[][] kernel) {
     Objects.requireNonNull(kernel);
 
+    if (kernel.length != 3) {
+      throw new IllegalArgumentException("Kernel must be a 3x3 matrix");
+    }
+
     for (double[] row : kernel) {
       if (row.length != 3) {
         throw new IllegalArgumentException("Kernel must be a 3x3 matrix");
@@ -50,12 +54,12 @@ public class ColorOperation implements PixelOperation {
     int[] colors = new int[]{ pixel.getRed(), pixel.getGreen(), pixel.getBlue() };
     int[] newColors = new int[3];
     for (int i = 0; i < kernel.length; i++) {
-      int newColor = 0;
+      double newColor = 0;
       for (int j = 0; j < kernel[i].length; j++) {
         int color = colors[j];
-        newColor += (int) (color * kernel[i][j]);
+        newColor += (color * kernel[i][j]);
       }
-      newColors[i] = newColor;
+      newColors[i] = (int) newColor;
     }
     return new RGBAPixel(newColors[0], newColors[1], newColors[2]);
   }
