@@ -2,6 +2,7 @@ package cs3500.imageprocessor.model;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.util.Objects;
 
 import cs3500.imageprocessor.operations.PixelOperation;
 
@@ -15,11 +16,14 @@ public class BasicImage implements ImageState {
   /**
    * A private constructor that allows for the creation of an image from an array of pixels.
    * For methods of this class only.
-   *
+   * We specifically don't copy every pixel into a new array because we do not have mutations
+   * on the arrays, or the pixels, so every new image is a deep copy of the old one (when using
+   * filters)
    * @param pixels the array of pixels representing the image
    */
   private BasicImage(RGBAPixel[][] pixels) {
-    this.pixels = pixels;
+
+    this.pixels = Objects.requireNonNull(pixels);
   }
 
   /**
@@ -107,7 +111,8 @@ public class BasicImage implements ImageState {
     for (int r = 0; r < this.getHeight(); r++) {
       for (int c = 0; c < this.getWidth(); c++) {
         RGBAPixel pixel = this.getPixelAt(r, c);
-        Color color = new Color(pixel.getRed(), pixel.getGreen(), pixel.getBlue(), pixel.getAlpha());
+        Color color = new Color(pixel.getRed(), pixel.getGreen(), pixel.getBlue(),
+            pixel.getAlpha());
         img.setRGB(c, r, color.getRGB());
       }
     }
