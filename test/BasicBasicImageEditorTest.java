@@ -15,9 +15,9 @@
 //import static org.junit.Assert.assertTrue;
 //
 ///**
-// * Tests for BasicPPMImageEditor.
+// * Tests for BasicImageEditor.
 // */
-//public class BasicBasicImageEditorTest {
+//public class BasicImageEditorTest {
 //
 //  @Test
 //  public void testConstructorInvalid() {

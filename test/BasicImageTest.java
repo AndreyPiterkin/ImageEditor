@@ -15,7 +15,7 @@
 //import static org.junit.Assert.assertThrows;
 //
 ///**
-// * Tests for ImagePPM.
+// * Tests for BasicImage.
 // */
 //public class BasicImageTest {
 //  BasicImage image1x1;

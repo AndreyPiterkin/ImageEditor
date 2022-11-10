@@ -40,10 +40,10 @@ public class RGBAPixelTest {
     assertEquals(150, this.RGBAPixel3.getBlue());
     assertEquals(234, this.RGBAPixel3.getAlpha());
 
-    assertEquals(28, grayPixel.getRed());
-    assertEquals(28, grayPixel.getGreen());
-    assertEquals(28, grayPixel.getBlue());
-    assertEquals(255, grayPixel.getAlpha());
+    assertEquals(28, this.grayPixel.getRed());
+    assertEquals(28, this.grayPixel.getGreen());
+    assertEquals(28, this.grayPixel.getBlue());
+    assertEquals(255, this.grayPixel.getAlpha());
   }
 
 //  @Test
