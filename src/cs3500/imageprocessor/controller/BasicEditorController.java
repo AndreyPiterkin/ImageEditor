@@ -10,6 +10,7 @@ import java.util.InputMismatchException;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Scanner;
+import java.util.function.BiConsumer;
 import java.util.function.Function;
 
 import javax.imageio.ImageIO;
@@ -45,6 +46,7 @@ public class BasicEditorController implements ImageEditorController {
   private final ImageEditorView view;
   private final Readable in;
   private final Map<String, Function<Scanner, PixelOperation>> commands;
+  private final Map<String, BiConsumer<ImageState, String>> imageWriters;
 
   /**
    * Constructs a BasicEditorController object with the model and view to control, as well
@@ -62,6 +64,7 @@ public class BasicEditorController implements ImageEditorController {
     this.in = in;
     this.view = view;
     this.commands = new HashMap<>();
+    this.imageWriters = new HashMap<>();
     this.setupCommands();
   }
 
@@ -94,16 +97,61 @@ public class BasicEditorController implements ImageEditorController {
     commands.put("blur", (scanner) -> new GaussianBlur());
     commands.put("grayscale", (scanner) -> new Grayscale());
     commands.put("sepia", (scanner) -> new SepiaTone());
+
+    imageWriters.put("ppm", (state, filename) -> {
+      try {
+        FileWriter writer = new FileWriter(filename);
+        writer.write("P3\n");
+        writer.write(state.getWidth() + " " + state.getHeight() + "\n");
+        writer.write("255\n");
+        for (int r = 0; r < state.getHeight(); r++) {
+          for (int c = 0; c < state.getWidth(); c++) {
+            writer.write(state.getPixelAt(r, c).getRed() + " "
+                    + state.getPixelAt(r, c).getGreen() + " "
+                    + state.getPixelAt(r, c).getBlue() + "\n");
+          }
+        }
+        writer.close();
+      } catch (IOException e) {
+        throw new IllegalStateException("Can't write to the given path!");
+      }
+    });
+    imageWriters.put("png", (state, filename) -> {
+      try {
+        ImageIO.write(state.asBufferedImage(BufferedImage.TYPE_INT_ARGB), "png",
+            new File(filename));
+      } catch (IOException e) {
+        throw new IllegalStateException("Can't write to the given path!");
+      }
+    });
+    imageWriters.put("jpg", (state, filename) -> {
+      try {
+        ImageIO.write(state.asBufferedImage(BufferedImage.TYPE_INT_RGB), "jpg",
+                new File(filename));
+      } catch (IOException e) {
+        throw new IllegalStateException("Can't write to the given path!");
+      }
+    });
+    imageWriters.put("bmp", (state, filename) -> {
+      try {
+        ImageIO.write(state.asBufferedImage(BufferedImage.TYPE_INT_RGB), "bmp",
+                new File(filename));
+      } catch (IOException e) {
+        throw new IllegalStateException("Can't write to the given path!");
+      }
+    });
+
   }
 
   /**
    * Helper method for loading an image.
    * @param scan the scanner to read from
+   * @throws IllegalStateException if the controller can't read the image
    */
   private void loadImage(Scanner scan) {
     String path = scan.next();
     String name = scan.next();
-    if (path.substring(path.lastIndexOf(".")).equals(".ppm")) {
+    if (path.substring(path.lastIndexOf(".")+1).equals("ppm")) {
       this.model.addImage(new BasicImage(ImageUtil.readPPM(path)), name);
     } else {
       try {
@@ -122,39 +170,12 @@ public class BasicEditorController implements ImageEditorController {
     String name = scan.next();
     String path = scan.next();
     ImageState image = this.model.getImage(name);
-    if (path.substring(path.lastIndexOf(".")+1).equals(".ppm")) {
-      try {
-        FileWriter writer = new FileWriter(path);
-        writer.write("P3\n");
-        writer.write(image.getWidth() + " " + image.getHeight() + "\n");
-        writer.write("255\n");
-        for (int r = 0; r < image.getHeight(); r++) {
-          for (int c = 0; c < image.getWidth(); c++) {
-            writer.write(image.getPixelAt(r, c).getRed() + " "
-                    + image.getPixelAt(r, c).getGreen() + " "
-                    + image.getPixelAt(r, c).getBlue() + "\n");
-          }
-        }
-        writer.close();
-      } catch (IOException e) {
-        throw new RuntimeException(e);
-      }
+
+    String extension = path.substring(path.lastIndexOf(".")+1);
+    if (imageWriters.containsKey(extension)) {
+      imageWriters.get(extension).accept(image, path);
     } else {
-      try {
-        switch (path.substring(path.lastIndexOf(".")+1)) {
-          case "bmp":
-          case "jpg":
-            ImageIO.write(image.asBufferedImage(BufferedImage.TYPE_INT_RGB), "jpg", new File(path));
-            break;
-          case "png":
-            ImageIO.write(image.asBufferedImage(BufferedImage.TYPE_INT_ARGB), "png", new File(path));
-            break;
-          default:
-            throw new IllegalStateException("Invalid file type.");
-        }
-      } catch (IOException e) {
-        throw new IllegalStateException("Could not save image.");
-      }
+      throw new UnsupportedOperationException("Can't encode the given extension!");
     }
   }
 
@@ -174,6 +195,7 @@ public class BasicEditorController implements ImageEditorController {
    * Starts the controller, allowing the user to interact with the model through the view.
    *
    * @throws IllegalStateException if the controller can't read or write anything.
+   * @throws IllegalArgumentException if the user enters an invalid input into the commands.
    */
   @Override
   public void start() {
@@ -194,6 +216,11 @@ public class BasicEditorController implements ImageEditorController {
         }
       }
     } catch (InputMismatchException e) {
+      try {
+        this.view.render("Invalid input.");
+      } catch (IOException ex) {
+        throw new IllegalStateException("Can't write to view");
+      }
       throw new IllegalArgumentException("Invalid input");
     }
   }
