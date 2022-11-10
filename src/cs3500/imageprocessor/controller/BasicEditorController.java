@@ -8,6 +8,7 @@ import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.InputMismatchException;
 import java.util.Map;
+import java.util.NoSuchElementException;
 import java.util.Objects;
 import java.util.Scanner;
 import java.util.function.BiConsumer;
@@ -45,8 +46,8 @@ public class BasicEditorController implements ImageEditorController {
   private final ImageEditor model;
   private final ImageEditorView view;
   private final Readable in;
-  private final Map<String, Function<Scanner, PixelOperation>> commands;
-  private final Map<String, BiConsumer<ImageState, String>> imageWriters;
+  protected final Map<String, Function<Scanner, PixelOperation>> commands;
+  protected final Map<String, BiConsumer<ImageState, String>> imageWriters;
 
   /**
    * Constructs a BasicEditorController object with the model and view to control, as well
@@ -82,7 +83,7 @@ public class BasicEditorController implements ImageEditorController {
   /**
    * Sets up all the commands that this controller is capable of executing.
    */
-  private void setupCommands() {
+  protected void setupCommands() {
     commands.put("brighten", (scanner) -> new BrightenPixel(scanner.nextInt()));
     commands.put("darken", (scanner) -> new DarkenPixel(scanner.nextInt()));
     commands.put("vertical-flip", (scanner) -> new FlipVertical());
@@ -184,7 +185,7 @@ public class BasicEditorController implements ImageEditorController {
     if (this.commands.containsKey(command)) {
       operation = this.commands.get(command).apply(scan);
     } else {
-      throw new IllegalArgumentException("Invalid operation." + command);
+      throw new IllegalArgumentException("Invalid operation: " + command);
     }
 
     String name = scan.next();
@@ -224,6 +225,8 @@ public class BasicEditorController implements ImageEditorController {
         throw new IllegalStateException("Can't write to view");
       }
       throw new IllegalArgumentException("Invalid input");
+    } catch (NoSuchElementException e) {
+      throw new IllegalArgumentException("Not enough arguments");
     }
   }
 }
