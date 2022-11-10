@@ -1,0 +1,28 @@
+load res/cat.ppm cat
+brighten 20 cat cat2
+vertical-flip cat2 cat3
+horizontal-flip cat3 cat4
+save cat4 res/cat4.png
+load res/cat.ppm cat
+darken 20 cat cat2
+value-component cat2 cat3
+save cat3 res/cat3.jpg
+load res/cat3.jpg cat
+red-component cat cat2
+sharpen cat2 cat3
+save cat3 res/cat2.bmp
+load res/cat2.bmp cat
+green-component cat cat2
+blur cat2 cat3
+save cat3 res/cat1.ppm
+load res/cat.ppm cat
+blue-component cat cat2
+luma-component cat cat3
+intensity-component cat cat4
+save cat4 res/cat5.png
+sepia cat4 cat5
+save cat5 res/cat6.png
+grayscale cat5 cat6
+save cat6 res/cat7.png
+
+

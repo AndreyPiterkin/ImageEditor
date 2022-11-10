@@ -180,15 +180,17 @@ public class BasicEditorController implements ImageEditorController {
   }
 
   private void applyOperation(String command, Scanner scan) {
-    String name = scan.next();
-    String newName = scan.next();
+    PixelOperation operation;
     if (this.commands.containsKey(command)) {
-      ImageState image = this.model.getImage(name);
-      PixelOperation operation = this.commands.get(command).apply(scan);
-      this.model.addImage(image.apply(operation), newName);
+      operation = this.commands.get(command).apply(scan);
     } else {
       throw new IllegalArgumentException("Invalid operation." + command);
     }
+
+    String name = scan.next();
+    String newName = scan.next();
+    ImageState image = this.model.getImage(name);
+    this.model.addImage(image.apply(operation), newName);
   }
 
   /**

@@ -27,7 +27,7 @@ public class Main {
       if (args.length != 2) {
         throw new IllegalArgumentException("Invalid number of arguments");
       } else {
-        if (args[0].equals("-file")) {
+        if (args[0].equals("--file")) {
           controller = new BasicEditorController(model, new FileReader(new File(args[1])), view);
         } else {
           throw new IllegalArgumentException("Invalid argument");
