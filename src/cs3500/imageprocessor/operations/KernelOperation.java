@@ -9,7 +9,7 @@ import cs3500.imageprocessor.model.ImageState;
  * Represents an abstract instance of a kernel transformation, created to minimize code reuse
  * across similar kernel transformations.
  */
-public abstract class AKernelOperation implements PixelOperation {
+public class KernelOperation implements PixelOperation {
 
   private final double[][] kernel;
 
@@ -20,7 +20,7 @@ public abstract class AKernelOperation implements PixelOperation {
    * @throws NullPointerException if the kernel is null or contains nulls
    * @throws IllegalArgumentException if the kernel is not a rectangular matrix
    */
-  public AKernelOperation(double[][] kernel) {
+  public KernelOperation(double[][] kernel) {
     Objects.requireNonNull(kernel);
 
     int length = kernel[0].length;

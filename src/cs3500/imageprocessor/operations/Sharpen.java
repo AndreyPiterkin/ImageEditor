@@ -3,7 +3,7 @@ package cs3500.imageprocessor.operations;
 /**
  * Represents the classic sharpen kernel.
  */
-public class Sharpen extends AKernelOperation {
+public class Sharpen extends KernelOperation {
   /**
    * Constructs a Sharpen Kernel.
    */

@@ -5,7 +5,7 @@ import java.util.Objects;
 import cs3500.imageprocessor.model.RGBAPixel;
 import cs3500.imageprocessor.model.ImageState;
 
-public abstract class AColorOperation implements PixelOperation {
+public abstract class ColorOperation implements PixelOperation {
 
   private final double[][] kernel;
 
@@ -16,7 +16,7 @@ public abstract class AColorOperation implements PixelOperation {
    * @throws NullPointerException if the kernel is null or contains nulls
    * @throws IllegalArgumentException if the kernel is not a 3x3 matrix
    */
-  public AColorOperation(double[][] kernel) {
+  public ColorOperation(double[][] kernel) {
     Objects.requireNonNull(kernel);
 
     for (double[] row : kernel) {
