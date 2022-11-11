@@ -1,5 +1,47 @@
 README:
 
+**Changes:**
+
+_Controller_:
+We changed the controller to now have private save, load, and applyOperation methods, as well as 
+having a map of file writers. We saw that the model shouldn't be responsible for IO (like saving and loading,
+in the ImageState and ImageEditor respectively with the .save() on ImageStates and .importFromDisk() on ImageEditor).
+We realized that the controller should handle user input and know how to operate the model,
+so we refactored our code to move saving images from the model and loading images to the controller,
+which would handle user input and save or load accordingly. Additionally, our old ImageEditor model
+has an .applyFilterAndSave() method which took in a filter and saved the image with the filter applied with the new name.
+We realize this isn't great design, since the controller should use the model in that way (get an image, apply a filter,
+and save it). We refactored this to have a .applyOperation() method in the controller, does a look up in the map,
+makes a new image, and tells the editor to save it. This way, the model doesn't have any logic about how it should be used,
+and that is now moved to the controller.
+
+_Model_:
+We changed several things in the model. For starters, ImageState interface now has only one sub class, 
+BasicImage. We changed this from our prior approach of AbstractBaseImage and ImagePPM because we realized
+that the controller should handle IO, and if the image isn't handling IO, then it has no need to care
+if it is a PNG or a PPM image, it should just store pixels. Thus, we removed the .save() method from image as well
+as mentioned above and shifted that responsibility to the controller. Related to images, we removed the IPixel interface
+in favor of an RGBAPixel concrete class. We realized that having an IPixel interface was unecessary, since
+ultimately every pixel had methods to get RGB&A, so we could just represent a pixel as a concrete class, with 
+multiple constructors, one for grayscale, one for RGB, and one for RGBA. Finally, for ImageState,
+we added a method asBufferedImage() which we would use for converting images to buffered images for saving in the controller.
+We thought this was a reasonable change since in order to write images to the disk, we would have to use ImageIO,
+which uses buffered image, so having every image be able to make a bufferedimage out of itself is convenient.
+On that note, we also added a new constructor that takes a buffered image in favor of our old constructor
+that took in a 2D array of pixels. We realized that we would have to convert the buffered image to a 2D array
+of pixels anyway, so we might as well just take in a buffered image and convert it to a 2D array of pixels in the image
+constructor.
+
+For the ImageEditor, we decided to remove the .importImageFromDisk() method, and the applyFilterAndSave() method.
+As mentioned above in the controller justification, we thought IO for importing from disk was more the controller's
+responsibility, so we moved that functionality and dumbed down the editor model. We also removed the applyFilterAndSave()
+method because we thought that the controller should be responsible for applying filters and saving images, not the model.
+
+Overall, additionally we made a few small modifications here and there related to our switch from IPixel to RGBAPixel,
+and to using BufferedImage in constructors, which we won't cover here, but we thought were reasonable changes that accompanied
+our other ones.
+
+
 **High level Overview:**
 
 **Model:**

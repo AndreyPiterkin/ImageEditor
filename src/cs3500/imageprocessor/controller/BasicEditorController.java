@@ -214,7 +214,8 @@ public class BasicEditorController implements ImageEditorController {
    * Starts the controller, allowing the user to interact with the model through the view.
    *
    * @throws IllegalStateException    if the controller can't read or write anything.
-   * @throws IllegalArgumentException if the user enters an invalid input into the commands.
+   * @throws IllegalArgumentException if the user enters an invalid input into the commands,
+   *                                 or if not enough arguments were given before readable end.
    */
   @Override
   public void start() {
@@ -223,6 +224,8 @@ public class BasicEditorController implements ImageEditorController {
       while (scan.hasNext()) {
         String command = scan.next();
         switch (command) {
+          case "quit":
+            return;
           case "load":
             this.loadImage(scan);
             break;
@@ -240,7 +243,7 @@ public class BasicEditorController implements ImageEditorController {
       } catch (IOException ex) {
         throw new IllegalStateException("Can't write to view");
       }
-      throw new IllegalArgumentException("Invalid input");
+      throw new IllegalArgumentException("Invalid input type for command.");
     } catch (NoSuchElementException e) {
       throw new IllegalArgumentException("Not enough arguments");
     }

@@ -1,5 +1,7 @@
 import org.junit.Test;
 
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.InputStreamReader;
 import java.io.StringReader;
 
@@ -134,6 +136,7 @@ public class BasicEditorControllerTest {
         "add image. image name: cat3\n";
     assertEquals(expected, out.toString());
     assertEquals(4, editor.getImageNames().size());
+
   }
 
   /**
@@ -164,6 +167,8 @@ public class BasicEditorControllerTest {
         "Writing image to images/cat.png in png format.\n";
     assertEquals(expected, out.toString());
     assertEquals(1, editor.getImageNames().size());
+
+
   }
 
   @Test
@@ -229,6 +234,30 @@ public class BasicEditorControllerTest {
   }
 
   @Test
+  public void testCommandsFromFile() {
+    ImageEditor editor = new BasicImageEditor();
+    Appendable out = new StringBuilder();
+    MockEditorModel model = new MockEditorModel(editor, out);
+    ImageEditorViewStub view = new ImageEditorViewStub();
+    ImageEditorController controller;
+
+    try {
+      controller = new BasicEditorController(model,
+          new FileReader("images/testscript.txt"), view);
+    } catch (FileNotFoundException e) {
+      throw new RuntimeException(e);
+    }
+
+    controller.start();
+    String expected = "add image. image name: cat\n" +
+        "get image. name: cat\n" +
+        "add image. image name: cat2\n" +
+        "get image. name: cat2\n";
+    assertEquals(expected, out.toString());
+
+  }
+
+  @Test
   public void testInvalidCommand() {
     ImageEditor editor = new BasicImageEditor();
     Appendable out = new StringBuilder();
@@ -286,7 +315,7 @@ public class BasicEditorControllerTest {
       controller.start();
       fail("Invalid input");
     } catch (IllegalArgumentException e) {
-      assertEquals("Invalid input", e.getMessage());
+      assertEquals("Invalid input type for command.", e.getMessage());
     }
   }
 

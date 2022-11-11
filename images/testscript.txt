@@ -1,0 +1,3 @@
+load res/cat.ppm cat
+brighten 100 cat cat2
+save cat2 res/cat2.png

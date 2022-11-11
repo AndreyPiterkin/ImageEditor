@@ -22,7 +22,7 @@ public class BasicImageUtilTest {
   ImageEditorViewStub v = new ImageEditorViewStub();
 
   @Test
-  public void testReadPPM1() {
+  public void testRead() {
     Color[][] colors = new Color[2][2];
     RGBAPixel[][] initPixels = {{new RGBAPixel(0, 128, 240), new RGBAPixel(1, 129, 241)},
         {new RGBAPixel(2, 130, 242), new RGBAPixel(3, 131, 243)}};
@@ -50,7 +50,7 @@ public class BasicImageUtilTest {
   }
 
   @Test
-  public void testReadPPM2() {
+  public void testRead2() {
     RGBAPixel[][] initPixels = {{new RGBAPixel(0, 128, 240)}};
     BufferedImage img1 = new BufferedImage(1, 1, BufferedImage.TYPE_INT_RGB);
     img1.setRGB(0, 0, new Color(0, 128, 240).getRGB());
