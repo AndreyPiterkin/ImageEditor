@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.util.Arrays;
 import java.util.Scanner;
 
 /**
@@ -25,18 +26,18 @@ public class ImageUtil {
           histogram[3][(int) Math.round(intensity)]++;
       }
 
-      int max = 0;
+      int[] maxes = new int[4];
       for (int i = 0; i < histogram.length; i++) {
-          for (int j = 1; j < histogram[i].length; j++) {
-              if (histogram[i][j] > max) {
-                  max = histogram[i][j];
-              }
+        for (int j = 0; j < histogram[i].length; j++) {
+          if (histogram[i][j] > maxes[i]) {
+            maxes[i] = histogram[i][j];
           }
+        }
       }
 
       for (int i = 0; i < histogram.length; i++) {
           for (int j = 0; j < histogram[i].length; j++) {
-              histogram[i][j] = (int)((histogram[i][j] * 100.0) / (double) max);
+              histogram[i][j] = (int)((histogram[i][j] * 100.0) / (double) maxes[i]);
           }
       }
       return histogram;
