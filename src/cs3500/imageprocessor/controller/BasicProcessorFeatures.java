@@ -56,13 +56,13 @@ public class BasicProcessorFeatures implements Features {
   }
 
   @Override
-  public void brighten() {
-    controller.operate(new BrightenPixel(50));
+  public void brighten(int amount) {
+    controller.operate(new BrightenPixel(amount));
   }
 
   @Override
-  public void darken() {
-    controller.operate(new DarkenPixel(50));
+  public void darken(int amount) {
+    controller.operate(new DarkenPixel(amount));
   }
 
   @Override

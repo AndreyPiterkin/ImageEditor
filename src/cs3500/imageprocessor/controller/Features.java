@@ -14,9 +14,9 @@ public interface Features {
 
   void sepia();
 
-  void brighten();
+  void brighten(int amount);
 
-  void darken();
+  void darken(int amount);
 
   void flipHorizontal();
 

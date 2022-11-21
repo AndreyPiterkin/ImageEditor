@@ -106,21 +106,23 @@ public class BasicGUIController implements GUIEditorController {
     if (!writers.containsKey(extension)) {
       throw new IllegalArgumentException("Invalid file extension!");
     }
-    ImageState state = this.model.getImage("curr-image");
-    if (state == null) {
+    try {
+      ImageState state = this.model.getImage("curr-image");
+      writers.get(extension).accept(state, path);
+    } catch (IllegalArgumentException e) {
       renderAndHandleException("No image loaded!");
     }
-    writers.get(extension).accept(state, path);
   }
 
   @Override
   public void operate(PixelOperation operation) {
-    ImageState state = this.model.getImage("curr-image");
-    if (state == null) {
+    try {
+      ImageState state = this.model.getImage("curr-image");
+      this.model.addImage(state.apply(operation), "curr-image");
+      this.view.renderImage(this.model.getImage("curr-image").asBufferedImage(BufferedImage.TYPE_INT_ARGB));
+    } catch (IllegalArgumentException e) {
       renderAndHandleException("No image loaded!");
     }
-    this.model.addImage(state.apply(operation), "curr-image");
-    this.view.renderImage(this.model.getImage("curr-image").asBufferedImage(BufferedImage.TYPE_INT_ARGB));
   }
 
   /**

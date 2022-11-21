@@ -12,6 +12,36 @@ import java.util.Scanner;
  */
 public class ImageUtil {
 
+  public static int[][] computeFrequencyHistogram(BufferedImage image) {
+      int[][] histogram = new int[4][256];
+      int[] rgb = image.getRGB(0, 0, image.getWidth(), image.getHeight(),
+        null, 0, image.getWidth());
+      for (int i = 0; i < rgb.length; i++) {
+          Color color = new Color(rgb[i]);
+          histogram[0][color.getRed()]++;
+          histogram[1][color.getGreen()]++;
+          histogram[2][color.getBlue()]++;
+          double intensity = (color.getRed() + color.getGreen() + color.getBlue()) / 3.0;
+          histogram[3][(int) Math.round(intensity)]++;
+      }
+
+      int max = 0;
+      for (int i = 0; i < histogram.length; i++) {
+          for (int j = 1; j < histogram[i].length; j++) {
+              if (histogram[i][j] > max) {
+                  max = histogram[i][j];
+              }
+          }
+      }
+
+      for (int i = 0; i < histogram.length; i++) {
+          for (int j = 0; j < histogram[i].length; j++) {
+              histogram[i][j] = (int)((histogram[i][j] * 100.0) / (double) max);
+          }
+      }
+      return histogram;
+  }
+
   /**
    * Read an image file in the PPM format and print the colors.
    *

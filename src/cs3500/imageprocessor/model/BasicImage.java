@@ -98,7 +98,6 @@ public class BasicImage implements ImageState {
         newPixels[r][c] = f.apply(this, r, c);
       }
     }
-
     return new BasicImage(newPixels);
   }
 
