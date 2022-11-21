@@ -10,7 +10,7 @@ public interface Features {
 
   void sharpen();
 
-  void greyscale();
+  void grayscale();
 
   void sepia();
 

@@ -46,7 +46,7 @@ public class BasicProcessorFeatures implements Features {
   }
 
   @Override
-  public void greyscale() {
+  public void grayscale() {
     controller.operate(new Grayscale());
   }
 
