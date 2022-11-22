@@ -7,6 +7,9 @@ import cs3500.imageprocessor.model.ImageState;
 import cs3500.imageprocessor.operations.PixelOperation;
 import cs3500.imageprocessor.view.ImageEditorGUIView;
 
+/**
+ * Represents a testing implement (a logging class) from basic gui controller.
+ */
 public class BasicGUIControllerLogger extends BasicGUIController {
   private final Appendable log;
 

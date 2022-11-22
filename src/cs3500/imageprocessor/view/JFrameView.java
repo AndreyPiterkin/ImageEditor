@@ -1,6 +1,13 @@
 package cs3500.imageprocessor.view;
 
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.GridLayout;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Color;
+import java.awt.BasicStroke;
+
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -9,18 +16,33 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Consumer;
 
-import javax.swing.*;
+import javax.swing.JPanel;
+import javax.swing.JFrame;
+import javax.swing.JButton;
+import javax.swing.JFileChooser;
+import javax.swing.BoxLayout;
+import javax.swing.BorderFactory;
+import javax.swing.JScrollPane;
+import javax.swing.JOptionPane;
+import javax.swing.JLabel;
+import javax.swing.ImageIcon;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 import cs3500.imageprocessor.controller.Features;
 import cs3500.imageprocessor.model.ImageUtil;
 
+/**
+ * Represents a GUI view for the image editor using Java Swing.
+ */
 public class JFrameView extends JFrame implements ImageEditorGUIView {
 
-  private JPanel canvas;
   private JPanel imageCanvas;
   private Map<JButton, Consumer<Features>> buttons;
 
+  /**
+   * Constructs this image processor view with a button grid, save and load, and panels
+   * for the image and the histogram.
+   */
   public JFrameView() {
     super();
     buttons = new HashMap<>();
@@ -29,10 +51,11 @@ public class JFrameView extends JFrame implements ImageEditorGUIView {
     setSize(1000, 500);
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-    canvas = new JPanel();
+    JPanel canvas = new JPanel();
     canvas.setLayout(new BoxLayout(canvas, BoxLayout.Y_AXIS));
     this.add(new JScrollPane(canvas));
 
+    // Button area
     createButtons();
     JPanel controls = new JPanel();
     buttons.forEach((button, consumer) -> controls.add(button));
@@ -40,6 +63,7 @@ public class JFrameView extends JFrame implements ImageEditorGUIView {
     controls.setLayout(new GridLayout(3, 5));
     this.add(controls, BorderLayout.NORTH);
 
+    // Save and load area
     JPanel saveControls = new JPanel();
     JButton save = new JButton("Save");
     JButton load = new JButton("Load");
@@ -60,12 +84,16 @@ public class JFrameView extends JFrame implements ImageEditorGUIView {
     saveControls.setLayout(new GridLayout(1, 2));
     this.add(saveControls, BorderLayout.SOUTH);
 
+    // Image area
     imageCanvas = new JPanel();
     imageCanvas.setBorder(BorderFactory.createTitledBorder("Image Display"));
     imageCanvas.setLayout(new GridLayout(1, 2, 10, 10));
     this.add(imageCanvas, BorderLayout.CENTER);
   }
 
+  /**
+   * Creates the buttons for the GUI with all of the callbacks and names.
+   */
   private void createButtons() {
     createButton("Blur", Features::blur);
     createButton("Sharpen", Features::sharpen);
@@ -100,12 +128,22 @@ public class JFrameView extends JFrame implements ImageEditorGUIView {
     createButton("Flip Horizontal", Features::flipHorizontal);
     createButton("Flip Vertical", Features::flipVertical);
   }
-  
+
+  /**
+   * Creates a button with the given name and callback.
+   * @param name the name of the button
+   * @param actionEvent the callback for the button
+   */
   private void createButton(String name, Consumer<Features> actionEvent) {
     JButton button = new JButton(name);
     this.buttons.put(button, actionEvent);
   }
 
+  /**
+   * Uses the file chooser to get a file name from the user (for loading or saving).
+   * @param isSaveAction whether we should save or load
+   * @return the file name
+   */
   private String chooseFromFileSystem(boolean isSaveAction) {
     final JFileChooser chooser = new JFileChooser(".");
     FileNameExtensionFilter filter = new FileNameExtensionFilter(
@@ -141,6 +179,11 @@ public class JFrameView extends JFrame implements ImageEditorGUIView {
     imageCanvas.repaint();
   }
 
+  /**
+   * Draws the histogram for the given image.
+   * @param histogram the histogram to draw
+   * @return the panel with the histogram
+   */
   private JPanel drawHistogram(int[][] histogram) {
     JPanel p = new JPanel() {
       protected void paintComponent(Graphics g) {
@@ -157,7 +200,7 @@ public class JFrameView extends JFrame implements ImageEditorGUIView {
           for (int j = 0; j < histogram[i].length - 1; j++) {
             g2d.setColor(colors[i]);
             g2d.setStroke(new BasicStroke(1.5f));
-            g2d.drawLine(j, (int)(histogram[i][j]), (j + 1), (int)(histogram[i][j+1]));
+            g2d.drawLine(j, (int)(histogram[i][j]), (j + 1), (int)(histogram[i][j + 1]));
             g2d.setColor(Color.BLACK);
           }
         }

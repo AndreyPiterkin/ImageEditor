@@ -18,6 +18,9 @@ import cs3500.imageprocessor.model.ImageUtil;
 import cs3500.imageprocessor.operations.PixelOperation;
 import cs3500.imageprocessor.view.ImageEditorGUIView;
 
+/**
+ * Represents a basic implementation of the GUIEditorController interface.
+ */
 public class BasicGUIController implements GUIEditorController {
 
   private final Features features;
@@ -25,6 +28,11 @@ public class BasicGUIController implements GUIEditorController {
   private final ImageEditorGUIView view;
   protected final Map<String, BiConsumer<ImageState, String>> writers;
 
+  /**
+   * Constructs a basic GUI controller.
+   * @param model the model
+   * @param view the view
+   */
   public BasicGUIController(ImageEditor model, ImageEditorGUIView view) {
     this.model = Objects.requireNonNull(model);
     this.view = Objects.requireNonNull(view);
@@ -33,6 +41,9 @@ public class BasicGUIController implements GUIEditorController {
     this.initializeWriters();
   }
 
+  /**
+   * Initializes the writers map for writing images to disk.
+   */
   protected void initializeWriters() {
     writers.put("ppm", (state, filename) -> {
       try {
@@ -92,6 +103,10 @@ public class BasicGUIController implements GUIEditorController {
     this.view.renderImage(this.model.getImage("curr-image").asBufferedImage(BufferedImage.TYPE_INT_ARGB));
   }
 
+  /**
+   * Renders the given message to the view.
+   * @param message the message to render
+   */
   private void renderAndHandleException(String message) {
     try {
       this.view.render(message);
@@ -119,7 +134,8 @@ public class BasicGUIController implements GUIEditorController {
     try {
       ImageState state = this.model.getImage("curr-image");
       this.model.addImage(state.apply(operation), "curr-image");
-      this.view.renderImage(this.model.getImage("curr-image").asBufferedImage(BufferedImage.TYPE_INT_ARGB));
+      this.view.renderImage(this.model.getImage("curr-image")
+          .asBufferedImage(BufferedImage.TYPE_INT_ARGB));
     } catch (IllegalArgumentException e) {
       renderAndHandleException("No image loaded!");
     }

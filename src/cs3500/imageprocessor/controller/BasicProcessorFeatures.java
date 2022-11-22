@@ -17,10 +17,17 @@ import cs3500.imageprocessor.operations.VisualizeIntensity;
 import cs3500.imageprocessor.operations.VisualizeLuma;
 import cs3500.imageprocessor.operations.VisualizeValue;
 
+/**
+ * Represents a basic implementation of the Features interface.
+ */
 public class BasicProcessorFeatures implements Features {
 
   private final GUIEditorController controller;
 
+  /**
+   * Constructs a basic implementation of the Features interface.
+   * @param controller the controller to use
+   */
   public BasicProcessorFeatures(GUIEditorController controller) {
     this.controller = Objects.requireNonNull(controller);
   }
