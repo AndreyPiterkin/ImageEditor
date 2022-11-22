@@ -100,7 +100,8 @@ public class BasicGUIController implements GUIEditorController {
         renderAndHandleException("Can't read from the given path!");
       }
     }
-    this.view.renderImage(this.model.getImage("curr-image").asBufferedImage(BufferedImage.TYPE_INT_ARGB));
+    this.view.renderImage(
+        this.model.getImage("curr-image").asBufferedImage(BufferedImage.TYPE_INT_ARGB));
   }
 
   /**

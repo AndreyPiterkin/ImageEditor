@@ -11,11 +11,13 @@ public class BasicGUIControllerMock implements GUIEditorController {
 
   /**
    * Constructs a BasicGUIControllerMock object with the given appendable to put to.
+   *
    * @param out the appendable to put to
    */
   BasicGUIControllerMock(Appendable out) {
     this.out = out;
   }
+
   @Override
   public void load(String path) {
     try {

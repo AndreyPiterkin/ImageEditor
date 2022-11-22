@@ -4,26 +4,32 @@ import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.util.Arrays;
 import java.util.Scanner;
 
 /**
- * This class contains utility methods to read a PPM image from file and simply print its contents.
+ * This class contains utility methods to read a PPM image from file and simply print its
+ * contents, as well as to compute a frequency histogram.
  * Feel free to change this method as required.
  */
 public class ImageUtil {
 
+  /**
+   * Computes an image's component frequencies to make a histogram.
+   *
+   * @param image the image to be used to calculate the frequency histogram
+   * @return frequencies for r, g, and b components as well as intensity
+   */
   public static int[][] computeFrequencyHistogram(BufferedImage image) {
     int[][] histogram = new int[4][256];
     int[] rgb = image.getRGB(0, 0, image.getWidth(), image.getHeight(),
-      null, 0, image.getWidth());
+        null, 0, image.getWidth());
     for (int i = 0; i < rgb.length; i++) {
-        Color color = new Color(rgb[i]);
-        histogram[0][color.getRed()]++;
-        histogram[1][color.getGreen()]++;
-        histogram[2][color.getBlue()]++;
-        double intensity = (color.getRed() + color.getGreen() + color.getBlue()) / 3.0;
-        histogram[3][(int) Math.round(intensity)]++;
+      Color color = new Color(rgb[i]);
+      histogram[0][color.getRed()]++;
+      histogram[1][color.getGreen()]++;
+      histogram[2][color.getBlue()]++;
+      double intensity = (color.getRed() + color.getGreen() + color.getBlue()) / 3.0;
+      histogram[3][(int) Math.round(intensity)]++;
     }
 
     int[] maxes = new int[4];
@@ -36,9 +42,9 @@ public class ImageUtil {
     }
 
     for (int i = 0; i < histogram.length; i++) {
-        for (int j = 0; j < histogram[i].length; j++) {
-            histogram[i][j] = (int)((histogram[i][j] * 100.0) / (double) maxes[i]);
-        }
+      for (int j = 0; j < histogram[i].length; j++) {
+        histogram[i][j] = (int) ((histogram[i][j] * 100.0) / (double) maxes[i]);
+      }
     }
     return histogram;
   }
