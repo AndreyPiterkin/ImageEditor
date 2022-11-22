@@ -23,7 +23,7 @@ public class BasicGUIController implements GUIEditorController {
   private final Features features;
   private final ImageEditor model;
   private final ImageEditorGUIView view;
-  private final Map<String, BiConsumer<ImageState, String>> writers;
+  protected final Map<String, BiConsumer<ImageState, String>> writers;
 
   public BasicGUIController(ImageEditor model, ImageEditorGUIView view) {
     this.model = Objects.requireNonNull(model);
@@ -33,7 +33,7 @@ public class BasicGUIController implements GUIEditorController {
     this.initializeWriters();
   }
 
-  private void initializeWriters() {
+  protected void initializeWriters() {
     writers.put("ppm", (state, filename) -> {
       try {
         FileWriter writer = new FileWriter(filename);
