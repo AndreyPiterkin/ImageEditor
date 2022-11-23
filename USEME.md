@@ -1,6 +1,26 @@
 USEME:
 
-<h2>Supported Commands:</h2>
+
+<h2>How to use the GUI</h2>
+
+<p>
+
+1. Start the program in GUI mode by calling "java -jar ImageProcessor.jar"
+2. The GUI will open, but no image will be displayed. If you attempt to use a button other than load, the editor will tell you you have no image loaded.
+3. Click the "Load" button, and select an image to load using the file chooser. This will load an image into the editor, and display it and the histogram of pixel color frequency.
+4. Now you can perform any of the actions in the panel of buttons on the top of the editor. The buttons correspond directly to all of the commands listed below (except save and load). These actions will change the image and the histogram in real time.
+5. Whenever you want, you can press save, and select the filename and where to save it. This will save the image in the format specified (supported formats are listed in the file chooser window)
+
+Additional Info:
+You can press load at any time to load a new image. This won't save the old one.
+You can't undo a button action, so you must load the image from disk again.
+You can't save an image in any format other than PNG, BMP, JPEG, or PPM.
+
+
+</p>
+
+<h2>Supported Commands*:</h2>
+<p>*for text interactive and script mode, carried over to buttons in the GUI</p>
 
 <h3>Load</h3>
 ``load path name-to-save-in-editor``

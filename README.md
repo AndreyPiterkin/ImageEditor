@@ -1,4 +1,56 @@
-New README:
+**Readme V3**
+
+**How to Use**
+
+The program can be run in one of three ways: 
+
+You can start the program by calling "java -jar ImageProcessor.jar" with no additional arguments
+to start it in GUI mode. 
+
+You can start the program by calling "java -jar ImageProcessor.jar -text" 
+to start it in text interactive mode (so console scripting).
+
+You can start the program by calling "java -jar ImageProcessor.jar -file <script file>"
+to start the program to read from the given file and execute all of the given commands.
+
+
+**Changes**
+
+_Controller_
+
+We changed nothing about our existing controller code, but to support GUIs we added
+a second interface for controllers that extends the first, which supports "callback"
+style methods onto the controller. We implemented this in our BasicGUIController,
+and overall we had to make no changes to any existing designs, only add new implementations
+and extensions. 
+
+We also added a new Features class and implementation, which is the ActionListener style
+event handling from lecture.
+
+_Model_
+
+We changed nothing about the model.
+
+_View_
+
+Similarly to the controller, we didn't have to modify any existing code, we just extended
+the original view interface to have feature support, and implemented a version of it with Swing.
+
+**What is complete?**
+
+At this stage, all of the parts of the program are complete. The controller has support
+for scripting, text interactive, and GUI. The model is fully featured, and we have good
+extensibility for the view by having split interfaces for just a text view and a GUI view.
+
+**Image Citations**
+
+We used two types of images: we had cat images and test images. All images named test 
+were made by us for testing purposes. The PPM image named cat was taken from Michael Shah's 
+CS 4300 Computer Graphics class, where Rohan and I used it. All of the other cat images were
+generated from the first. 
+
+
+**Readme V2**
 
 **Changes:**
 
@@ -159,7 +211,7 @@ Type the commands you want to execute into the terminal.
 
 Example Script: see res/script.txt
 
-**Old README**
+**Readme V1**
 
 High level Overview:
 
